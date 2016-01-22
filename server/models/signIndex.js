@@ -1,18 +1,22 @@
+var signHelper = require('../helperFunctions/signHelper.js')
+
 module.exports = {
   signin: {
-    get: function (callback) {
-      console.log('+++line4: inside models get signIndex.js');
+    get: function (callback, params) {
+      console.log('+++line4: inside models get signIndex.js: ', params);
     },
-    post: function (callback) {
-      console.log('+++line7: inside models post signIndex.js');
+    post: function (callback, params) {
+      console.log('+++line7: inside models post signIndex.js: ', params);
+      signHelper.signIn(callback, params);
     }
   },
   signup: {
-    get: function (callback) {
+    get: function (callback, params) {
       console.log('+++line12: inside models get signIndex.js');
     },
-    post: function (callback) {
+    post: function (callback, params) {
       console.log('+++line15: inside models post signIndex.js');
+      signHelper.signUp(callback, params);
     }
   },
   logout: {

@@ -3,6 +3,7 @@ var express = require('express');
 var parser = require('body-parser');
 var routeAPI = require('./routesAPI.js')
 var routeSign = require('./routesSign.js');
+var db = require('./db/db.js');
 var app = express();
 module.exports.app = app;
 
