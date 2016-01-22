@@ -5,6 +5,7 @@ if (process.env.DATABASE_URL) {
   sequelize = new Sequelize(process.env.DATABASE_URL);
 } else {
   // the application is executed on the local machine ... use mysql
+  console.log('insde else');
   sequelize = new Sequelize('plant', 'root', null)
 }
 
@@ -23,7 +24,7 @@ var Device = sequelize.define("Device", {
 });
 
 
-User.hasMany(Device, {as: 'device'})
+User.hasMany(Device);
 
 User.sync();
 Device.sync();

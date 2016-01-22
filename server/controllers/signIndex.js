@@ -6,13 +6,13 @@ module.exports = {
       console.log('+++line6: inside controllers get signIndex.js');
       models.signin.get(function (data) {
         res.send(data);
-      })
+      }, req.body);
     },
     post: function (req, res) {
       console.log('+++line12: inside controllers post signIndex.js');
       models.signin.post(function (data) {
         res.send(data);
-      })
+      }, req.body)
     }
   },
   signup: {
@@ -26,7 +26,7 @@ module.exports = {
       console.log('+++line26: inside controllers post signIndex.js');
       models.signup.post(function (data) {
         res.send(data);
-      })
+      }, req.body);
     }
   },
   logout: {
