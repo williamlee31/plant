@@ -1,0 +1,15 @@
+{
+  "name": "plant",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "cdwJS"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.2.0"
+  }
+}
