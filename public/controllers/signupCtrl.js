@@ -7,7 +7,7 @@ angular.module('App.signupCtrl',[
 			console.log($scope.user, $scope.pass, $scope.email);
 			return $http({
 				method: 'POST',
-				url: '/signup',
+				url: 'api/users/signup',
 				data: {
 					name: $scope.user,
 					password: $scope.pass,

@@ -5,7 +5,6 @@ if (process.env.DATABASE_URL) {
   sequelize = new Sequelize(process.env.DATABASE_URL);
 } else {
   // the application is executed on the local machine ... use mysql
-  console.log('insde else');
   sequelize = new Sequelize('plant', 'root', null)
 }
 
@@ -14,7 +13,7 @@ var User = sequelize.define("User", {
   email: Sequelize.STRING,
   password: Sequelize.STRING,
   profilePicture: Sequelize.BLOB('long'),
-},
+},{
   createdAt: false,
   updatedAt: false
 });
