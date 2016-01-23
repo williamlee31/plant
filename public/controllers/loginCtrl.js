@@ -9,7 +9,7 @@ angular.module('App.loginCtrl',[
 				method: 'POST',
 				url: '/signin',
 				data: {
-					username: $scope.user,
+					email: $scope.user,
 					password: $scope.pass
 				}
 			})
