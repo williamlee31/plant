@@ -14,7 +14,7 @@ var User = sequelize.define("User", {
   email: Sequelize.STRING,
   password: Sequelize.STRING,
   profilePicture: Sequelize.BLOB('long'),
-},{
+},
   createdAt: false,
   updatedAt: false
 });
