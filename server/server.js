@@ -9,7 +9,7 @@ module.exports.app = app;
 
 app.use(parser.json());
 app.use('/api', routeAPI);
-app.use('/', routeSign);
+app.use('/api/users', routeSign);
 
 
 app.use(function(req, res, next) {
