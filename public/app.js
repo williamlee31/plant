@@ -14,10 +14,23 @@ angular.module('App',[
 			.state('signup',{
 				url: '/signup',
 				templateUrl: 'templates/signup.html',
+				
 			})
 			.state('app',{
 				url: '/app',
 				templateUrl: 'templates/app.html'
+			})
+			.state('userprofile',{
+				url: '/userprofile',
+				templateUrl: 'templates/userprofile.html'
+			})
+			.state('userprofile-register', {
+				url: '/userprofile-register',
+				templateUrl: 'templates/userprofile-register.html'
+			})
+			.state('deviceregister', {
+				url: '/deviceregister',
+				templateUrl: 'templates/deviceregister.html'
 			});
 		$urlRouterProvider
 			.otherwise('/signin');
