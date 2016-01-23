@@ -11,7 +11,11 @@ module.exports = {
     post: function (req, res) {
       console.log('+++line12: inside controllers post signIndex.js');
       models.signin.post(function (data) {
-        res.send(data);
+        if(data){
+          res.send(data);
+        } else {
+          res.status(404).send(data);
+        }
       }, req.body)
     }
   },
@@ -25,7 +29,11 @@ module.exports = {
     post: function (req, res) {
       console.log('+++line26: inside controllers post signIndex.js');
       models.signup.post(function (data) {
-        res.send(data);
+        if(data){
+          res.send(data);
+        } else {
+          res.status(404).send(data);
+        }
       }, req.body);
     }
   },
