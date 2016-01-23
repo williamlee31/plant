@@ -9,7 +9,9 @@ if (process.env.DATABASE_URL) {
 }
 
 var User = sequelize.define("User", {
-  name: Sequelize.STRING,
+  username: Sequelize.STRING,
+  firstname: Sequelize.STRING,
+  lastname: Sequelize.STRING,
   email: Sequelize.STRING,
   password: Sequelize.STRING,
   profilePicture: Sequelize.BLOB('long'),
@@ -19,11 +21,13 @@ var User = sequelize.define("User", {
 });
 
 var Device = sequelize.define("Device", {
+  name: Sequelize.STRING,
   apiKey: Sequelize.STRING
 });
 
 
 User.hasMany(Device);
+Device.belongsTo(User);
 
 User.sync();
 Device.sync();
