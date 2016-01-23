@@ -1,0 +1,10 @@
+<div ng-controller = "signupCtrl">
+	<form ng-submit = "signup()" name = "signupForm">
+		<input type="text" placeholder = "USERNAME" ng-model="user" required>
+		<br>
+		<input type="text" placeholder = "PASSWORD" ng-model="pass" required>
+		<br>
+		<input type = 'email' placeholder = "EMAIL" ng-model = "email" required>
+		<input type = "submit" value = "SIGNUP" ng-disabled = "signupForm.$invalid">
+	</form>
+</div>

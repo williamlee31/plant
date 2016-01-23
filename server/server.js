@@ -11,6 +11,7 @@ app.use(parser.json());
 app.use('/api', routeAPI);
 app.use('/', routeSign);
 
+
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -18,7 +19,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(express.static('/public'));
+app.use(express.static('./public'));
 app.set('port', process.env.PORT || 1337); // for deployment
 
 http.createServer(app).listen(app.get('port'), function(){
