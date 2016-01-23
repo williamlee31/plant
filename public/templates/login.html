@@ -1,0 +1,9 @@
+<div ng-controller = "loginCtrl">
+	<form ng-submit = "login()" name = "loginForm">
+		<input type="text" placeholder = "USERNAME" ng-model="user" required>
+		<br>
+		<input type="text" placeholder = "PASSWORD" ng-model="pass" required>
+		<br>
+		<input type = "submit" value = "LOGIN" ng-disabled = "loginForm.$invalid">
+	</form>
+</div>
