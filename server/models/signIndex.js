@@ -1,4 +1,4 @@
-var signHelper = require('../helperFunctions/signHelper.js')
+var signHelper = require('../helperFunctions/signHelper.js');
 
 module.exports = {
   signin: {
