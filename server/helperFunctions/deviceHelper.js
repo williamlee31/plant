@@ -22,8 +22,13 @@ exports.regDevice = function (callback, params) {
   db.Device.find({where: {apiKey: token}})
   .then(function (data) {
     if(!data){
+      console.log('Device key is not in database, proceeding.');
+      console.log('params: ', params);
+      console.log('Trying to check username: ' + params.username + 'inside db');
       db.User.find({where: {username: params.username}})
       .then(function (data) {
+        console.log('Found username in database');
+        console.log('data from username :', data);
         if(data){
           db.Device.bulkCreate([{
             name: params.name,

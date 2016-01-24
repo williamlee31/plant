@@ -1,8 +1,15 @@
+<div ng-controller = "deviceregisterCtrl">
+
 <div class="container-fluid">
+
 	<h3> Register device </h3>
-	<input type="text" class="form-control" name="" placeholder="Enter API" ng-value="" ng-model="">
+  <form ng-submit = "registerDevice()" name = "Dataform">  
+	<input type="text" class="form-control" id="" placeholder="Enter device key" ng-value="" ng-model="device.key">
 	<br>
 	<h3>Name</h3>
-	<input type="text" class="form-control" name="" placeholder="Enter name" ng-value="" ng-model="">
+	<input type="text" class="form-control" name="" placeholder="Enter device name" ng-value="" ng-model="device.name">
+  <input type = "submit" value = "Register Device">
+</form>
 
+</div>
 </div>

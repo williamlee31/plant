@@ -9,9 +9,11 @@ angular.module('App.signupCtrl',[
 				method: 'POST',
 				url: 'api/users/signup',
 				data: {
-					name: $scope.user,
+					firstname: $scope.firstname,
+					lastname: $scope.lastname,
+					username: $scope.user,
 					password: $scope.pass,
-					email: $scope.email
+					email: $scope.email,
 				}
 			})
 			.then(function(success){
