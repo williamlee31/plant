@@ -7,8 +7,8 @@ angular.module('App',[
   $scope.getData = function() {
     console.log('Fetching data');
     var m2xKeys = {
-      master: "7f4b3ddf06944e06a87d0cc8aef754ad",
-      device: "f990e644186d0c7ecde4eb454934ae2f"
+      master: "",
+      device: ""
     }
     return $http({
       method: 'GET',
