@@ -14,6 +14,7 @@ var User = sequelize.define("User", {
   lastname: Sequelize.STRING,
   email: Sequelize.STRING,
   password: Sequelize.STRING,
+  token: Sequelize.STRING,
   profilePicture: Sequelize.BLOB('long'),
 },{
   createdAt: false,
@@ -29,8 +30,9 @@ var Device = sequelize.define("Device", {
 User.hasMany(Device);
 Device.belongsTo(User);
 
-User.sync();
-Device.sync();
+User.sync().then(function(){
+  Device.sync();
+});
 
 exports.User = User;
 exports.Device = Device;
