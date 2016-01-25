@@ -17,24 +17,38 @@ var cryptPass = function (password, callback){
   })
 }
 
+var cryptToken = function (username, callback) {
+  bcrypt.genSalt(10, function (err, salt) {
+    console.log('+++line22 token: ',username + salt);
+    var token = jwt.encode(username + salt, 'secret');
+    callback(JSON.stringify(token));
+  })
+}
+
 exports.signIn = function (callback, params) {
     db.User.find({where: {username: params.username}})
     .then(function (data) {
       if(data){
         comparePass(params.password,data.password,function (response) {
           if(response){
-            db.User.find({where: {email: params.email}, attributes: ['username', 'firstname', 'lastname']})
+            db.User.find({where: {username: params.username}, attributes: ['id', 'username', 'firstname', 'lastname']})
             .then(function (data) {
-              var token = jwt.encode(params.email, 'secret');
-              data.dataValues.token = token;
-              callback(data);
+              cryptToken(params.username, function (storedToken) {
+                data.update({token: storedToken})
+                .then(function() {
+                  console.log('token saved');
+                  data.dataValues.token = storedToken;
+                  console.log('+++line41 data.dataValues: ', data.dataValues);
+                  callback(data);
+                })
+              })
             })
           }else{
-            callback(response);
+            callback(response, 'Invalid password');
           }
         })
       }else{
-        callback(false, 'Invalid Username');
+        callback(false, 'Invalid username');
       }
     })
 }
@@ -47,20 +61,21 @@ exports.signUp = function (callback, params) {
       .then(function (data) {
         if(!data){
           cryptPass(params.password, function (hash) {
-            db.User.bulkCreate([{
-              username: params.username,
-              email: params.email,
-              password: hash,
-              firstname: params.firstname,
-              lastname: params.lastname
-            }])
-            .then(function () {
-              return db.User.find({where: {email: params.email}, attributes: ['username', 'firstname','lastname']});
-            }).then(function (userData) {
-              console.log('+++line 57: ', userData);
-              var token = jwt.encode(params.email, 'secret');
-              userData.dataValues.token = token;
-              callback(userData);
+            cryptToken(params.username, function (storedToken) {
+              db.User.bulkCreate([{
+                username: params.username,
+                email: params.email,
+                password: hash,
+                firstname: params.firstname,
+                lastname: params.lastname,
+                token: storedToken
+              }])
+              .then(function () {
+                return db.User.find({where: {username: params.username}, attributes: ['username', 'firstname', 'lastname', 'token']});
+              }).then(function (userData) {
+                console.log('+++line 76: ', userData);
+                callback(userData);
+              })
             })
           })
         }else{

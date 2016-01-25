@@ -1,4 +1,5 @@
 var signHelper = require('../helperFunctions/signHelper.js');
+var authHelper = require('../helperFunctions/authHelper.js');
 
 module.exports = {
   signin: {
@@ -25,6 +26,15 @@ module.exports = {
     },
     post: function (callback) {
       console.log('+++line23: inside models post signIndex.js');
+    }
+  },
+  auth: {
+    get: function (callback, params) {
+      console.log('+++line56: inside controllers get signIndex.js');
+      authHelper.getToken(callback, params);
+    },
+    post: function (callback, params) {
+      console.log('+++line56: inside controllers post signIndex.js');
     }
   }
 }

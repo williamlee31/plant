@@ -1,4 +1,5 @@
 var models = require('../models/signIndex.js');
+var url = require('url');
 
 module.exports = {
   signin: {
@@ -47,6 +48,22 @@ module.exports = {
     post: function (req, res) {
       console.log('+++line40: inside controllers post signIndex.js');
       models.logout.post(function (data) {
+        res.send(data);
+      })
+    }
+  },
+  auth: {
+    get: function (req, res) {
+      console.log('+++line56: inside controllers get signIndex.js');
+      var url_parts = url.parse(req.url, true);
+      var query = url_parts.query;
+      models.auth.get(function (data) {
+        res.send(data);
+      }, query)
+    },
+    post: function (req, res) {
+      console.log('+++line56: inside controllers post signIndex.js');
+      models.auth.post(function (data) {
         res.send(data);
       })
     }
