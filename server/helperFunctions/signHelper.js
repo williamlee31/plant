@@ -36,9 +36,8 @@ exports.signIn = function (callback, params) {
               cryptToken(params.username, function (storedToken) {
                 data.update({token: storedToken})
                 .then(function() {
-                  console.log('token saved');
                   data.dataValues.token = storedToken;
-                  console.log('+++line41 data.dataValues: ', data.dataValues);
+                  delete data.dataValues.id
                   callback(data);
                 })
               })

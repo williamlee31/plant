@@ -11,11 +11,11 @@ module.exports = {
     },
     post: function (req, res) {
       console.log('+++line12: inside controllers post signIndex.js');
-      models.signin.post(function (data) {
+      models.signin.post(function (data, message) {
         if(data){
-          res.send(data);
+          res.send(message);
         } else {
-          res.status(404).send(data);
+          res.status(404).send(message);
         }
       }, req.body)
     }
@@ -29,11 +29,11 @@ module.exports = {
     },
     post: function (req, res) {
       console.log('+++line26: inside controllers post signIndex.js');
-      models.signup.post(function (data) {
+      models.signup.post(function (data, message) {
         if(data){
-          res.send(data);
+          res.send(message);
         } else {
-          res.status(404).send(data);
+          res.status(404).send(message);
         }
       }, req.body);
     }
@@ -57,8 +57,13 @@ module.exports = {
       console.log('+++line56: inside controllers get signIndex.js');
       var url_parts = url.parse(req.url, true);
       var query = url_parts.query;
-      models.auth.get(function (data) {
-        res.send(data);
+      console.log(query);
+      models.auth.get(function (data, message) {
+        if(data){
+          res.send(message);
+        }else{
+          res.status(404).send(message);
+        }
       }, query)
     },
     post: function (req, res) {
