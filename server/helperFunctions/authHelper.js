@@ -7,12 +7,19 @@ exports.getToken = function (callback, params) {
   db.User.find({where: {username: params.username}, attributes: ['token']})
   .then(function (data) {
     if(data){
-      db.User.update({token: param})
-      .then(function() {
-        callback(true, 'Token saved');
-      })
+      console.log('+++line10 data.dataValues.token: ', data.dataValues.token)
+      console.log('+++line11 params.token: ', params.token)
+      if(data.dataValues.token === JSON.stringify(params.token)){
+        callback(true, 'Valid token');
+      }else{
+        callback(false, 'Invalid token');
+      }
     }else{
       callback(false, 'Invalid username');
     }
   })
 }
+//
+// eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.ImNrdWgkMmEkMTAkOUZjTjZzNy5pWmcyRlV1eUxSSmJELiI.7UGBfVQ8dvvMR-ehd9gwQyee3axz-aEPjsqEs9RTQpM
+//
+// eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.ImNrdWgkMmEkMTAkOUZjTjZzNy5pWmcyRlV1eUxSSmJELiI.7UGBfVQ8dvvMR-ehd9gwQyee3axz-aEPjsqEs9RTQpM
