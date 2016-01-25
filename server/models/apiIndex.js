@@ -12,6 +12,7 @@ module.exports = {
   devices: {
     get: function (callback, params) {
       console.log('+++line12: inside models get devices apiIndex.js');
+      deviceHelper.getDevices(callback, params);
 
     },
     post: function (callback, params) {

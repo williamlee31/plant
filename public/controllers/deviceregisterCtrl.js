@@ -6,7 +6,7 @@ angular.module('App.deviceregisterCtrl',[
         $scope.device = {};
 
         $scope.registerDevice = function() {
-          console.log('Fetching data');
+          console.log('Registering device');
           var m2xKeys = {
             master: deviceMasterKey, // hide inside not pushed file
             device: $scope.device.key
@@ -31,7 +31,8 @@ angular.module('App.deviceregisterCtrl',[
               }
             })
             .then(function(dbResponse){
-              console.log(dbResponse);
+              alert('Device registered.');
+              console.log('dbResponse: ', dbResponse);
               if(dbResponse === 202){
                 alert('Device registered.')
                 console.log('Device registered.')

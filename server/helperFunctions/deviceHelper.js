@@ -23,12 +23,11 @@ exports.regDevice = function (callback, params) {
   .then(function (data) {
     if(!data){
       console.log('Device key is not in database, proceeding.');
-      console.log('params: ', params);
-      console.log('Trying to check username: ' + params.username + 'inside db');
+      console.log('Params: ', params);
+      console.log('Trying to check username: ' + params.username + ' (inside db)');
       db.User.find({where: {username: params.username}})
       .then(function (data) {
         console.log('Found username in database');
-        console.log('data from username :', data);
         if(data){
           db.Device.bulkCreate([{
             name: params.name,
@@ -46,4 +45,34 @@ exports.regDevice = function (callback, params) {
       callback(false, 'Key already exists');
     }
   })
+}
+
+exports.getDevices = function(callback, params) {
+  // params: username
+  var username = params.username;
+  db.User.find({where: {username: username}})
+  .then(function (data) {
+    if(data){
+      var userid = data.dataValues.id;
+      db.Device.findAll({where: {UserId: userid}, attributes: ['name', 'apiKey']})
+      .then(function (data) {
+        if(data){
+          // var token = jwt.decode(data.dataValues.apiKey, 'secret');
+          var results = [];
+          for(var i = 0; i < data.length; i++){
+            var token = jwt.decode(data[i].dataValues.apiKey, 'secret');
+            data[i].dataValues.apiKey = token;
+            results.push(data[i].dataValues);
+          }
+          callback(results);
+        } else {
+          callback(data, 'No devices')
+        }
+
+      })
+    } else {
+      callback(data, 'Invalid username');
+    } 
+  })
+
 }
