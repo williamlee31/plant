@@ -3,7 +3,8 @@ angular.module('App',[
 	'ngMessages',
 	'App.loginCtrl',
 	'App.signupCtrl',
-	'App.deviceregisterCtrl'
+	'App.deviceregisterCtrl',
+	'App.appCtrl'
 	])
 	.config(function($stateProvider, $urlRouterProvider){
 		$stateProvider
@@ -15,6 +16,7 @@ angular.module('App',[
 			.state('signup',{
 				url: '/signup',
 				templateUrl: 'templates/signup.html',
+				controller: 'signupCtrl'
 			})
 			.state('app',{
 				url: '/app',
