@@ -19,7 +19,3 @@ exports.getToken = function (callback, params) {
     }
   })
 }
-//
-// eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.ImNrdWgkMmEkMTAkOUZjTjZzNy5pWmcyRlV1eUxSSmJELiI.7UGBfVQ8dvvMR-ehd9gwQyee3axz-aEPjsqEs9RTQpM
-//
-// eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.ImNrdWgkMmEkMTAkOUZjTjZzNy5pWmcyRlV1eUxSSmJELiI.7UGBfVQ8dvvMR-ehd9gwQyee3axz-aEPjsqEs9RTQpM
