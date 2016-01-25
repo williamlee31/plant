@@ -18,9 +18,34 @@
     <script src="controllers/appCtrl.js"></script>
     <script src='config.js'></script>
   </head>
-  <body ng-app = "App">
-    <h5>TEST</h5>
-    <div ui-view>
+
+
+  <body class = "container" ng-app = "App">
+    <!-- <div class="container"> -->
+    <div class="navbar">
+      <div class="navbar-header">
+      <a class="navbar-brand" ui-sref="signin">Plant Page</a>
+      </div>
+      <div class="navbar-inner">
+        <ul class="nav navbar-nav" >
+          <li><a ui-sref="signin">Sign-in/Home</a></li>
+          <li><a ui-sref="signup">Sign-up</a></li>
+          <li><a ui-sref="app">Inside App</a></li>
+          <li><a ui-sref="userprofile-register">User Register</a></li>
+          <li><a ui-sref="deviceregister">Device Register</a></li>
+          <li><a ui-sref="userprofile">User Profile</a></li>
+        </ul>
+      </div>
     </div>
+    <!-- </div> -->
+
+
+    <h5>TEST</h5>
+    <div ui-view></div>
+
+
+
+
+
   </body>
 </html>
