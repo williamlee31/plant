@@ -21,11 +21,12 @@ module.exports = {
     }
   },
   logout: {
-    get: function (callback) {
-      console.log('+++line20: inside models get signIndex.js');
+    get: function (callback, params) {
+      console.log('+++line25: inside models get signIndex.js');
+      signHelper.logout(callback, params);
     },
-    post: function (callback) {
-      console.log('+++line23: inside models post signIndex.js');
+    post: function (callback, params) {
+      console.log('+++line29: inside models post signIndex.js');
     }
   },
   auth: {

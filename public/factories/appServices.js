@@ -46,15 +46,15 @@ angular.module('appService', [])
 				return false;
 			})
 		};
-		
+
 		return {
 			signout: signout,
 			isAuth: isAuth,
 			user: user,
 			firstName: firstName,
 			lastName: lastName,
-			email: email,
-			init: init
+			email: email
+			// init: init
 		}
 
 	})

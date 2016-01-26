@@ -43,9 +43,15 @@ module.exports = {
   logout: {
     get: function (req, res) {
       console.log('+++line34: inside controllers get signIndex.js');
-      models.logout.get(function (data) {
-        res.send(data);
-      })
+      var url_parts = url.parse(req.url, true);
+      var query = url_parts.query;
+      models.logout.get(function (data, msg) {
+        if(data){
+          res.send(msg)
+        }else{
+          res.status(404).send(msg);
+        }
+      }, query)
     },
     post: function (req, res) {
       console.log('+++line40: inside controllers post signIndex.js');

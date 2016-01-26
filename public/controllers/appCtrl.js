@@ -3,13 +3,22 @@ angular.module('App.appCtrl',[])
 
 
 		$scope.signout = function(){
-			console.log("INSIDE appFactory.signout");
-			window.localStorage.removeItem('token');
-			$location.path('api/users/signin');
+			return $http({
+				method: 'GET',
+				url: '/api/users/logout',
+				params: {
+					token: window.localStorage.token
+				}
+			}).then(function(success){
+				window.localStorage.removeItem('token');
+				$location.path('/signin');
+			}, function(err){
+				console.log(err);
+			})
 		};
 
 		console.log(appFactory);
-		
+
 		$scope.init = function(){
 			console.log("LOCAL STORAGE!!!!!!!#E@#$", window.localStorage.token)
 			return $http({
