@@ -1,12 +1,13 @@
 angular.module('App.deviceregisterCtrl',[
   ])
-.controller('deviceregisterCtrl', function($scope, $http){
+.controller('deviceregisterCtrl', function($scope, $http, appFactory){
 
         $scope.deviceData = {};
         $scope.device = {};
 
         $scope.registerDevice = function() {
           console.log('Registering device');
+          console.log('Registering device, name should be logged in name: ', appFactory.user)
           var m2xKeys = {
             master: deviceMasterKey, // hide inside not pushed file
             device: $scope.device.key
@@ -27,7 +28,7 @@ angular.module('App.deviceregisterCtrl',[
               data: {
                 name: $scope.device.name,
                 apiKey: $scope.device.key,
-                username: 'will' // grab username from appfactory
+                username: appFactory.user // grab username from appfactory
               }
             })
             .then(function(dbResponse){

@@ -1,13 +1,14 @@
 angular.module('App.userprofileCtrl',[
   ])
-.controller('userprofileCtrl', function($scope, $http){
+.controller('userprofileCtrl', function($scope, $http, appFactory){
 
   $scope.deviceData = [];
 
   $scope.userDevices;
 
   $scope.checkDevices = function() {
-    var username = 'will';
+    var username = appFactory.user;
+    console.log('* username in check devices :', username);
     var url = '/api/devices?username='+username
     console.log('Checking for devices');
     return $http({
