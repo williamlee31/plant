@@ -2,8 +2,9 @@ angular.module('App.userprofileCtrl',[
   ])
 .controller('userprofileCtrl', function($scope, $http){
 
-  $scope.deviceData = ['', '', ''];
-  $scope.user = {};
+  $scope.deviceData = [];
+
+  $scope.userDevices;
 
   $scope.checkDevices = function() {
     var username = 'will';
@@ -14,35 +15,45 @@ angular.module('App.userprofileCtrl',[
       url: url 
     })
     .then(function(success){
-      $scope.user.device = success;
-      console.log($scope.user.device);
+      $scope.userDevices = success.data;
     }, function(err){
       console.log("Data not retrieved");
     })
   }
 
   $scope.getData = function() {
-    $scope.checkDevices();
-    console.log('Fetching data');
-    var m2xKeys = {
-      master: deviceMasterKey, // hide inside not pushed file
-      device: 'f990e644186d0c7ecde4eb454934ae2f'
-    }
-    return $http({
-      method: 'GET',
-      url: 'https://api-m2x.att.com/v2/devices/'+m2xKeys.device+'/streams?pretty',
-      headers: {
-        "X-M2X-KEY": m2xKeys.master
+    $scope.checkDevices().then(function(){
+      console.log('Fetching data');
+      $scope.deviceData = [];
+      for(var i = 0; i < $scope.userDevices.length; i++){
+        var m2xKeys = {
+          master: deviceMasterKey,
+          device: $scope.userDevices[i].apiKey
+        }
+        return $http({
+          method: 'GET',
+          url: 'https://api-m2x.att.com/v2/devices/'+m2xKeys.device+'/streams?pretty',
+          headers: {
+            "X-M2X-KEY": m2xKeys.master
+          }
+        })
+        .then(function(success){
+          var water = success.data.streams[1].name;
+          var light = success.data.streams[2].name;
+          var temp = success.data.streams[3].name;
+          var deviceData = {
+            water: success.data.streams[1].value,
+            light: success.data.streams[2].value,
+            temp: success.data.streams[3].value
+          }
+          $scope.deviceData.push({
+            name: $scope.userDevices[i].name,
+            data: deviceData
+          })
+        }, function(err){
+          console.log("Data not retrieved");
+        })
       }
-    })
-    .then(function(success){
-      $scope.deviceData[0] = success.data.streams[1];
-      $scope.deviceData[1] = success.data.streams[2];
-      $scope.deviceData[2] = success.data.streams[3];
-      console.log($scope.deviceData);
-    }, function(err){
-      console.log("Data not retrieved");
-    })
-  }
-
+    });
+}
 })

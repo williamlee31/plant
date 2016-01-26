@@ -6,9 +6,13 @@
 </form>
 
 </div>
-<div ng-repeat='data in deviceData'>
+<div ng-repeat='device in deviceData'>
 
-<p>{{data.name}}: {{data.value}}</p>
+  <div class='deviceName'>{{device.name}}</div>
+  <div class='deviceLight'>light: {{device.data.light}}</div>
+  <div class='deviceWater'>water: {{device.data.water}}</div>
+  <div class='deviceTemp'>temp: {{device.data.temp}}</div>
+
 
 </div>
 </div>
