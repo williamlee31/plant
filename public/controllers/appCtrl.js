@@ -1,6 +1,7 @@
 angular.module('App.appCtrl',[])
 	.controller('appCtrl', function($scope, $http, $location, appFactory){
 
+		console.log("APPFACTORY", appFactory);
 
 		$scope.signout = function(){
 			return $http({
@@ -10,6 +11,10 @@ angular.module('App.appCtrl',[])
 					token: window.localStorage.token
 				}
 			}).then(function(success){
+				appFactory.user = null;
+				appFactory.firstName = null;
+				appFactory.lastName = null;
+				appFactory.email = null;
 				window.localStorage.removeItem('token');
 				$location.path('/signin');
 			}, function(err){
