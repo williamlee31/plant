@@ -1,9 +1,11 @@
 var deviceHelper = require('../helperFunctions/deviceHelper.js');
+var userHelper = require('../helperFunctions/userHelper.js');
 
 module.exports = {
   users: {
-    get: function (callback) {
+    get: function (callback, params) {
       console.log('+++line4: inside models get apiIndex.js');
+      userHelper.getUser(callback, params);
     },
     post: function (callback) {
       console.log('+++line7: inside models post apiIndex.js')
