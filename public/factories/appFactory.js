@@ -1,12 +1,6 @@
 angular.module('appFactory', [])
 	.factory('appFactory', function($location, $http){
 
-		var signout = function(){
-			console.log("INSIDE appFactory.signout");
-			window.localStorage.removeItem('token');
-			$location.path('/signin');
-		};
-
 		var user = '';
 		var firstName = '';
 		var lastName = '';
