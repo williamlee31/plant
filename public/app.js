@@ -47,27 +47,42 @@ angular.module('App',[
 			});
 		$urlRouterProvider
 			.otherwise('/signin');
-	})
-	
-	// .run(function($rootScope, $location, $state, appFactory){
-	// 	$rootScope.$on('$stateChangeStart', function(event, next, current){
+	})	
+	// .run(function($rootScope, $location, $state){
+	// 	$rootScope.$on('$stateChangeStart', function(event, next, current, appFactory){
 			
-	// 		var auth = false;
-	// 		appFactory.isAuth().then(function(success){
-	// 			auth = true;
-	// 		}, function(err){
-	// 			auth = false;
-	// 		});
+	// 		if(!window.localStorage.token){
+	// 			console.log("YOU ARE NOT LOGGED IN!");
+	// 			$location.path('/login');
+	// 		}
 
-	// 		console.log("auth:", auth);
+			
+
+
+	// 		// return $q(function(resolve, reject){
+
+
+
+
+	// 		// 	if(!window.localStorage.token){
+
+	// 		// 	}
+	// 		// })
+
+	// 		// if(next)
+
+	// 		// var auth = false;
+	// 		// var auth = appFactory.isAuth();
+
+	// 		// console.log("auth:", auth);
 	// 		console.log("Event:", event);
 	// 		console.log("next:", next);
 	// 		console.log("current:", current);
 	// 		console.log("INSIDE RUN!!!!!!!");
 	// 		console.log("next.authenticate", next.authenticate);
-	// 		console.log("appFactory", appFactory);
-	// 		console.log(Boolean(appFactory.isAuth()));
-	// 		console.log(auth);
+	// 		// console.log("appFactory", appFactory);
+	// 		// console.log(Boolean(appFactory.isAuth()));
+	// 		// console.log(auth);
 
 	// 	});
 	// })
