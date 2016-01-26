@@ -2,6 +2,8 @@ angular.module('App.loginCtrl',[
 	])
 	.controller('loginCtrl', function($scope, $http, $location, appFactory){
 
+		console.log("APPFACTORY", appFactory);
+
 		$scope.login = function(){
 			console.log("INSIDE LOGIN!");
 			console.log($scope.user, $scope.pass);
