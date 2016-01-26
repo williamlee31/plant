@@ -6,7 +6,8 @@ angular.module('App',[
 	'App.deviceregisterCtrl',
 	'App.userprofileCtrl',
 	'App.appCtrl',
-	'appFactory'
+	'appFactory',
+	'App.productpageCtrl'
 	])
 	.config(function($stateProvider, $urlRouterProvider){
 		$stateProvider
@@ -24,6 +25,11 @@ angular.module('App',[
 				url: '/app',
 				templateUrl: 'templates/app.html',
 				controller: 'appCtrl'
+			})
+			.state('productpage', {
+				url: '/productpage',
+				templateUrl: 'templates/productpage.html',
+				controller: 'productpageCtrl'
 			})
 			.state('userprofile',{
 				url: '/userprofile',

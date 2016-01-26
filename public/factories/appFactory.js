@@ -48,7 +48,6 @@ angular.module('appFactory', [])
 		};
 
 		return {
-			signout: signout,
 			isAuth: isAuth,
 			user: user,
 			firstName: firstName,
