@@ -4,6 +4,7 @@ angular.module('App',[
 	'App.loginCtrl',
 	'App.signupCtrl',
 	'App.deviceregisterCtrl',
+	'App.userprofileCtrl',
 	'App.appCtrl'
 	])
 	.config(function($stateProvider, $urlRouterProvider){
@@ -24,7 +25,8 @@ angular.module('App',[
 			})
 			.state('userprofile',{
 				url: '/userprofile',
-				templateUrl: 'templates/userprofile.html'
+				templateUrl: 'templates/userprofile.html',
+				controller: 'userprofileCtrl'
 			})
 			.state('userprofile-register', {
 				url: '/userprofile-register',
