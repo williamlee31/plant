@@ -50,12 +50,12 @@ angular.module('App.userprofileCtrl',[
             temp: Math.floor(success.data.streams[3].value * 1.8 + 32) + '°F'
           }
 
-          if(lightVal < 340){
-            deviceData.light = 'shade';
+          if(lightVal < 340 && lightVal !== 0){
+            deviceData.light = 'sunny';
           } else if (lightVal >= 340 && lightVal <= 680) {
             deviceData.light = 'partial shade';
-          } else if (lightVal > 680) {
-            deviceData.light = 'sunny'
+          } else if (lightVal > 680 || lightVal === 0) {
+            deviceData.light = 'shade'
           }
 
           if(waterVal <= 100){
