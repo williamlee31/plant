@@ -6,7 +6,7 @@ angular.module('App',[
 	'App.deviceregisterCtrl',
 	'App.userprofileCtrl',
 	'App.appCtrl',
-	'appService'
+	'appFactory'
 	])
 	.config(function($stateProvider, $urlRouterProvider){
 		$stateProvider
