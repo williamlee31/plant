@@ -48,8 +48,8 @@ exports.regDevice = function (callback, params) {
 }
 
 exports.getDevices = function(callback, params) {
-  // params: username
   var username = params.username;
+  console.log(username);
   db.User.find({where: {username: username}})
   .then(function (data) {
     if(data){
