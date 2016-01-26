@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8" />
@@ -11,13 +11,14 @@
     
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="app.js"></script>
     <script src="controllers/loginCtrl.js"></script>
     <script src="controllers/signupCtrl.js"></script>
     <script src="controllers/deviceregisterCtrl.js"></script>
     <script src="controllers/appCtrl.js"></script>
     <script src="controllers/userprofileCtrl.js"></script>
+    <script src="factories/appServices.js"></script>
     <script src='config.js'></script>
+    <script src="app.js"></script>
   </head>
 
 
@@ -42,7 +43,7 @@
 
 
     <h5>TEST</h5>
-    <div ui-view></div>
+    <ui-view></ui-view>
 
 
 

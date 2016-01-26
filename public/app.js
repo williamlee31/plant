@@ -5,7 +5,8 @@ angular.module('App',[
 	'App.signupCtrl',
 	'App.deviceregisterCtrl',
 	'App.userprofileCtrl',
-	'App.appCtrl'
+	'App.appCtrl',
+	'appService'
 	])
 	.config(function($stateProvider, $urlRouterProvider){
 		$stateProvider
@@ -21,7 +22,8 @@ angular.module('App',[
 			})
 			.state('app',{
 				url: '/app',
-				templateUrl: 'templates/app.html'
+				templateUrl: 'templates/app.html',
+				controller: 'appCtrl'
 			})
 			.state('userprofile',{
 				url: '/userprofile',
@@ -40,3 +42,26 @@ angular.module('App',[
 		$urlRouterProvider
 			.otherwise('/signin');
 	})
+	
+	// .run(function($rootScope, $location, $state, appFactory){
+	// 	$rootScope.$on('$stateChangeStart', function(event, next, current){
+			
+	// 		var auth = false;
+	// 		appFactory.isAuth().then(function(success){
+	// 			auth = true;
+	// 		}, function(err){
+	// 			auth = false;
+	// 		});
+
+	// 		console.log("auth:", auth);
+	// 		console.log("Event:", event);
+	// 		console.log("next:", next);
+	// 		console.log("current:", current);
+	// 		console.log("INSIDE RUN!!!!!!!");
+	// 		console.log("next.authenticate", next.authenticate);
+	// 		console.log("appFactory", appFactory);
+	// 		console.log(Boolean(appFactory.isAuth()));
+	// 		console.log(auth);
+
+	// 	});
+	// })
