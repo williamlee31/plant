@@ -72,7 +72,6 @@ exports.signUp = function (callback, params) {
               .then(function () {
                 return db.User.find({where: {username: params.username}, attributes: ['username', 'firstname', 'lastname', 'token']});
               }).then(function (userData) {
-                console.log('+++line 76: ', userData);
                 callback(userData);
               })
             })

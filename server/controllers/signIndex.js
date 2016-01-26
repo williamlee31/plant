@@ -13,7 +13,8 @@ module.exports = {
       console.log('+++line12: inside controllers post signIndex.js');
       models.signin.post(function (data, msg) {
         if(data){
-          res.send(msg);
+          console.log(data);
+          res.send(data);
         } else {
           res.status(404).send(msg);
         }
@@ -31,7 +32,8 @@ module.exports = {
       console.log('+++line26: inside controllers post signIndex.js');
       models.signup.post(function (data, msg) {
         if(data){
-          res.send(msg);
+          console.log(data);
+          res.send(data);
         } else {
           res.status(404).send(msg);
         }
