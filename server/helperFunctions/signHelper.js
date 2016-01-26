@@ -31,7 +31,7 @@ exports.signIn = function (callback, params) {
       if(data){
         comparePass(params.password,data.password,function (response) {
           if(response){
-            db.User.find({where: {username: params.username}, attributes: ['id', 'username', 'firstname', 'lastname']})
+            db.User.find({where: {username: params.username}, attributes: ['id', 'username', 'firstname', 'lastname', 'email']})
             .then(function (data) {
               cryptToken(params.username, function (storedToken) {
                 data.update({token: storedToken})
@@ -70,9 +70,10 @@ exports.signUp = function (callback, params) {
                 token: storedToken
               }])
               .then(function () {
-                return db.User.find({where: {username: params.username}, attributes: ['username', 'firstname', 'lastname', 'token']});
-              }).then(function (userData) {
-                callback(userData);
+                db.User.find({where: {username: params.username}, attributes: ['username', 'firstname', 'lastname', 'token', 'email']})
+                .then(function (userData) {
+                  callback(userData);
+                })
               })
             })
           })
@@ -83,5 +84,21 @@ exports.signUp = function (callback, params) {
     }else{
       callback(false, 'Username exists');
     }
+  })
+}
+
+exports.logout = function (callback, params) {
+  console.log('+++line91 token: ', params.token);
+  db.User.find({where: {token: params.token}, attributes: ['id', 'token']})
+  .then(function (data) {
+    if(data){
+      data.update({token: 'NULL'})
+      .then(function () {
+        callback(true, 'Token deleted');
+      })
+    }else{
+      callback(false, 'Invalid token')
+    }
+
   })
 }
