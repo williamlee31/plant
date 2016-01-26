@@ -20,8 +20,6 @@ angular.module('App.deviceregisterCtrl',[
             }
           })
           .then(function(success){
-            console.log($scope.device);
-            console.log(success);
             return $http({
               method: 'POST',
               url: '/api/devices', // api post devicekey route to database
@@ -32,15 +30,13 @@ angular.module('App.deviceregisterCtrl',[
               }
             })
             .then(function(dbResponse){
-              alert('Device registered.');
               console.log('dbResponse: ', dbResponse);
-              if(dbResponse === 202){
-                alert('Device registered.')
-                console.log('Device registered.')
-              } else if(dbResponse === 404) {
-                alert('Device already registered.')
-                console.log('Device already registered.')
+              if(dbResponse.status === 200){
+                alert('Added ' + $scope.device.name + ' to your profile')
+                console.log('Device registered!!')
               }
+            }, function(err){
+              alert('Device already registered');
             })
           }, function(err){
             alert('You done goofed!');
