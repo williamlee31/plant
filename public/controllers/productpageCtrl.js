@@ -1,7 +1,7 @@
 angular.module('App.productpageCtrl',[
 	])
-	.controller('productCtrl', function($scope){
-		$scope.image = [{
-    	src: 'img/needles-1030843_1920.jpg',
-  }];
+	.controller('productpageCtrl', function($scope){
+		$scope.image = {
+    	src: '../img/productPage3dObj.png',
+  };
 })
