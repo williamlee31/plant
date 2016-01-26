@@ -22,9 +22,11 @@ angular.module('App.userprofileCtrl',[
   }
 
   $scope.getData = function() {
-    $scope.checkDevices().then(function(){
+    $scope.deviceData = [];
+    $scope.checkDevices()
+    .then(
+      function(){
       console.log('Fetching data');
-      $scope.deviceData = [];
       for(var i = 0; i < $scope.userDevices.length; i++){
         var m2xKeys = {
           master: deviceMasterKey,
@@ -41,11 +43,32 @@ angular.module('App.userprofileCtrl',[
           var water = success.data.streams[1].name;
           var light = success.data.streams[2].name;
           var temp = success.data.streams[3].name;
+          var waterVal = success.data.streams[1].value;
+          var lightVal = success.data.streams[2].value;
+
           var deviceData = {
-            water: success.data.streams[1].value,
-            light: success.data.streams[2].value,
-            temp: success.data.streams[3].value
+            temp: Math.floor(success.data.streams[3].value * 1.8 + 32) + '°F'
           }
+
+          if(lightVal < 340){
+            deviceData.light = 'shade';
+          } else if (lightVal >= 340 && lightVal <= 680) {
+            deviceData.light = 'partial shade';
+          } else if (lightVal > 680) {
+            deviceData.light = 'sunny'
+          }
+
+          if(waterVal <= 100){
+            deviceData.water = 'danger';
+          } else if (waterVal > 100 && waterVal <= 400) {
+            deviceData.water = 'dry';
+          } else if (waterVal > 400 && waterVal <= 700) {
+            deviceData.water = 'perfect';
+          } else if (waterVal > 700) {
+            deviceData.water = 'drenched';
+          }
+
+
           $scope.deviceData.push({
             name: $scope.userDevices[i].name,
             data: deviceData
