@@ -43,6 +43,7 @@ module.exports = {
     },
     post: function (req, res) {
       console.log('+++line45: insde controllers post devices apiIndex.js');
+      console.log('request body inside post device controller :', req.body);
       models.devices.post(function (valid, msg) {
         if(valid){
           res.send(msg);
@@ -53,6 +54,7 @@ module.exports = {
     },
     delete: function (req, res) {
       console.log('+++line55: inside controllers delete devices apiIndex.js');
+      console.log('request body inside delete device controller :', req.body);
       models.devices.delete(function (valid, msg) {
         if(valid){
           res.send(msg)

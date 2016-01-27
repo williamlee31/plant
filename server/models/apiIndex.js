@@ -21,11 +21,12 @@ module.exports = {
 
     },
     post: function (callback, params) {
-      console.log('+++line18: insde models post devices apiIndex.js');
+      console.log('+++line18: inside models post devices apiIndex.js');
       deviceHelper.regDevice(callback, params);
     },
     delete: function (callback, params) {
       console.log('+++line18: insde models post devices apiIndex.js');
+      console.log('Params passed into device delete: ', params.devicename)
       deviceHelper.deleteDevice(callback, params);
     }
   }
