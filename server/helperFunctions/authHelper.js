@@ -9,7 +9,7 @@ exports.getToken = function (callback, params) {
     if(data){
       console.log('+++line10 data.dataValues.token: ', data.dataValues.token)
       console.log('+++line11 params.token: ', params.token)
-      if(data.dataValues.token === JSON.stringify(params.token)){
+      if(data.dataValues.token === params.token){
         callback(true, 'Valid token');
       }else{
         callback(false, 'Invalid token');
