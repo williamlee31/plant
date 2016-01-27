@@ -7,7 +7,8 @@ angular.module('App',[
 	'App.userprofileCtrl',
 	'App.appCtrl',
 	'appFactory',
-	'App.productpageCtrl'
+	'App.productpageCtrl',
+	'App.userprofile-registerCtrl'
 	])
 	.config(function($stateProvider, $urlRouterProvider){
 		$stateProvider
@@ -26,11 +27,6 @@ angular.module('App',[
 				templateUrl: 'templates/app.html',
 				controller: 'appCtrl'
 			})
-			.state('productpage', {
-				url: '/productpage',
-				templateUrl: 'templates/productpage.html',
-				controller: 'productpageCtrl'
-			})
 			.state('userprofile',{
 				url: '/userprofile',
 				templateUrl: 'templates/userprofile.html',
@@ -38,7 +34,20 @@ angular.module('App',[
 			})
 			.state('userprofile-register', {
 				url: '/userprofile-register',
-				templateUrl: 'templates/userprofile-register.html'
+				templateUrl: 'templates/userprofile-register.html',
+				controller: 'userprofile-registerCtrl'
+			})
+			.state('productpage', {
+				url: '/productpage',
+				views: {
+					'': { 
+						templateUrl: 'templates/productpage.html',
+						  controller: 'productpageCtrl' 
+					},
+					'register@productpage': {
+						templateUrl: 'templates/userprofile-register.html'
+					}
+				}
 			})
 			.state('deviceregister', {
 				url: '/deviceregister',
@@ -47,7 +56,31 @@ angular.module('App',[
 			});
 		$urlRouterProvider
 			.otherwise('/signin');
-	})	
+	})
+
+
+
+        .state('home', {
+            url: '/home',
+            templateUrl: 'partial-home.html'
+        })
+        
+        // nested list with custom controller
+        .state('home.list', {
+            url: '/list',
+            templateUrl: 'partial-home-list.html',
+            controller: function($scope) {
+                $scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
+            }
+        })
+        
+        // nested list with just some random string data
+        .state('home.paragraph', {
+            url: '/paragraph',
+            template: 'I could sure use a drink right now.'
+        })
+
+
 	// .run(function($rootScope, $location, $state){
 	// 	$rootScope.$on('$stateChangeStart', function(event, next, current, appFactory){
 			
