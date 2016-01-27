@@ -40,6 +40,13 @@ angular.module('App',[
 				controller: 'userprofile-registerCtrl',
 				authenticate: true
 			})
+			.state('userprofile-register.info', {
+				url: '/info',
+				templateUrl: 'templates/userprofile-register-info.html',
+				controller: function($scope) {
+					$scope.elements = ['temperature', 'moisture', 'light'];
+				}
+			})
 			.state('productpage', {
 				url: '/productpage',
 				views: {
