@@ -6,62 +6,45 @@ angular.module('App',[
 	'App.deviceregisterCtrl',
 	'App.userprofileCtrl',
 	'App.appCtrl',
-	'appFactory',
 	'App.productpageCtrl',
-	'App.userprofile-registerCtrl'
+	'appFactory'
 	])
 	.config(function($stateProvider, $urlRouterProvider,  $httpProvider){
 		$stateProvider
 			.state('signin',{
 				url: '/signin',
-				templateUrl: 'templates/login.html',
+				templateUrl: 'pages/signin/login.html',
 				controller: 'loginCtrl'
 			})
 			.state('signup',{
 				url: '/signup',
-				templateUrl: 'templates/signup.html',
+				templateUrl: 'pages/signup/signup.html',
 				controller: 'signupCtrl'
 			})
 			.state('app',{
 				url: '/app',
-				templateUrl: 'templates/app.html',
+				templateUrl: 'pages/app/app.html',
 				controller: 'appCtrl',
 				authenticate: true
 			})
 			.state('userprofile',{
 				url: '/userprofile',
-				templateUrl: 'templates/userprofile.html',
+				templateUrl: 'pages/userProfile/userprofile.html',
 				controller: 'userprofileCtrl',
 				authenticate: true
-			})
-			.state('userprofile-register', {
-				url: '/userprofile-register',
-				templateUrl: 'templates/userprofile-register.html',
-				controller: 'userprofile-registerCtrl',
-				authenticate: true
-			})
-			.state('userprofile-register.info', {
-				url: '/info',
-				templateUrl: 'templates/userprofile-register-info.html',
-				controller: function($scope) {
-					$scope.elements = ['temperature', 'moisture', 'light'];
-				}
 			})
 			.state('productpage', {
 				url: '/productpage',
 				views: {
 					'': {
-						templateUrl: 'templates/productpage.html',
-						  controller: 'productpageCtrl'
-					},
-					'register@productpage': {
-						templateUrl: 'templates/userprofile-register.html'
+						templateUrl: 'pages/productPage/productpage.html',
+						controller: 'productpageCtrl'
 					}
 				}
 			})
 			.state('deviceregister', {
 				url: '/deviceregister',
-				templateUrl: 'templates/deviceregister.html',
+				templateUrl: 'pages/deviceRegister/deviceregister.html',
 				controller: 'deviceregisterCtrl',
 				authenticate: true
 			});
