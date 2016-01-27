@@ -16,12 +16,12 @@ angular.module('App.userprofileCtrl',[
     }).then(function(success){
       $scope.username = success.data.username;
     }, function(err){
+      console.log('User not loaded')
     })
   }
 
   $scope.checkDevices = function() {
     var username = $scope.username;
-    console.log('* username in check devices :', username);
     var url = '/api/devices?username='+username
     console.log('Checking for devices');
     return $http({
@@ -31,7 +31,7 @@ angular.module('App.userprofileCtrl',[
     .then(function(success){
       $scope.userDevices = success.data;
     }, function(err){
-      console.log("Data not retrieved");
+      console.log("Device not retrieved");
     })
   }
 
