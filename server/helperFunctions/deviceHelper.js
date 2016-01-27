@@ -82,7 +82,7 @@ exports.deleteDevice = function(callback, params) {
   .then(function (data) {
     if(data){
       var userid = data.dataValues.id;
-      db.Device.find({where: {name: devicename, UserId: userid}, attributes:['name', 'apiKey']})
+      db.Device.find({where: {name: devicename, UserId: userid}})
       .then(function (data) {
         console.log('Data from device find: ', data);
         if(data){

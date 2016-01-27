@@ -2,16 +2,24 @@
 
 </div>
 
-<div>
-<h4>Your devices:</h4>
-</div>
-<div ng-repeat='device in deviceData'>
+<span ng-show="test.hidden">
+  <div>
+    <h4>You have no devices bruh!</h4>
+    <a href="#/deviceregister"  style="text-decoration: none">
+    <button type="submit" name="go" class="btn btn-md btn-primary" ng-click=""> Register device </button>
+  </a>
+  </div>
+</span>
 
-  <div class='deviceName'><h4>{{device.name}}</h4></div>
-  <div class='deviceLight'>light: {{device.data.light}}</div>
-  <div class='deviceWater'>water: {{device.data.water}}</div>
-  <div class='deviceTemp'>temp: {{device.data.temp}}</div>
-
-
-</div>
-</div>
+<span ng-show="!test.hidden">
+  <div>
+    <h4>Your devices:</h4>
+  </div>
+  <div ng-repeat='device in deviceData'>
+    <div class='deviceName'><h4>{{device.name}}</h4></div>
+    <div class='deviceLight'>light: {{device.data.light}}</div>
+    <div class='deviceWater'>water: {{device.data.water}}</div>
+    <div class='deviceTemp'>temp: {{device.data.temp}}</div>
+    <button class='btn-danger' ng-click='deleteDevice(device.name)'>Delete device</button>
+  </div>
+</span>

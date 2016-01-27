@@ -5,6 +5,9 @@ angular.module('App.userprofileCtrl',[
   $scope.deviceData = [];
   $scope.userDevices;
   $scope.username;
+  $scope.test = {
+    hidden: true
+  }
 
   $scope.getUser = function() {
     return $http({
@@ -83,17 +86,52 @@ angular.module('App.userprofileCtrl',[
               name: $scope.userDevices[i].name,
               data: deviceData
             })
+            $scope.pageLoad();
           }, function(err){
             console.log("Data not retrieved");
           })
         }
-      });
+      }
+    );
+  }
+
+  $scope.deleteDevice = function(deviceName) {
+    console.log('device name to be deleted: ', deviceName);
+    console.log('user name to be deleted: ', $scope.username);
+    return $http({
+      method: 'DELETE',
+      url: '/api/devices',
+      headers: {"Content-Type": "application/json;charset=utf-8"},
+      data: {
+        username: $scope.username,
+        devicename: deviceName,
+      }
+    })
+    .then(function(dbResponse){
+      if(dbResponse.status === 200){
+        alert('Deleted ' + deviceName + ' from your profile');
+        console.log('Device deleted');
+        $scope.init()
+      }
+    }, function(err){
+      console.log('Device not deleted');
+    })
+  }
+
+  $scope.pageLoad = function() {
+    console.log('deviceData :', $scope.deviceData)
+    if($scope.deviceData.length < 1){
+      $scope.test.hidden = true;
+    } else {
+      $scope.test.hidden = false;
     }
+  }    
 
   $scope.init = function() {
     $scope.getUser().then(function(){
       $scope.checkDevices().then(function(){
         $scope.getData();
+        $scope.pageLoad();
       })
     })
   }
