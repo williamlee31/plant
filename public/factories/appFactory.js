@@ -1,53 +1,55 @@
 angular.module('appFactory', [])
-	.factory('appFactory', function($location, $http){
-
+	.factory('appFactory', function($location, $http, $state){
 		var user = '';
 		var firstName = '';
 		var lastName = '';
 		var email = '';
-
-
-		// var init = function(){
-		// 	console.log("LOCAL STORAGE!!!!!!!#E@#$", window.localStorage.token)
-		// 	return $http({
-		// 		method: 'GET',
-		// 		url: '/api/users',
-		// 		params: {
-		// 			token: window.localStorage.token
-		// 		}
-		// 	}).then(function(success){
-		// 		console.log(success, success.data.username);
-		// 		appFactory.user = success.data.username;
-		// 		appFactory.firstName = success.data.firstname;
-		// 		appFactory.lastName = success.data.lastname; //true or false
-		// 		appFactory.email = success.data.email;
-		// 	}, function(err){
-		// 		console.log("INIT ERROR!!!", err);
-		// 	})
-		// };
-
 		var isAuth = function(){
+			console.log('+++line10: inside isAuth');
 			return $http({
 				method: 'GET',
 				url: '/api/users/auth',
 				params: {
-					username: user,
+					username: this.user,
 					token: window.localStorage.token
 				}
 			}).then(function(success){
+				console.log('+++line19: inside appFactory success: ', success);
 				return true; //true or false
 			}, function(err){
+				console.log('+++line21: inside appFactory err: ', err);
 				return false;
+			})
+		};
+		var signout = function(){
+			return $http({
+				method: 'GET',
+				url: '/api/users/logout',
+				params: {
+					token: window.localStorage.token
+				}
+			}).then(function(success){
+				this.user = null;
+				this.firstName = null;
+				this.lastName = null;
+				this.email = null;
+				$state.get('app').authenticate = true;
+				$state.get('userprofile').authenticate = true;
+				$state.get('userprofile-register').authenticate = true;
+				$state.get('deviceregister').authenticate = true;
+				window.localStorage.removeItem('token');
+				$location.path('/signin');
+			}, function(err){
+				console.log(err);
 			})
 		};
 
 		return {
 			isAuth: isAuth,
+			signout: signout,
 			user: user,
 			firstName: firstName,
 			lastName: lastName,
 			email: email
-			// init: init
 		}
-
 	})

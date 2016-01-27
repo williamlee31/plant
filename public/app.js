@@ -10,7 +10,7 @@ angular.module('App',[
 	'App.productpageCtrl',
 	'App.userprofile-registerCtrl'
 	])
-	.config(function($stateProvider, $urlRouterProvider){
+	.config(function($stateProvider, $urlRouterProvider,  $httpProvider){
 		$stateProvider
 			.state('signin',{
 				url: '/signin',
@@ -25,24 +25,27 @@ angular.module('App',[
 			.state('app',{
 				url: '/app',
 				templateUrl: 'templates/app.html',
-				controller: 'appCtrl'
+				controller: 'appCtrl',
+				authenticate: true
 			})
 			.state('userprofile',{
 				url: '/userprofile',
 				templateUrl: 'templates/userprofile.html',
-				controller: 'userprofileCtrl'
+				controller: 'userprofileCtrl',
+				authenticate: true
 			})
 			.state('userprofile-register', {
 				url: '/userprofile-register',
 				templateUrl: 'templates/userprofile-register.html',
-				controller: 'userprofile-registerCtrl'
+				controller: 'userprofile-registerCtrl',
+				authenticate: true
 			})
 			.state('productpage', {
 				url: '/productpage',
 				views: {
-					'': { 
+					'': {
 						templateUrl: 'templates/productpage.html',
-						  controller: 'productpageCtrl' 
+						  controller: 'productpageCtrl'
 					},
 					'register@productpage': {
 						templateUrl: 'templates/userprofile-register.html'
@@ -52,49 +55,28 @@ angular.module('App',[
 			.state('deviceregister', {
 				url: '/deviceregister',
 				templateUrl: 'templates/deviceregister.html',
-				controller: 'deviceregisterCtrl'
+				controller: 'deviceregisterCtrl',
+				authenticate: true
 			});
 		$urlRouterProvider
 			.otherwise('/signin');
 	})
-
-
-
-	// .run(function($rootScope, $location, $state){
-	// 	$rootScope.$on('$stateChangeStart', function(event, next, current, appFactory){
-			
-	// 		if(!window.localStorage.token){
-	// 			console.log("YOU ARE NOT LOGGED IN!");
-	// 			$location.path('/login');
-	// 		}
-
-			
-
-
-	// 		// return $q(function(resolve, reject){
-
-
-
-
-	// 		// 	if(!window.localStorage.token){
-
-	// 		// 	}
-	// 		// })
-
-	// 		// if(next)
-
-	// 		// var auth = false;
-	// 		// var auth = appFactory.isAuth();
-
-	// 		// console.log("auth:", auth);
-	// 		console.log("Event:", event);
-	// 		console.log("next:", next);
-	// 		console.log("current:", current);
-	// 		console.log("INSIDE RUN!!!!!!!");
-	// 		console.log("next.authenticate", next.authenticate);
-	// 		// console.log("appFactory", appFactory);
-	// 		// console.log(Boolean(appFactory.isAuth()));
-	// 		// console.log(auth);
-
-	// 	});
-	// })
+	.run(function($rootScope, $state, appFactory, $location) {
+	  $rootScope.$on('$stateChangeStart', function(e, to) {
+	    if (!to.authenticate) {
+				return;
+			};
+			e.preventDefault();
+			var response = appFactory.isAuth()
+			response.then(function(result){
+				console.log('+++line78: result', result);
+				if(result){
+					// debugger;
+					to.authenticate = false;
+					$location.path(to.url);
+				}else{
+					$location.path('/signin');
+				}
+			})
+	  });
+	})
