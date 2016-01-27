@@ -35,10 +35,10 @@ exports.regDevice = function (callback, params) {
             UserId: data.dataValues.id
           }])
           .then(function () {
-            callback(true, 'Saved');
+            callback(true, 'Saved device in database');
           })
         }else{
-          callback(false, 'Invalid Username');
+          callback(false, 'Invalid username');
         }
       })
     }else{
@@ -68,11 +68,32 @@ exports.getDevices = function(callback, params) {
         } else {
           callback(data, 'No devices')
         }
-
       })
     } else {
       callback(data, 'Invalid username');
     } 
   })
+}
 
+exports.deleteDevice = function(callback, params) {
+  var username = params.username;
+  var devicename = params.devicename;
+  db.User.find({where: {username: username}})
+  .then(function (data) {
+    if(data){
+      var userid = data.dataValues.id;
+      db.Device.find({where: {name: devicename, UserId: userid}, attributes:['name', 'apiKey']})
+      .then(function (data) {
+        console.log('Data from device find: ', data);
+        if(data){
+          data.destroy();
+          callback(true, 'Device deleted');
+        } else {
+          callback(false, 'No devices');
+        }
+      })
+    } else {
+      callback(false, 'Invalid username and devicename combination'); 
+    }
+  })
 }

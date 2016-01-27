@@ -9,6 +9,9 @@ module.exports = {
     },
     post: function (callback) {
       console.log('+++line7: inside models post apiIndex.js')
+    },
+    delete: function (callback){
+      console.log('+++line7: inside models post apiIndex.js')
     }
   },
   devices: {
@@ -20,6 +23,10 @@ module.exports = {
     post: function (callback, params) {
       console.log('+++line18: insde models post devices apiIndex.js');
       deviceHelper.regDevice(callback, params);
+    },
+    delete: function (callback, params) {
+      console.log('+++line18: insde models post devices apiIndex.js');
+      deviceHelper.deleteDevice(callback, params);
     }
   }
 }
