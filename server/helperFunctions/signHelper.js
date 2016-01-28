@@ -19,7 +19,6 @@ var cryptPass = function (password, callback){
 
 var cryptToken = function (username, callback) {
   bcrypt.genSalt(10, function (err, salt) {
-    console.log('+++line22 token: ',username + salt);
     var token = jwt.encode(username + salt, 'secret');
     callback(JSON.stringify(token));
   })

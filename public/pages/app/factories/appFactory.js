@@ -10,7 +10,6 @@ angular.module('appFactory', [])
 				method: 'GET',
 				url: '/api/users/auth',
 				params: {
-					username: this.user,
 					token: window.localStorage.token
 				}
 			}).then(function(success){

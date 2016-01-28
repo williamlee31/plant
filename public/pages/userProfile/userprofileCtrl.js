@@ -9,7 +9,7 @@ angular.module('App.userprofileCtrl',[
     return result;
   };
 }])
-.controller('userprofileCtrl', function($scope, $http, showAlertSrvc){
+.controller('userprofileCtrl', function($scope, $http, showAlertSrvc, appFactory){
 
   $scope.loading = showAlertSrvc(1500);
   $scope.deviceData = [];
@@ -40,7 +40,7 @@ angular.module('App.userprofileCtrl',[
     console.log('Checking for devices');
     return $http({
       method: 'GET',
-      url: url 
+      url: url
     })
     .then(function(success){
       $scope.userDevices = success.data;
@@ -125,7 +125,7 @@ angular.module('App.userprofileCtrl',[
             })
 
             $scope.pageLoad();
-            
+
           }, function(err){
             console.log("Data not retrieved");
           })
@@ -164,7 +164,7 @@ angular.module('App.userprofileCtrl',[
     } else {
       $scope.plants.hidden = false;
     }
-  }    
+  }
 
   $scope.init = function() {
     $scope.getUser().then(function(){

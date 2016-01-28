@@ -25,7 +25,7 @@ angular.module('App',[
 		// 			template: 'pages/app/templates/<YOUR VIEW NAME>.html',
 		// 			controller: '<YOUR CONTROLLER NAME>'
 		// 		}
-		// 	}					
+		// 	}
 		// })
 		// ---Add this to the parent view template---
 		// <div ui-view="<YOUR VIEW NAME>"></div>
@@ -46,7 +46,7 @@ angular.module('App',[
 						templateUrl: 'pages/signup/signup.html',
 						controller: 'signupCtrl'
 					}
-				}				
+				}
 			})
 			.state('app',{
 				url: '/app',
@@ -56,7 +56,7 @@ angular.module('App',[
 						templateUrl: 'pages/app/app.html',
 						controller: 'appCtrl'
 					}
-				}					
+				}
 			})
 			.state('userprofile',{
 				url: '/userprofile',
@@ -74,7 +74,7 @@ angular.module('App',[
 						templateUrl: 'pages/userProfile/templates/userprofile-profileInfo.html',
 						controller: 'userprofile-profileInfoCtrl'
 					}
-				}				
+				}
 			})
 			.state('productpage', {
 				url: '/productpage',
@@ -93,7 +93,7 @@ angular.module('App',[
 			// 			templateUrl: 'pages/deviceRegister/deviceregister.html',
 			// 			controller: 'deviceregisterCtrl'
 			// 		}
-			// 	}				
+			// 	}
 			// });
 
 		$urlRouterProvider
@@ -104,7 +104,6 @@ angular.module('App',[
 	    if (!to.authenticate) {
 				return;
 			};
-			e.preventDefault();
 			var response = appFactory.isAuth()
 			response.then(function(result){
 				console.log('+++line78: result', result);
@@ -113,6 +112,7 @@ angular.module('App',[
 					to.authenticate = false;
 					$location.path(to.url);
 				}else{
+					e.preventDefault();
 					$location.path('/signin');
 				}
 			})
