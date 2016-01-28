@@ -18,8 +18,8 @@
   </div>
   <div ng-repeat='device in deviceData'>
     <div class='deviceName'><h4>{{device.name}}</h4></div>
-    <div class='deviceLight'>light: {{device.data.light}}</div>
-    <div class='deviceWater'>water: {{device.data.water}}</div>
+    <div class='deviceLight'>light: {{device.data.light}} ({{device.data.lightVal}})</div>
+    <div class='deviceWater'>water: {{device.data.water}} ({{device.data.waterVal}})</div>
     <div class='deviceTemp'>temp: {{device.data.temp}}</div>
     <button class='btn-danger' ng-click='deleteDevice(device.name)'>Delete device</button>
   </div>
