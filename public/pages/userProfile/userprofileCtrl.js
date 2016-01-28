@@ -1,13 +1,24 @@
 angular.module('App.userprofileCtrl',[
   ])
-.controller('userprofileCtrl', function($scope, $http){
+.service('showAlertSrvc', ['$timeout', function($timeout) {
+  return function(delay) {
+    var result = {hidden:true};
+    $timeout(function() {
+      result.hidden=false;
+    }, delay);
+    return result;
+  };
+}])
+.controller('userprofileCtrl', function($scope, $http, showAlertSrvc){
 
+  $scope.loading = showAlertSrvc(1500);
   $scope.deviceData = [];
   $scope.userDevices;
-  $scope.username;
-  $scope.test = {
+  $scope.userInfo;
+  $scope.plants = {
     hidden: true
   }
+  console.log($scope.loading);
 
   $scope.getUser = function() {
     return $http({
@@ -17,14 +28,14 @@ angular.module('App.userprofileCtrl',[
         token: window.localStorage.token
       }
     }).then(function(success){
-      $scope.username = success.data.username;
+      $scope.userInfo = success.data;
     }, function(err){
       console.log('User not loaded');
     })
   }
 
   $scope.checkDevices = function() {
-    var username = $scope.username;
+    var username = $scope.userInfo.username;
     var url = '/api/devices?username='+username
     console.log('Checking for devices');
     return $http({
@@ -59,39 +70,53 @@ angular.module('App.userprofileCtrl',[
           })
           .then(function(success){
             console.log('Data from device: ', success.data);
+
+            var waterVal, lightVal, tempVal;
+
             for(var j = 0; j < success.data.streams.length; j++){
               if(success.data.streams[j].name === 'water'){
-                var waterVal = success.data.streams[j].value;
+                waterVal = success.data.streams[j].value;
               } else if (success.data.streams[j].name === 'light'){
-                var lightVal = success.data.streams[j].value;
+                lightVal = success.data.streams[j].value;
               } else if (success.data.streams[j].name === 'temp'){
-                var tempVal = success.data.streams[j].value;
+                tempVal = success.data.streams[j].value;
               }
             }
 
-            var deviceData = {
-              temp: Math.floor(tempVal * 1.8 + 32) + '°F'
+            var deviceData = {};
+
+            if (waterVal === undefined){
+              deviceData.waterVal = 'N/A';
+              deviceData.water = '';
+            } else {
+              deviceData.waterVal = '(' + waterVal + ')';
+              if(waterVal <= 100){
+                deviceData.water = 'danger';
+              } else if (waterVal > 100 && waterVal <= 400) {
+                deviceData.water = 'dry';
+              } else if (waterVal > 400 && waterVal <= 700) {
+                deviceData.water = 'perfect';
+              } else if (waterVal > 700) {
+                deviceData.water = 'drenched';
+              }
             }
-
-            deviceData.waterVal = waterVal;
-            deviceData.lightVal = lightVal;
-
-            if(lightVal < 340 && lightVal !== 0){
-              deviceData.light = 'sunny';
-            } else if (lightVal >= 340 && lightVal <= 680) {
-              deviceData.light = 'partial shade';
-            } else if (lightVal > 680 || lightVal === 0) {
-              deviceData.light = 'shade'
+            if(lightVal === undefined){
+              deviceData.lightVal = 'N/A';
+              deviceData.light = '';
+            } else {
+              deviceData.lightVal = '(' + lightVal + ')';
+              if(lightVal < 340 && lightVal !== 0){
+                deviceData.light = 'sunny';
+              } else if (lightVal >= 340 && lightVal <= 680) {
+                deviceData.light = 'partial shade';
+              } else if (lightVal > 680 || lightVal === 0) {
+                deviceData.light = 'shade'
+              }
             }
-
-            if(waterVal <= 100){
-              deviceData.water = 'danger';
-            } else if (waterVal > 100 && waterVal <= 400) {
-              deviceData.water = 'dry';
-            } else if (waterVal > 400 && waterVal <= 700) {
-              deviceData.water = 'perfect';
-            } else if (waterVal > 700) {
-              deviceData.water = 'drenched';
+            if(tempVal === undefined){
+              deviceData.temp = 'N/A';
+            } else {
+              deviceData.temp = Math.floor(tempVal * 1.8 + 32) + '°F'
             }
 
             $scope.deviceData.push({
@@ -100,6 +125,7 @@ angular.module('App.userprofileCtrl',[
             })
 
             $scope.pageLoad();
+            
           }, function(err){
             console.log("Data not retrieved");
           })
@@ -110,13 +136,13 @@ angular.module('App.userprofileCtrl',[
 
   $scope.deleteDevice = function(deviceName) {
     console.log('device name to be deleted: ', deviceName);
-    console.log('user name to be deleted: ', $scope.username);
+    console.log('user name to be deleted: ', $scope.userInfo.username);
     return $http({
       method: 'DELETE',
       url: '/api/devices',
       headers: {"Content-Type": "application/json;charset=utf-8"},
       data: {
-        username: $scope.username,
+        username: $scope.userInfo.username,
         devicename: deviceName,
       }
     })
@@ -134,9 +160,9 @@ angular.module('App.userprofileCtrl',[
   $scope.pageLoad = function() {
     console.log('deviceData :', $scope.deviceData)
     if($scope.deviceData.length < 1){
-      $scope.test.hidden = true;
+      $scope.plants.hidden = true;
     } else {
-      $scope.test.hidden = false;
+      $scope.plants.hidden = false;
     }
   }    
 
