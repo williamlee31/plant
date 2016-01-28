@@ -1,23 +1,12 @@
 <div ng-controller = "userprofileCtrl">
 
-<<<<<<< d9257fd17d223fc0df083275141f52b0510511e0
   <div ui-view="profileInfo"></div>
-
-<span ng-show="test.hidden">
-  <div>
-    <h4>You have no devices bruh!</h4>
-<!--     <a href="#/deviceregister"  style="text-decoration: none">
-    <button type="submit" name="go" class="btn btn-md btn-primary" ng-click=""> Register device </button>
-  </a> -->
-    <div ui-view="register"></div>
-  </div>
-=======
 <h4>Welcome {{userInfo.firstname}} {{userInfo.lastname}}!</h4>
 <div ui-view="register"></div>
 <br>
 <span ng-show="loading.hidden">
 <img src='../../img/loading_spinner.gif' width='100px' height='100px'>
->>>>>>> [refactor] added loading page and fix bugs on profile page
+
 </span>
 
 <span ng-show="!loading.hidden">
