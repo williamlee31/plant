@@ -10,28 +10,62 @@ angular.module('App',[
 	'appFactory'
 	])
 	.config(function($stateProvider, $urlRouterProvider,  $httpProvider){
+		//  how to do controller/view (DON'T forget to add controller to angular.model & index.html)
+		// .state('app',{
+		// 	url: '/app',
+		// 	authenticate: true,
+		// 	views: {
+		// 		'': {
+		// 			templateUrl: 'pages/app/app.html',
+		// 			controller: 'appCtSrl'
+		// 		}
+		// 		example for nest view/ controller
+		// 		'<YOUR VIEW NAME>@app': {
+		// 			template: 'pages/app/templates/<YOUR VIEW NAME>.html',
+		// 			controller: '<YOUR CONTROLLER NAME>'
+		// 		}
+		// 	}					
+		// })
+		// ---Add this to the parent view template---
+		// <div ui-view="<YOUR VIEW NAME>"></div>
 		$stateProvider
 			.state('signin',{
 				url: '/signin',
-				templateUrl: 'pages/signin/login.html',
-				controller: 'loginCtrl'
+				views: {
+					'': {
+						templateUrl: 'pages/signin/login.html',
+						controller: 'loginCtrl'
+					}
+				}
 			})
 			.state('signup',{
 				url: '/signup',
-				templateUrl: 'pages/signup/signup.html',
-				controller: 'signupCtrl'
+				views: {
+					'': {
+						templateUrl: 'pages/signup/signup.html',
+						controller: 'signupCtrl'
+					}
+				}				
 			})
 			.state('app',{
 				url: '/app',
-				templateUrl: 'pages/app/app.html',
-				controller: 'appCtrl',
-				authenticate: true
+				authenticate: true,
+				views: {
+					'': {
+						templateUrl: 'pages/app/app.html',
+						controller: 'appCtrl'
+					}
+				}					
 			})
 			.state('userprofile',{
 				url: '/userprofile',
-				templateUrl: 'pages/userProfile/userprofile.html',
-				controller: 'userprofileCtrl',
-				authenticate: true
+				authenticate: true,
+				views: {
+					'': {
+						templateUrl: 'pages/userProfile/userprofile.html',
+						controller: 'userprofileCtrl'
+					}
+				}				
 			})
 			.state('productpage', {
 				url: '/productpage',
@@ -44,10 +78,15 @@ angular.module('App',[
 			})
 			.state('deviceregister', {
 				url: '/deviceregister',
-				templateUrl: 'pages/deviceRegister/deviceregister.html',
-				controller: 'deviceregisterCtrl',
-				authenticate: true
+				authenticate: true,
+				views: {
+					'': {
+						templateUrl: 'pages/deviceRegister/deviceregister.html',
+						controller: 'deviceregisterCtrl'
+					}
+				}				
 			});
+
 		$urlRouterProvider
 			.otherwise('/signin');
 	})

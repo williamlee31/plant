@@ -35,7 +35,6 @@ angular.module('appFactory', [])
 				this.email = null;
 				$state.get('app').authenticate = true;
 				$state.get('userprofile').authenticate = true;
-				$state.get('userprofile-register').authenticate = true;
 				$state.get('deviceregister').authenticate = true;
 				window.localStorage.removeItem('token');
 				$location.path('/signin');
