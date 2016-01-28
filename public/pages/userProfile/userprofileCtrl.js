@@ -57,11 +57,19 @@ angular.module('App.userprofileCtrl',[
             }
           })
           .then(function(success){
-            var waterVal = success.data.streams[1].value;
-            var lightVal = success.data.streams[2].value;
+            console.log('Data from device: ', success.data);
+            for(var j = 0; j < success.data.streams.length; j++){
+              if(success.data.streams[j].name === 'water'){
+                var waterVal = success.data.streams[j].value;
+              } else if (success.data.streams[j].name === 'light'){
+                var lightVal = success.data.streams[j].value;
+              } else if (success.data.streams[j].name === 'temp'){
+                var tempVal = success.data.streams[j].value;
+              }
+            }
 
             var deviceData = {
-              temp: Math.floor(success.data.streams[3].value * 1.8 + 32) + '°F'
+              temp: Math.floor(tempVal * 1.8 + 32) + '°F'
             }
 
             if(lightVal < 340 && lightVal !== 0){
