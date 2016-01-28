@@ -18,7 +18,7 @@ angular.module('App',[
 		// 		'': {
 		// 			templateUrl: 'pages/app/app.html',
 		// 			controller: 'appCtSrl'
-		// 		}
+		// 		},
 		// 		example for nest view/ controller
 		// 		'<YOUR VIEW NAME>@app': {
 		// 			template: 'pages/app/templates/<YOUR VIEW NAME>.html',
@@ -64,6 +64,10 @@ angular.module('App',[
 					'': {
 						templateUrl: 'pages/userProfile/userprofile.html',
 						controller: 'userprofileCtrl'
+					},
+					'register@userprofile': {
+						templateUrl: 'pages/userProfile/templates/userprofile-register.html',
+						controller: 'deviceregisterCtrl'
 					}
 				}				
 			})
