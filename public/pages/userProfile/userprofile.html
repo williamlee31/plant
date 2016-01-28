@@ -3,18 +3,18 @@
 
 <span ng-show="test.hidden">
   <div>
+    <div ui-view="profileInfo"></div>
     <h4>You have no devices bruh!</h4>
 <!--     <a href="#/deviceregister"  style="text-decoration: none">
     <button type="submit" name="go" class="btn btn-md btn-primary" ng-click=""> Register device </button>
   </a> -->
-  <div ui-view="register"></div>
+    <div ui-view="register"></div>
   </div>
 </span>
 
 <span ng-show="!test.hidden">
   <div>
     <h4>Your devices:</h4>
-<div ui-view="profileInfo"></div>
 <div ui-view="register"></div>
   </div>
   <div ng-repeat='device in deviceData'>
