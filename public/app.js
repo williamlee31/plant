@@ -7,7 +7,7 @@ angular.module('App',[
 	'App.userprofile-registerCtrl',
 	'App.appCtrl',
 	'App.productpageCtrl',
-	'App.profileInfoCtrl',
+	'App.userprofile-profileInfoCtrl',
 	'appFactory'
 	])
 	.config(function($stateProvider, $urlRouterProvider,  $httpProvider){
@@ -71,8 +71,8 @@ angular.module('App',[
 						controller: 'userprofile-registerCtrl'
 					},
 					'profileInfo@userprofile': {
-						templateUrl: 'pages/userProfile/templates/profileInfo.html',
-						controller: 'profileInfoCtrl'
+						templateUrl: 'pages/userProfile/templates/userprofile-profileInfo.html',
+						controller: 'userprofile-profileInfoCtrl'
 					}
 				}				
 			})
