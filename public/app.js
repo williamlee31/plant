@@ -3,8 +3,8 @@ angular.module('App',[
 	'ngMessages',
 	'App.loginCtrl',
 	'App.signupCtrl',
-	'App.deviceregisterCtrl',
 	'App.userprofileCtrl',
+	'App.userprofile-registerCtrl',
 	'App.appCtrl',
 	'App.productpageCtrl',
 	'appFactory'
@@ -67,7 +67,7 @@ angular.module('App',[
 					},
 					'register@userprofile': {
 						templateUrl: 'pages/userProfile/templates/userprofile-register.html',
-						controller: 'deviceregisterCtrl'
+						controller: 'userprofile-registerCtrl'
 					}
 				}				
 			})
@@ -80,16 +80,16 @@ angular.module('App',[
 					}
 				}
 			})
-			.state('deviceregister', {
-				url: '/deviceregister',
-				authenticate: true,
-				views: {
-					'': {
-						templateUrl: 'pages/deviceRegister/deviceregister.html',
-						controller: 'deviceregisterCtrl'
-					}
-				}				
-			});
+			// .state('deviceregister', {
+			// 	url: '/deviceregister',
+			// 	authenticate: true,
+			// 	views: {
+			// 		'': {
+			// 			templateUrl: 'pages/deviceRegister/deviceregister.html',
+			// 			controller: 'deviceregisterCtrl'
+			// 		}
+			// 	}				
+			// });
 
 		$urlRouterProvider
 			.otherwise('/signin');
