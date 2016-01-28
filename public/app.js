@@ -6,65 +6,91 @@ angular.module('App',[
 	'App.deviceregisterCtrl',
 	'App.userprofileCtrl',
 	'App.appCtrl',
-	'appFactory',
 	'App.productpageCtrl',
-	'App.userprofile-registerCtrl'
+	'appFactory'
 	])
 	.config(function($stateProvider, $urlRouterProvider,  $httpProvider){
+		//  how to do controller/view (DON'T forget to add controller to angular.model & index.html)
+		// .state('app',{
+		// 	url: '/app',
+		// 	authenticate: true,
+		// 	views: {
+		// 		'': {
+		// 			templateUrl: 'pages/app/app.html',
+		// 			controller: 'appCtSrl'
+		// 		},
+		// 		example for nest view/ controller
+		// 		'<YOUR VIEW NAME>@app': {
+		// 			template: 'pages/app/templates/<YOUR VIEW NAME>.html',
+		// 			controller: '<YOUR CONTROLLER NAME>'
+		// 		}
+		// 	}					
+		// })
+		// ---Add this to the parent view template---
+		// <div ui-view="<YOUR VIEW NAME>"></div>
 		$stateProvider
 			.state('signin',{
 				url: '/signin',
-				templateUrl: 'templates/login.html',
-				controller: 'loginCtrl'
+				views: {
+					'': {
+						templateUrl: 'pages/signin/login.html',
+						controller: 'loginCtrl'
+					}
+				}
 			})
 			.state('signup',{
 				url: '/signup',
-				templateUrl: 'templates/signup.html',
-				controller: 'signupCtrl'
+				views: {
+					'': {
+						templateUrl: 'pages/signup/signup.html',
+						controller: 'signupCtrl'
+					}
+				}				
 			})
 			.state('app',{
 				url: '/app',
-				templateUrl: 'templates/app.html',
-				controller: 'appCtrl',
-				authenticate: true
+				authenticate: true,
+				views: {
+					'': {
+						templateUrl: 'pages/app/app.html',
+						controller: 'appCtrl'
+					}
+				}					
 			})
 			.state('userprofile',{
 				url: '/userprofile',
-				templateUrl: 'templates/userprofile.html',
-				controller: 'userprofileCtrl',
-				authenticate: true
-			})
-			.state('userprofile-register', {
-				url: '/userprofile-register',
-				templateUrl: 'templates/userprofile-register.html',
-				controller: 'userprofile-registerCtrl',
-				authenticate: true
-			})
-			.state('userprofile-register.info', {
-				url: '/info',
-				templateUrl: 'templates/userprofile-register-info.html',
-				controller: function($scope) {
-					$scope.elements = ['temperature', 'moisture', 'light'];
-				}
+				authenticate: true,
+				views: {
+					'': {
+						templateUrl: 'pages/userProfile/userprofile.html',
+						controller: 'userprofileCtrl'
+					},
+					'register@userprofile': {
+						templateUrl: 'pages/userProfile/templates/userprofile-register.html',
+						controller: 'deviceregisterCtrl'
+					}
+				}				
 			})
 			.state('productpage', {
 				url: '/productpage',
 				views: {
 					'': {
-						templateUrl: 'templates/productpage.html',
-						  controller: 'productpageCtrl'
-					},
-					'register@productpage': {
-						templateUrl: 'templates/userprofile-register.html'
+						templateUrl: 'pages/productPage/productpage.html',
+						controller: 'productpageCtrl'
 					}
 				}
 			})
 			.state('deviceregister', {
 				url: '/deviceregister',
-				templateUrl: 'templates/deviceregister.html',
-				controller: 'deviceregisterCtrl',
-				authenticate: true
+				authenticate: true,
+				views: {
+					'': {
+						templateUrl: 'pages/deviceRegister/deviceregister.html',
+						controller: 'deviceregisterCtrl'
+					}
+				}				
 			});
+
 		$urlRouterProvider
 			.otherwise('/signin');
 	})

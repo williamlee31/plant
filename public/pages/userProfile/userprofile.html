@@ -1,19 +1,20 @@
 <div ng-controller = "userprofileCtrl">
 
-</div>
 
 <span ng-show="test.hidden">
   <div>
     <h4>You have no devices bruh!</h4>
-    <a href="#/deviceregister"  style="text-decoration: none">
+<!--     <a href="#/deviceregister"  style="text-decoration: none">
     <button type="submit" name="go" class="btn btn-md btn-primary" ng-click=""> Register device </button>
-  </a>
+  </a> -->
+  <div ui-view="register"></div>
   </div>
 </span>
 
 <span ng-show="!test.hidden">
   <div>
     <h4>Your devices:</h4>
+<div ui-view="register"></div>
   </div>
   <div ng-repeat='device in deviceData'>
     <div class='deviceName'><h4>{{device.name}}</h4></div>
@@ -23,3 +24,6 @@
     <button class='btn-danger' ng-click='deleteDevice(device.name)'>Delete device</button>
   </div>
 </span>
+
+</div>
+

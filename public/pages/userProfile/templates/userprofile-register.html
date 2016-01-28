@@ -1,12 +1,12 @@
-<div class="container-fluid" ng-controller="userprofile-registerCtrl">
+<!-- <div class="container-fluid" ng-controller="userprofile-registerCtrl">
 
 	<h3>Nested View - User Register page</h3>      
-	<p>Do something here to register your device</p> 
+	<p>Do something here to register your device</p>  -->
 
+		<div ng-controller = "deviceregisterCtrl">
 		<h2>Register Device Modal Test</h2>
 		<button ng-click="toggleModal()" class="btn btn-md btn-primary">Register Device Modal Test</button>
 
-		<div ng-controller = "deviceregisterCtrl">
 			<modal title="Register Device" visible="showModal">
 				<form role="form" ng-submit = "registerDevice()">
 					<div class="form-group">
@@ -24,7 +24,7 @@
 			</modal>
 		</div>
 
-<br>
+<!-- <br>
 
 <a ui-sref=".info" class="btn btn-success">Streams</a>
 
@@ -32,5 +32,5 @@
 <div style="margin: 10px;"></div>
 <div ui-view></div>
 
-</div>
+</div> -->
 
