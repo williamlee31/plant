@@ -28,6 +28,7 @@ angular.module('App',[
 		// })
 		// ---Add this to the parent view template---
 		// <div ui-view="<YOUR VIEW NAME>"></div>
+		// 
 		$stateProvider
 			.state('signin',{
 				url: '/signin',
