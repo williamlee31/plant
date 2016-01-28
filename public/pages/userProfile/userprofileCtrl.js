@@ -19,7 +19,7 @@ angular.module('App.userprofileCtrl',[
     }).then(function(success){
       $scope.username = success.data.username;
     }, function(err){
-      console.log('User not loaded')
+      console.log('User not loaded');
     })
   }
 
@@ -44,10 +44,11 @@ angular.module('App.userprofileCtrl',[
     .then(
       function(){
         console.log('Fetching data');
-        for(var i = 0; i < $scope.userDevices.length; i++){
+        console.log('Your devices: ', $scope.userDevices);
+        angular.forEach($scope.userDevices , function(device){
           var m2xKeys = {
             master: deviceMasterKey,
-            device: $scope.userDevices[i].apiKey
+            device: device.apiKey
           }
           return $http({
             method: 'GET',
@@ -72,6 +73,9 @@ angular.module('App.userprofileCtrl',[
               temp: Math.floor(tempVal * 1.8 + 32) + '°F'
             }
 
+            deviceData.waterVal = waterVal;
+            deviceData.lightVal = lightVal;
+
             if(lightVal < 340 && lightVal !== 0){
               deviceData.light = 'sunny';
             } else if (lightVal >= 340 && lightVal <= 680) {
@@ -91,16 +95,17 @@ angular.module('App.userprofileCtrl',[
             }
 
             $scope.deviceData.push({
-              name: $scope.userDevices[i].name,
+              name: device.name,
               data: deviceData
             })
+
             $scope.pageLoad();
           }, function(err){
             console.log("Data not retrieved");
           })
-        }
+        })
       }
-    );
+    )
   }
 
   $scope.deleteDevice = function(deviceName) {
@@ -137,10 +142,8 @@ angular.module('App.userprofileCtrl',[
 
   $scope.init = function() {
     $scope.getUser().then(function(){
-      $scope.checkDevices().then(function(){
         $scope.getData();
         $scope.pageLoad();
-      })
     })
   }
 
