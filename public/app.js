@@ -3,12 +3,13 @@ angular.module('App',[
 	'ngMessages',
 	'App.loginCtrl',
 	'App.signupCtrl',
-	'App.userprofileCtrl',
+	'App.userProfileCtrl',
 	'App.userprofile-registerCtrl',
 	'App.appCtrl',
 	'App.productpageCtrl',
 	'App.userprofile-profileInfoCtrl',
-	'appFactory'
+	'appFactory',
+	'userProfileFactory'
 	])
 	.config(function($stateProvider, $urlRouterProvider,  $httpProvider){
 		//  how to do controller/view (DON'T forget to add controller to angular.model & index.html)
@@ -64,7 +65,7 @@ angular.module('App',[
 				views: {
 					'': {
 						templateUrl: 'pages/userProfile/userprofile.html',
-						controller: 'userprofileCtrl'
+						controller: 'userProfileCtrl'
 					},
 					'register@userprofile': {
 						templateUrl: 'pages/userProfile/templates/userprofile-register.html',
