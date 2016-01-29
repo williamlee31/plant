@@ -8,6 +8,36 @@
 
 			<modal title="Register Device" visible="showModal">
 				<form role="form" ng-submit = "registerDevice()">
+				<div>	
+<!-- 	<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>{{errorMessage}}</strong>
+    </div> -->
+
+<!--                 <alert type="danger" 
+               close="showAlert = false"
+               ng-show="showAlert">{{errorMessage}}</alert> -->
+               <div>
+               <div class="alert alert-danger" role="alert" ng-show="invalidDeviceAlert">
+	               	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	               	<span class="sr-only">Error:</span>
+	               	 Device ID is invalid
+               </div>
+               </div>
+               <div>
+               <div class="alert alert-danger" role="alert" ng-show="registeredAlert">
+	               	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+	               	<span class="sr-only">Error:</span>
+	               	Device Already Registered
+               </div>
+               </div>
+
+
+
+
+				</div>
+
+
 					<div class="form-group">
 						<label for="text">Device ID</label>
 						<input type="text" class="form-control" id="register" placeholder="Enter device ID" ng-model="device.key" />

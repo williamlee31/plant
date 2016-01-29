@@ -6,6 +6,8 @@ angular.module('App.userprofile-registerCtrl',[
   $scope.device = {};
   $scope.username;
 
+  $scope.errorMessage = '';
+
   $scope.registerDevice = function() {
     console.log('Registering device');
     var m2xKeys = {
@@ -36,13 +38,32 @@ angular.module('App.userprofile-registerCtrl',[
           console.log('Device registered!!')
         }
       }, function(err){
-        alert('Device already registered');
+        // alert('Device already registered');
+        $scope.registeredAlert = true;
+        // if ($scope.invalidDeviceAlert == true) {
+        //   $scope.toggleAlertRA();
+        // }
       })
     }, function(err){
-      alert('You done goofed!');
+      // alert('You done goofed!');
+      $scope.invalidDeviceAlert = true;
+      // if ($scope.registeredAlert === true) {
+      //   $scope.toggleAlertID();
+      // }
+      // $scope.errorMessage = 'You done goofed bro! test';
       // inform user of incorrect key
     })
   }
+
+  $scope.invalidDeviceAlert = false;
+  $scope.toggleAlertID = function() {
+    $scope.invalidDeviceAlert = !$scope.invalidDeviceAlert;
+  };
+
+  $scope.registeredAlert = false;
+  $scope.toggleAlertRA = function() {
+    $scope.registeredAlert = !$scope.registeredAlert;
+  };
 
   $scope.getUser = function() {
     return $http({
@@ -67,7 +88,10 @@ angular.module('App.userprofile-registerCtrl',[
 
   $scope.showModal = false;
   $scope.toggleModal = function() {
+    $scope.invalidDeviceAlert = false;
+    $scope.registeredAlert = false;
     $scope.showModal = !$scope.showModal;
+
   };      
 })
 
