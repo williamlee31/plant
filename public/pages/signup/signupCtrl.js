@@ -8,7 +8,7 @@ angular.module('App.signupCtrl',[
 		$scope.signup = function(){
 			console.log(appFactory);
 			console.log("INSIDE Signup!");
-			// console.log($scope.user, $scope.pass, $scope.email);
+			console.log($scope.user, $scope.pass, $scope.email);
 			// console.log("appFactory.user", appFactory.user);
 			return $http({
 				method: 'POST',

@@ -9,7 +9,10 @@ angular.module('App',[
 	'App.productpageCtrl',
 	'App.userprofile-profileInfoCtrl',
 	'appFactory',
-	'userProfileFactory'
+	'userProfileFactory',
+	'ui.bootstrap',
+	'ngAnimate',
+	'App.homeCtrl'
 	])
 	.config(function($stateProvider, $urlRouterProvider,  $httpProvider){
 		//  how to do controller/view (DON'T forget to add controller to angular.model & index.html)
@@ -31,6 +34,15 @@ angular.module('App',[
 		// ---Add this to the parent view template---
 		// <div ui-view="<YOUR VIEW NAME>"></div>
 		$stateProvider
+			.state('home',{
+				url: '/',
+				views: {
+					'': {
+						templateUrl: 'pages/home/home.html',
+						controller: 'homeCtrl'
+					}
+				}
+			})
 			.state('signin',{
 				url: '/signin',
 				views: {
@@ -98,7 +110,7 @@ angular.module('App',[
 			// });
 
 		$urlRouterProvider
-			.otherwise('/signin');
+			.otherwise('/');
 	})
 	.run(function($rootScope, $state, appFactory, $location) {
 	  $rootScope.$on('$stateChangeStart', function(e, to) {
