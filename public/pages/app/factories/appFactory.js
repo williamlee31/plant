@@ -4,6 +4,7 @@ angular.module('appFactory', [])
 		var firstName = '';
 		var lastName = '';
 		var email = '';
+
 		var isAuth = function(){
 			console.log('+++line10: inside isAuth');
 			return $http({
@@ -20,6 +21,7 @@ angular.module('appFactory', [])
 				return false;
 			})
 		};
+
 		var signout = function(){
 			return $http({
 				method: 'GET',
@@ -28,10 +30,6 @@ angular.module('appFactory', [])
 					token: window.localStorage.token
 				}
 			}).then(function(success){
-				this.user = null;
-				this.firstName = null;
-				this.lastName = null;
-				this.email = null;
 				$state.get('app').authenticate = true;
 				$state.get('userprofile').authenticate = true;
 				window.localStorage.removeItem('token');
@@ -41,9 +39,25 @@ angular.module('appFactory', [])
 			})
 		};
 
+		var getUser = function(callback) {
+			return $http({
+        method: 'GET',
+        url: '/api/users',
+        params: {
+          token: window.localStorage.token
+        }
+      }).then(function(success){
+				console.log('+++line50: ', success);
+				return success;
+      }, function(err){
+        console.log('User not loaded');
+      })
+		}
+
 		return {
 			isAuth: isAuth,
 			signout: signout,
+			getUser: getUser,
 			user: user,
 			firstName: firstName,
 			lastName: lastName,
