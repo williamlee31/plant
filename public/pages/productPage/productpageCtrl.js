@@ -2,7 +2,7 @@ angular.module('App.productpageCtrl',[
 	])
 	.controller('productpageCtrl', function($scope, $location){
 	  $scope.image = {
-		  src: '../img/productPage3dObj.png',
+		  src: '../img/product/productPage3dObj.png',
 	  };
 
 	  $scope.routeProfile = function(){
