@@ -1,7 +1,8 @@
 .backgroundImagePanel{
-	position: static;
+	position: relative;
 	margin-top: 0px;
 	height:100px;
+	background-size: cover;
 	width: 100%;
 	background-image: url("img/abstract.jpg");
 }
