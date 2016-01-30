@@ -21,6 +21,61 @@ angular.module('App.userprofile-registerCtrl',['ngAnimate', 'ui.bootstrap'
     });
   };
 
+  $scope.triggerm2xGET = function() {
+    console.log('checking trigger...');
+    var m2xKeys = {
+      master: deviceMasterKey, // hide inside not pushed file
+      device: deviceKey
+    }
+    return $http({
+      method: 'GET',
+      url: 'https://api-m2x.att.com/v2/devices/'+deviceKey+'/triggers',
+      headers: {
+        "X-M2X-KEY": m2xKeys.master
+        }
+    }).
+    then(function(success) {
+      console.log('success ', success);
+    }), function(err) {
+      console.log('err: ', err);
+    }
+  }
+
+  $scope.triggerm2xPOST = function() {
+    console.log('checking trigger...');
+    var m2xKeys = {
+      master: deviceMasterKey, // hide inside not pushed file
+      device: deviceKey
+    }
+    return $http({
+      method: 'POST',
+      url: 'https://api-m2x.att.com/v2/devices/'+deviceKey+'/triggers',
+      headers: {
+        "X-M2X-KEY": m2xKeys.master
+      },
+      data: { "name": "Low Water",
+              "conditions": {
+                "water": { "gt": 30, "reset": 28 }
+              },
+              "frequency": "continuous",
+              "timeframe": 300,
+              "callback_url": "http://requestb.in/oftl8uof",
+              "status": "enabled",
+              "send_location": true,
+              "notify_on_reset": false
+            }
+    }).
+    then(function(success) {
+      console.log('success: ', success);
+    }), function(err) {
+      console.log('err: ', err);
+    }
+  }
+
+
+
+
+
 
 });
 
