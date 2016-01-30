@@ -1,7 +1,32 @@
-angular.module('App.userprofile-registerCtrl',[
+angular.module('App.userprofile-registerCtrl',['ngAnimate', 'ui.bootstrap'
   ])
-.controller('userprofile-registerCtrl', function($scope, $http){
+.controller('userprofile-registerCtrl', function ($scope, $http, $uibModal, $log){
 
+
+  $scope.animationsEnabled = true;
+
+  $scope.open = function (size) {
+
+    var modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'myModalRegContent.html',
+      controller: 'ModalInstanceRegCtrl',
+      size: size
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+
+
+});
+
+
+angular.module('App.userprofile-registerCtrl').controller('ModalInstanceRegCtrl', function ($scope, $uibModalInstance, $http, appFactory, $location) {
+    
   $scope.deviceData = {};
   $scope.device = {};
   $scope.username;
@@ -34,11 +59,13 @@ angular.module('App.userprofile-registerCtrl',[
       .then(function(dbResponse){
         console.log('dbResponse: ', dbResponse);
         if(dbResponse.status === 200){
-          alert('Added ' + $scope.device.name + ' to your profile')
-          console.log('Device registered!!')
+          $scope.addDeviceAlert = true;
+          // alert('Added ' + $scope.device.name + ' to your profile')
+          console.log('Device registered!!');
         }
       }, function(err){
         // alert('Device already registered');
+        console.log('err: ', err);
         $scope.registeredAlert = true;
         // if ($scope.invalidDeviceAlert == true) {
         //   $scope.toggleAlertRA();
@@ -46,7 +73,8 @@ angular.module('App.userprofile-registerCtrl',[
       })
     }, function(err){
       // alert('You done goofed!');
-      $scope.invalidDeviceAlert = true;
+      console.log('err: ', err);
+        $scope.invalidDeviceAlert = true;
       // if ($scope.registeredAlert === true) {
       //   $scope.toggleAlertID();
       // }
@@ -57,12 +85,20 @@ angular.module('App.userprofile-registerCtrl',[
 
   $scope.invalidDeviceAlert = false;
   $scope.toggleAlertID = function() {
-    $scope.invalidDeviceAlert = !$scope.invalidDeviceAlert;
+    $scope.registeredAlert = false;
+    $scope.invalidDeviceAlert = true
   };
 
   $scope.registeredAlert = false;
   $scope.toggleAlertRA = function() {
-    $scope.registeredAlert = !$scope.registeredAlert;
+    $scope.invalidDeviceAlert = false;
+    $scope.registeredAlert = true;
+  };
+
+  $scope.addDeviceAlert = false;
+  $scope.toggleAlertDA = function() {
+    $scope.invalidDeviceAlert = false;
+    $scope.registeredAlert = false;
   };
 
   $scope.getUser = function() {
@@ -92,47 +128,74 @@ angular.module('App.userprofile-registerCtrl',[
     $scope.registeredAlert = false;
     $scope.showModal = !$scope.showModal;
 
-  };      
+  };  
+
+
+  $scope.signInTrue = true;
+
+  $scope.signInUpToggle = function(){
+    $scope.signInTrue = !$scope.signInTrue;
+  }
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+    // $uibModalStack.dismissAll();
+  };
+
+  $scope.ok = function () {
+    // $uibModalInstance.close($scope.selected.item);
+    $uibModalInstance.close('ok');
+  };
+
 })
 
-  .directive('modal', function () {
-    return {
-      template: '<div class="modal fade">' + 
-          '<div class="modal-dialog">' + 
-            '<div class="modal-content">' + 
-              '<div class="modal-header">' + 
-                '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + 
-                '<h4 class="modal-title">{{ title }}</h4>' + 
-              '</div>' + 
-              '<div class="modal-body" ng-transclude></div>' + 
-            '</div>' + 
-          '</div>' + 
-        '</div>',
-      restrict: 'E',
-      transclude: true,
-      replace:true,
-      scope:true,
-      link: function postLink(scope, element, attrs) {
-        scope.title = attrs.title;
 
-        scope.$watch(attrs.visible, function(value){
-          if(value == true)
-            $(element).modal('show');
-          else
-            $(element).modal('hide');
-        });
 
-        $(element).on('shown.bs.modal', function(){
-          scope.$apply(function(){
-            scope.$parent[attrs.visible] = true;
-          });
-        });
 
-        $(element).on('hidden.bs.modal', function(){
-          scope.$apply(function(){
-            scope.$parent[attrs.visible] = false;
-          });
-        });
-      }
-    };
-  });
+
+
+
+
+
+////////////////////////////////////////////////////bootstrap Css
+  // .directive('modal', function () {
+  //   return {
+  //     template: '<div class="modal fade">' + 
+  //         '<div class="modal-dialog">' + 
+  //           '<div class="modal-content">' + 
+  //             '<div class="modal-header">' + 
+  //               '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + 
+  //               '<h4 class="modal-title">{{ title }}</h4>' + 
+  //             '</div>' + 
+  //             '<div class="modal-body" ng-transclude></div>' + 
+  //           '</div>' + 
+  //         '</div>' + 
+  //       '</div>',
+  //     restrict: 'E',
+  //     transclude: true,
+  //     replace:true,
+  //     scope:true,
+  //     link: function postLink(scope, element, attrs) {
+  //       scope.title = attrs.title;
+
+  //       scope.$watch(attrs.visible, function(value){
+  //         if(value == true)
+  //           $(element).modal('show');
+  //         else
+  //           $(element).modal('hide');
+  //       });
+
+  //       $(element).on('shown.bs.modal', function(){
+  //         scope.$apply(function(){
+  //           scope.$parent[attrs.visible] = true;
+  //         });
+  //       });
+
+  //       $(element).on('hidden.bs.modal', function(){
+  //         scope.$apply(function(){
+  //           scope.$parent[attrs.visible] = false;
+  //         });
+  //       });
+  //     }
+  //   };
+  // });
