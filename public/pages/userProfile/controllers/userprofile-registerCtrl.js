@@ -32,7 +32,7 @@ angular.module('App.userprofile-registerCtrl',['ngAnimate', 'ui.bootstrap'
       url: 'https://api-m2x.att.com/v2/devices/'+deviceKey+'/triggers',
       headers: {
         "X-M2X-KEY": m2xKeys.master
-        }
+      }
     }).
     then(function(success) {
       console.log('success ', success);
@@ -42,27 +42,26 @@ angular.module('App.userprofile-registerCtrl',['ngAnimate', 'ui.bootstrap'
   }
 
   $scope.triggerm2xPOST = function() {
-    console.log('checking trigger...');
+    console.log('checking POST trigger...');
     var m2xKeys = {
       master: deviceMasterKey, // hide inside not pushed file
       device: deviceKey
     }
+
     return $http({
-      method: 'POST',
+      method: "POST",
       url: 'https://api-m2x.att.com/v2/devices/'+deviceKey+'/triggers',
       headers: {
-        "X-M2X-KEY": m2xKeys.master
+        "X-M2X-KEY": "7f4b3ddf06944e06a87d0cc8aef754ad"
       },
-      data: { "name": "Low Water",
+      data: { "name": "Low-Water",
               "conditions": {
-                "water": { "gt": 30, "reset": 28 }
+                "water": { "changed": true }
               },
               "frequency": "continuous",
-              "timeframe": 300,
               "callback_url": "http://requestb.in/oftl8uof",
-              "status": "enabled",
-              "send_location": true,
-              "notify_on_reset": false
+              "status": "enabled"
+              // "send_location": false
             }
     }).
     then(function(success) {
