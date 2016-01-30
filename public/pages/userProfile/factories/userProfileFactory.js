@@ -1,6 +1,8 @@
 angular.module('userProfileFactory', [])
 	.factory('userProfileFactory', function($location, $http, $state){
 
+    var currentDevice = {};
+
     var checkDevices = function(username) {
       console.log('Checking for devices');
       return $http({
@@ -39,8 +41,39 @@ angular.module('userProfileFactory', [])
       })
     }
 
-		return {
+    var assignCurrentDevice = function(deviceName, apiKey){
+      currentDevice.deviceName = deviceName;
+      currentDevice.apiKey = apiKey;
+    }
+
+    var getChartData = function(stream){
+      var m2xKeys = {
+        master: deviceMasterKey,
+        device: currentDevice.apiKey
+      }
+      return $http({
+        method: 'GET',
+        url: 'https://api-m2x.att.com/v2/devices/'+m2xKeys.device+'/streams/'+stream+'/values?limit=25000&pretty',
+        headers: {
+          "X-M2X-KEY": m2xKeys.master
+        }
+        // params: {
+        //   start: ,
+        //   end: ,
+        //   limit: 30
+        // }
+      })
+      .then(function(success){
+        return success;
+      }, function(err){
+        console.log("Data not retrieved");
+      })
+    }
+
+    return {
       checkDevices: checkDevices,
-      deleteDevice: deleteDevice
-		}
-	})
+      deleteDevice: deleteDevice,
+      assignCurrentDevice: assignCurrentDevice,
+      getChartData: getChartData
+    }
+  })
