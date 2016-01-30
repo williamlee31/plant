@@ -1,6 +1,25 @@
 angular.module('App.homeCtrl', ['ngAnimate', 'ui.bootstrap']);
-angular.module('App.homeCtrl').controller('homeCtrl', function ($scope, $uibModal, $log, $http, $location, appFactory) {
+angular.module('App.homeCtrl').controller('homeCtrl', function ($scope, $uibModal, $log, $http, $location, appFactory, $anchorScroll, $window) {
 
+
+
+  //opactiy = 0 // top of page
+  //
+  //opacity = 1 //end of pic (hardcoded around 700 px; otherwise get height of main image)
+
+  // if scrollY > 700px // then opacity = 1
+  // if scrollY < 700px // then opacity = (700 - ScrollY)/ 700
+
+  $(document).on('scroll', function (e) {
+    console.log("SCROLL JQUERY");
+    console.log(document.body.scrollTop);
+    $('.navBarBackground').css('opacity', ($(document).scrollTop() / 500));
+  });
+
+  $scope.scrollTo = function(id){
+    $location.hash(id);
+    $anchorScroll();
+  }
 
   $scope.animationsEnabled = true;
 
@@ -98,3 +117,9 @@ angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope,
     // $uibModalStack.dismissAll();
   };
 });
+
+angular.module('App.homeCtrl').directive('scrollPosition', function($window){
+  return {
+    scope
+  }
+})

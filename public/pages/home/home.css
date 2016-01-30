@@ -1,0 +1,11 @@
+.backgroundImagePanel{
+	position: static;
+	margin-top: 0px;
+	height:100px;
+	width: 100%;
+	background-image: url("img/abstract.jpg");
+}
+
+.nav>li>a {
+    padding: 15px 15px;
+}

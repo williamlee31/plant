@@ -1,4 +1,57 @@
 <div ng-controller="homeCtrl">
+
+    <nav class="navbar navbar-default navbar-fixed-top navBarBackground" style="opacity: 0; background-color:red; z-index:1; height: 60px;" role = "navigation"></nav>
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-color: transparent; z-index:2;" role = "navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+    <p class="navbar-brand">BLOOM</p>
+    </div>
+    <div class="collapse navbar-collapse">
+    <ul class = "nav nav-pills nav-justified">
+    <li role = "presentation">
+        <a class = "navBarText" ng-click="scrollTo('services')">Services</a>
+    </li>
+    <li role = "presentation">
+        <a ng-click="scrollTo('device')">Device</a>
+    </li>
+    <li role = "presentation">
+        <a ng-click="scrollTo('setup')">Setup</a> 
+    </li>
+    <li role = "presentation">
+        <a ng-click="scrollTo('team')">Team</a> 
+    </li>
+    <li role = "presentation">
+        <a ng-click="scrollTo('contact')">Contact</a> 
+    </li>
+    <li role = "presentation">
+        <a type="button" ng-click="open()">Login</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </nav>
+
+    <div class="backgroundImagePanel"><p>TEST</p></div>
+
+    <section style="height:1000px"></section>
+    <section id="services" style="height:1000px; background-color:blue">
+        <h5>Services</h5>
+    </section>
+    <section id="device" style="height:1000px; background-color:red">
+        <h5>device</h5>
+    </section>
+    <section id="setup" style="height:1000px; background-color:yellow">
+        <h5>setup</h5>
+    </section>
+    <section id="team" style="height:1000px; background-color:green">
+        <h5>team</h5>
+    </section>
+    <section id="contact" style="height:1000px; background-color:orange">
+        <h5>contact</h5>
+    </section>
+
+
+    
     <script type="text/ng-template" id="myModalContent.html">
 
         <div class="modal-header">
@@ -39,5 +92,4 @@
         </div>
     </script>
 
-    <a type="button" ng-click="open()">Login</a>
 </div>
