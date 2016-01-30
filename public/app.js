@@ -117,15 +117,14 @@ angular.module('App',[
 	    if (!to.authenticate) {
 				return;
 			};
-			var response = appFactory.isAuth()
-			response.then(function(result){
+			e.preventDefault();
+			appFactory.isAuth().then(function(result){
 				console.log('+++line78: result', result);
 				if(result){
 					// debugger;
 					to.authenticate = false;
 					$location.path(to.url);
 				}else{
-					e.preventDefault();
 					$location.path('/signin');
 				}
 			})
