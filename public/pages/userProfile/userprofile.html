@@ -1,11 +1,13 @@
 <div ng-controller = "userProfileCtrl">
 
+  <div class='profileInfo'>
   <div ui-view="profileInfo"></div>
-  <h4>Welcome {{userInfo.firstname}} {{userInfo.lastname}}!</h4>
+  </div>
+  <h4>Welcome {{userInfo.username}}!</h4>
   <div ui-view="register"></div>
   <br>
   <span ng-show="loading.hidden">
-    <img src='../../img/loading_spinner.gif' width='100px' height='100px'>
+    <img src='../../img/gifs/loading_spinner.gif' width='100px' height='100px'>
   </span>
 
   <span ng-show="!loading.hidden">

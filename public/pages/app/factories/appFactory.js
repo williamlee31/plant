@@ -39,7 +39,7 @@ angular.module('appFactory', [])
 			})
 		};
 
-		var getUser = function(callback) {
+		var getUser = function() {
 			return $http({
         method: 'GET',
         url: '/api/users',
