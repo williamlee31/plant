@@ -11,7 +11,7 @@ angular.module('App.userProfileCtrl',[
 }])
 .controller('userProfileCtrl', function($scope, $http, showAlertSrvc, appFactory, userProfileFactory){
 
-  $scope.loading = showAlertSrvc(1500);
+  $scope.loading = showAlertSrvc(2000);
   $scope.deviceData = [];
   $scope.userDevices = {};
   $scope.userInfo = {};
@@ -22,6 +22,7 @@ angular.module('App.userProfileCtrl',[
   $scope.charts = {
     hidden:true
   }
+  $scope.currentDevice = {};
 
   $scope.getData = function() {
     $scope.deviceData = [];
@@ -76,12 +77,15 @@ angular.module('App.userProfileCtrl',[
     })
     $('#mainChart').html("");
     userProfileFactory.assignCurrentDevice(deviceName, apiKey);
+    $scope.charts.hidden = false;
+    $scope.currentDevice.name = deviceName;
   }
 
   $scope.deleteDevice = function(deviceName) {
     userProfileFactory.deleteDevice(deviceName, $scope.userInfo.username).then(function(result){
       if(result){
         $scope.init();
+        $scope.charts.hidden = true;
       }
     });
   }

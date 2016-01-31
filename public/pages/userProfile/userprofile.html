@@ -47,7 +47,13 @@
     </div>
 
     <div class='col-md-8'>
-      <div ui-view='charts'></div>
+      <span ng-show="charts.hidden">
+        
+      </span>
+      <span ng-show="!charts.hidden">
+        <h4>Statistics for {{currentDevice.name}}</h4>
+        <div ui-view='charts'></div>
+      </span>
     </div>
 
   </div>
