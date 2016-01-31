@@ -2,6 +2,14 @@ angular.module('App.userprofile-chartsCtrl',[
   ])
   .controller('userprofile-chartsCtrl', function($scope, appFactory, userProfileFactory){
 
+    $(function() {
+      Highcharts.setOptions({
+        global: {
+          useUTC: false
+        }
+      });
+    })
+
     $scope.renderWaterChart = function() {
       userProfileFactory.getChartData('water').then(function(result){
 
@@ -18,7 +26,7 @@ angular.module('App.userprofile-chartsCtrl',[
            waterData.unshift([Date.UTC(year, month, day, hour, min, sec), parseFloat((chartData[i].value).toFixed(2))]);
        }
 
-        $(function () {
+        $(function() {
           $('#mainChart').highcharts({
             chart: {
               type: 'spline'
@@ -28,9 +36,9 @@ angular.module('App.userprofile-chartsCtrl',[
             },
             xAxis: {
               type: 'datetime',
-              dateTimeLabelFormats: { // don't display the dummy year
-              minute: '%H:%M',
-              hour: '%H:%M'
+              dateTimeLabelFormats: {
+                hour: '%I %p',
+                minute: '%I:%M %p'
               },
               title: {
                 text: 'Time'
@@ -87,8 +95,9 @@ angular.module('App.userprofile-chartsCtrl',[
               }]
             },
             tooltip: {
-              headerFormat: '<b>{series.name}</b><br>',
-              pointFormat: '{point.x:%H:%M}: {point.y:.2f}'
+              valueDecimals: 0,
+              headerFormat: '{point.x:%b %e, %Y}<br>',
+              pointFormat: '{point.x:%I:%M %p} <b><font color="#F5A9A9">{point.y}</font></b>'
             },
             plotOptions: {
               spline: {
@@ -98,6 +107,7 @@ angular.module('App.userprofile-chartsCtrl',[
               }
             },
             series: [{
+              color: '#0431B4',
               name: 'Moisture level',
               data: waterData
             }]
@@ -122,7 +132,7 @@ angular.module('App.userprofile-chartsCtrl',[
           lightData.unshift([Date.UTC(year, month, day, hour, min, sec), parseFloat((chartData[i].value).toFixed(2))]);
         }
 
-        $(function () {
+        $(function() {
           $('#mainChart').highcharts({
             chart: {
               type: 'spline'
@@ -133,8 +143,8 @@ angular.module('App.userprofile-chartsCtrl',[
             xAxis: {
               type: 'datetime',
               dateTimeLabelFormats: { // don't display the dummy year
-              minute: '%H:%M',
-              hour: '%H:%M'
+                hour: '%I %p',
+                minute: '%I:%M %p'
               },
               title: {
                 text: 'Time'
@@ -151,7 +161,7 @@ angular.module('App.userprofile-chartsCtrl',[
               plotBands: [{
                 from: 1,
                 to: 339,
-                color: 'rgba(255,255,0,0)',
+                color: 'rgba(0,0,0,0)',
                 label: {
                   text: 'Shady',
                   style: {
@@ -161,7 +171,7 @@ angular.module('App.userprofile-chartsCtrl',[
               }, {
                 from: 340,
                 to: 680,
-                color: 'rgba(255,255,0,0.2)',
+                color: 'rgba(255,255,0,0.15)',
                 label: {
                   text: 'Partially sunny',
                   style: {
@@ -181,8 +191,9 @@ angular.module('App.userprofile-chartsCtrl',[
               }]
             },
             tooltip: {
-              headerFormat: '<b>{series.name}</b><br>',
-              pointFormat: '{point.x:%H:%M}: {point.y:.2f}'
+              valueDecimals: 0,
+              headerFormat: '{point.x:%b %e, %Y}<br>',
+              pointFormat: '{point.x:%I:%M %p} <b><font color="#F5A9A9">{point.y}</font></b>'
             },
             plotOptions: {
               spline: {
@@ -192,7 +203,7 @@ angular.module('App.userprofile-chartsCtrl',[
               }
             },
             series: [{
-              color: '#D7DF01',
+              color: '#585858',
               name: 'Light level',
               data: lightData
             }]
@@ -214,7 +225,7 @@ angular.module('App.userprofile-chartsCtrl',[
           var hour = parseInt(chartData[i].timestamp.slice(11,13));
           var min = parseInt(chartData[i].timestamp.slice(14,16));
           var sec = parseInt(chartData[i].timestamp.slice(17,19));
-          tempData.unshift([Date.UTC(year, month, day, hour, min, sec), parseFloat((chartData[i].value * 1.8 + 32).toFixed(2))]);
+          tempData.unshift([Date.UTC(year, month, day, hour, min, sec), parseInt(chartData[i].value * 1.8 + 32)]);
         }
 
         $(function () {
@@ -228,8 +239,8 @@ angular.module('App.userprofile-chartsCtrl',[
             xAxis: {
               type: 'datetime',
               dateTimeLabelFormats: { // don't display the dummy year
-                minute: '%H:%M',
-                hour: '%H:%M'
+                hour: '%I %p',
+                minute: '%I:%M %p'
               },
               title: {
                 text: 'Time'
@@ -242,8 +253,9 @@ angular.module('App.userprofile-chartsCtrl',[
               min: 0
             },
             tooltip: {
-              headerFormat: '<b>{series.name}</b><br>',
-              pointFormat: '{point.x:%H:%M}: {point.y:.2f} °F'
+              valueDecimals: 0,
+              headerFormat: '{point.x:%b %e, %Y}<br>',
+              pointFormat: '{point.x:%I:%M %p} <b><font color="#F5A9A9">{point.y}°F</font></b>'
             },
             plotOptions: {
               spline: {
@@ -253,7 +265,7 @@ angular.module('App.userprofile-chartsCtrl',[
               }
             },
             series: [{
-              color: '#F5A9A9',
+              color: '#FA5858',
               name: 'Temperature',
               data: tempData
             }]
