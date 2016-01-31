@@ -18,6 +18,10 @@ angular.module('App.userProfileCtrl',[
   $scope.plants = {
     hidden: true
   }
+  $scope.currentGraphData = {};
+  $scope.charts = {
+    hidden:true
+  }
 
   $scope.getData = function() {
     $scope.deviceData = [];
@@ -60,6 +64,18 @@ angular.module('App.userProfileCtrl',[
         })
       }
     )
+  }
+
+  $scope.prepareCharts = function(deviceName) {
+    var apiKey;
+    angular.forEach($scope.userDevices, function(device){
+      if(device.name === deviceName){
+        apiKey = device.apiKey;
+        return;
+      }
+    })
+    $('#mainChart').html("");
+    userProfileFactory.assignCurrentDevice(deviceName, apiKey);
   }
 
   $scope.deleteDevice = function(deviceName) {

@@ -1,18 +1,19 @@
 angular.module('App',[
 	'ui.router',
 	'ngMessages',
+	'App.appCtrl',
+	'App.homeCtrl',
 	'App.loginCtrl',
 	'App.signupCtrl',
 	'App.userProfileCtrl',
 	'App.userprofile-registerCtrl',
-	'App.appCtrl',
-	'App.productpageCtrl',
 	'App.userprofile-profileInfoCtrl',
+	'App.userprofile-chartsCtrl',
+	'App.productpageCtrl',
 	'appFactory',
 	'userProfileFactory',
 	'ui.bootstrap',
 	'ngAnimate',
-	'App.homeCtrl'
 	])
 	.config(function($stateProvider, $urlRouterProvider,  $httpProvider){
 		//  how to do controller/view (DON'T forget to add controller to angular.model & index.html)
@@ -86,6 +87,10 @@ angular.module('App',[
 					'profileInfo@userprofile': {
 						templateUrl: 'pages/userProfile/templates/userprofile-profileInfo.html',
 						controller: 'userprofile-profileInfoCtrl'
+					},
+					'charts@userprofile': {
+						templateUrl: 'pages/userProfile/templates/userprofile-charts.html',
+						controller: 'userprofile-chartsCtrl'
 					}
 				}
 			})
