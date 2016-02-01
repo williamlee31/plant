@@ -10,6 +10,7 @@ angular.module('App',[
 	'App.userprofile-profileInfoCtrl',
 	'App.userprofile-chartsCtrl',
 	'App.productpageCtrl',
+	'App.userprofile-triggerCtrl',
 	'appFactory',
 	'userProfileFactory',
 	'ui.bootstrap',
@@ -100,7 +101,11 @@ angular.module('App',[
 					'': {
 						templateUrl: 'pages/productPage/productpage.html',
 						controller: 'productpageCtrl'
-					}
+					},
+					'trigger@productpage': {
+						templateUrl: 'pages/userProfile/templates/userprofile-trigger.html',
+						controller: 'userprofile-triggerCtrl'
+					}	
 				}
 			})
 			// .state('deviceregister', {

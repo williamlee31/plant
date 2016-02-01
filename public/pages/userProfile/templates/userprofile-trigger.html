@@ -1,0 +1,24 @@
+<div ng-controller="userprofile-triggerCtrl">
+
+	<button ng-click="triggerm2xGET()" class="btn btn-md btn-default">Trigger Data</button>
+	<button ng-click="triggerm2xPOST()" class="btn btn-md btn-default">Trigger POST</button>
+
+
+	
+		<div ng-repeat="item in list">
+			<input type="checkbox" checkbox-group />
+			<label>{{item.value}}</label>
+		</div>
+		<span ng-repeat="selected in array">
+			{{selected}}
+		</span>
+		<br>{{update()}}
+
+
+
+
+
+
+
+</div>
+
