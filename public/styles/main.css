@@ -1,11 +1,13 @@
 .profileInfo {
-	position: relative;
 	width: 220px;
 	border: 2px solid black;
 	margin: 10px;
+	float: left;
 }
 
 .profileImg {
-	margin: 5px;
 	border: 2px solid black;
+	width: 200px;
+	display: block;
+	margin: 10px auto;
 }
