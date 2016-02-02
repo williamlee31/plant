@@ -1,6 +1,5 @@
 angular.module('App.appCtrl',[])
 	.controller('appCtrl', function($scope, $http, $location, appFactory){
-
 		$scope.signout = function(){
 			appFactory.signout();
 		}
