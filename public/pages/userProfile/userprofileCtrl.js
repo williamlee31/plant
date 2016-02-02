@@ -54,7 +54,11 @@ angular.module('App.userProfileCtrl',[
 
             $scope.deviceData.push({
               name: device.name,
-              data: deviceData
+              data: deviceData,
+              apiKey: device.apiKey,
+              dangerTrigger: device.dangerTrigger,
+              dryTrigger: device.dryTrigger,
+              drenchedTrigger: device.drenchedTrigger
             })
 
             $scope.pageLoad();

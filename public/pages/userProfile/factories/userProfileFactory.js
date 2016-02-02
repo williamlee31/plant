@@ -44,6 +44,7 @@ angular.module('userProfileFactory', [])
     var assignCurrentDevice = function(deviceName, apiKey){
       currentDevice.deviceName = deviceName;
       currentDevice.apiKey = apiKey;
+      console.log('******* HERE HERE HERE: ', apiKey)
     }
 
     var getChartData = function(stream){

@@ -54,7 +54,7 @@ exports.getDevices = function(callback, params) {
   .then(function (data) {
     if(data){
       var userid = data.dataValues.id;
-      db.Device.findAll({where: {UserId: userid}, attributes: ['name', 'apiKey']})
+      db.Device.findAll({where: {UserId: userid}, attributes: ['name', 'apiKey', 'dryTrigger', 'dangerTrigger', 'drenchedTrigger']})
       .then(function (data) {
         if(data){
           // var token = jwt.decode(data.dataValues.apiKey, 'secret');
@@ -72,6 +72,39 @@ exports.getDevices = function(callback, params) {
     } else {
       callback(data, 'Invalid username');
     } 
+  })
+}
+
+exports.updateDeviceTrigger = function(callback, params) {
+  var username = params.username;
+  var token = jwt.encode(params.apiKey, 'secret');
+  var triggerName = params.triggerName;
+  var triggerObject = {};
+  db.User.find({where: {username: username}})
+  .then(function (data) {
+    if(data){
+      var userid = data.dataValues.id;
+      db.Device.find({where: {apiKey: token, UserId: userid}})
+      .then(function (device) {
+        if(device){
+          if(device.dataValues[triggerName]){
+            console.log('+++line98: trigger is currently true, proceeding to change to false');
+            triggerObject[triggerName] = false;
+            device.update(triggerObject);
+            callback(true, 'Device ' + triggerName + ' turned off');
+          } else if (!device.dataValues[triggerName]){
+            console.log('+++line103: trigger is currently false, proceeding to change to true');
+            triggerObject[triggerName] = true;
+            device.update(triggerObject);
+            callback(true, 'Device ' + triggerName + ' turned on');
+          }
+        } else {
+          callback(false, 'No device to update')
+        }
+      })
+    } else {
+      callback(false, 'Invalid username')
+    }
   })
 }
 
@@ -93,7 +126,7 @@ exports.deleteDevice = function(callback, params) {
         }
       })
     } else {
-      callback(false, 'Invalid username and devicename combination'); 
+      callback(false, 'Invalid username'); 
     }
   })
 }
