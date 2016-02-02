@@ -1,31 +1,31 @@
 <div>
 
-    <nav class="navbar navbar-default navbar-fixed-top navBarBackground" style="opacity: 0; background-color:red; z-index:1; height: 60px;" role = "navigation"></nav>
-    <nav class="navbar navbar-default navbar-fixed-top" style="background-color: transparent; z-index:2;" role = "navigation">
-    <div class="container-fluid">
+    <nav class="navbar navbar-default navbar-fixed-top navBarBackground" style="opacity: 0; background-color:grey; z-index:1; height: 60px;" role = "navigation"></nav>
+    <nav class="navbar navbar-fixed-top" style="background-color: transparent; z-index:2;" role = "navigation">
+    <div>
     <div class="navbar-header">
-    <p class="navbar-brand">BLOOM</p>
+    <p class="navbarLogo">Bloom</p>
     </div>
     <div class="collapse navbar-collapse">
-    <ul class = "nav nav-pills nav-justified">
+    <ul class = "nav nav-justified">
     <li role = "presentation">
         <a class = "navBarText" ng-click="scrollTo('services')">Services</a>
     </li>
     <li role = "presentation">
-        <a ng-click="scrollTo('device')">Device</a>
+        <a class = "navBarText" ng-click="scrollTo('device')">Device</a>
     </li>
     <li role = "presentation">
-        <a ng-click="scrollTo('setup')">Setup</a>
+        <a class = "navBarText" ng-click="scrollTo('setup')">Setup</a>
     </li>
     <li role = "presentation">
-        <a ng-click="scrollTo('team')">Team</a>
+        <a class = "navBarText" ng-click="scrollTo('team')">Team</a>
     </li>
     <li role = "presentation">
-        <a ng-click="scrollTo('contact')">Contact</a>
+        <a class = "navBarText" ng-click="scrollTo('contact')">Contact</a>
     </li>
     <li role = "presentation">
-        <a ng-hide="isLoggedIn" type="button" ng-click="open()">Login</a>
-        <a ng-show="isLoggedIn" ui-sref="userprofile">{{userInfo.firstname + "\'s Profile"}}</a>
+        <a class = "navBarText" ng-hide="isLoggedIn" type="button" ng-click="open()">Login</a>
+        <a class = "navBarText" ng-show="isLoggedIn" ui-sref="userprofile">{{userInfo.firstname + "\'s Profile"}}</a>
     </li>
     <!-- <li role = "presentation" ng-show="isLoggedIn">
     </li> -->
@@ -34,7 +34,9 @@
     </div>
     </nav>
 
-    <div class="backgroundImagePanel"><p>TEST</p></div>
+    <div class="backgroundImagePanel">
+        
+    </div>
 
     <section style="height:1000px"></section>
     <section id="services" style="height:1000px; background-color:blue">
