@@ -117,12 +117,12 @@ angular.module('App',[
 		$urlRouterProvider
 			.otherwise('/');
 	})
-	.run(function($rootScope, $state, appFactory, $location) {
+	.run(function($rootScope, $state, userProfileFactory, $location) {
 	  $rootScope.$on('$stateChangeStart', function(e, to) {
 	    if (!to.authenticate) {
 				return;
 			};
-			appFactory.isAuth().then(function(result){
+			userProfileFactory.isAuth().then(function(result){
 				console.log('+++line78: result', result);
 				if(result){
 					// debugger;
