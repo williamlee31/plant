@@ -1,0 +1,106 @@
+<div ng-controller="userprofile-triggerCtrl">
+
+<!-- 	<button ng-click="triggerm2xGET()" class="btn btn-md btn-default">Trigger Data</button>
+	<button ng-click="triggerm2xPOST()" class="btn btn-md btn-default">Trigger POST</button> -->
+<!-- 	
+	<br>
+	<br>
+
+	<div>
+		<label>Trigger Events:</label>
+	    <div ng-repeat="item in list">
+	        <input type="checkbox" checkbox-group />
+	        <label>{{item.value}}</label>
+	    </div>
+	    <br>
+
+	    <div>inside array: {{array}}</div>
+	    <br>
+	    <div>inside list: {{list}}</div>
+	</div> -->
+
+<!-- ////////////////////////// -->
+<!-- 	<button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
+	<hr />
+	<div collapse="isCollapsed">
+		<div class="well well-lg">
+			Content
+			<label>Water Triggers</label>
+			<div class="form-group">
+				<label class="checkbox">
+					<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.danger"> Danger Trigger
+				</label>
+				<label class="checkbox">
+					<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.dry"> Dry Trigger
+				</label>
+				<label class="checkbox">
+					<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.drenched"> Drenched Trigger
+				</label>
+			</div>
+
+			<br>
+			<div>inside formData: {{formData}}</div>
+		</div> 
+	</div>
+</div> -->
+<br>
+<uib-accordion close-others="oneAtATime">
+<uib-accordion-group heading="Add Triggers" panel-class="panel-success">
+	<h5>Water Triggers</h5>
+	<hr>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.danger"> Danger Trigger
+		</label>
+	</div>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.dry"> Dry Trigger
+		</label>
+	</div>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.drenched"> Drenched Trigger
+		</label>
+	</div>
+	<div>inside formData: {{formData}}</div>
+    <button class="btn btn-sm btn-success">Submit</button>
+</uib-accordion-group>
+</uib-accordion>
+
+
+
+ <uib-accordion close-others="oneAtATime">
+	<uib-accordion-group is-open="status.open">
+      <uib-accordion-heading panel-class="panel-success">
+        Trigger Title<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+      </uib-accordion-heading>
+    
+      <label>Water Triggers
+      <hr/>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.danger"> Danger Trigger
+		</label>
+	</div>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.dry"> Dry Trigger
+		</label>
+	</div>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.drenched"> Drenched Trigger
+		</label>
+	</div>
+	<div>inside formData: {{formData}}</div>
+
+		</label>
+    </uib-accordion-group>
+
+
+
+
+
+</div>
+
