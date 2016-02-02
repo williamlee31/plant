@@ -11,6 +11,8 @@ angular.module('App.userProfileCtrl',[
 }])
 .controller('userProfileCtrl', function($scope, $http, showAlertSrvc, appFactory, userProfileFactory){
 
+  $scope.signout = appFactory.signout;
+
   $scope.loading = showAlertSrvc(2000);
   $scope.deviceData = [];
   $scope.userDevices = {};

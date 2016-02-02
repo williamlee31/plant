@@ -1,15 +1,6 @@
 angular.module('App.homeCtrl', ['ngAnimate', 'ui.bootstrap']);
 angular.module('App.homeCtrl').controller('homeCtrl', function ($scope, $uibModal, $log, $http, $location, appFactory, $anchorScroll, $window) {
 
-
-
-  //opactiy = 0 // top of page
-  //
-  //opacity = 1 //end of pic (hardcoded around 700 px; otherwise get height of main image)
-
-  // if scrollY > 700px // then opacity = 1
-  // if scrollY < 700px // then opacity = (700 - ScrollY)/ 700
-
   $(document).on('scroll', function (e) {
     console.log("SCROLL JQUERY");
     console.log(document.body.scrollTop);
@@ -22,6 +13,21 @@ angular.module('App.homeCtrl').controller('homeCtrl', function ($scope, $uibModa
   }
 
   $scope.animationsEnabled = true;
+  
+  
+  $scope.userInfo = {};
+  $scope.firstName = $scope.userInfo.firstname;
+  $scope.isLoggedIn = false;
+  
+  $scope.init = function(){
+    appFactory.getUser().then(function(result){
+      if(result){
+        console.log(result.data);
+        $scope.userInfo = result.data;
+        $scope.isLoggedIn = true;
+      }
+    })
+  }
 
   $scope.open = function (size) {
 
@@ -37,13 +43,17 @@ angular.module('App.homeCtrl').controller('homeCtrl', function ($scope, $uibModa
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
+  
   };
+
+  $scope.init();
 
 });
 
 angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, $uibModalStack, $http, appFactory, $location) {
     
   $scope.signInTrue = true;
+
 
   $scope.login = function(){
     console.log("+++Line 52 modal.js Inside LOGIN!");
@@ -57,12 +67,7 @@ angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope,
         }
       })
       .then(function(success){
-        console.log($scope.cancel);
-        console.log(success);
-        appFactory.user = success.data.username;
-        appFactory.firstName = success.data.firstname;
-        appFactory.lastName = success.data.lastname;
-        appFactory.email = success.data.email;
+        $scope.userInfo = success.data;
         window.localStorage.setItem('token', success.data.token);
         $location.path('/userprofile');
       }, function(err){
@@ -93,13 +98,8 @@ angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope,
         $scope.cancel();
         // $uibModalStack.dismissAll();
         console.log("Inside Success within Signup()");
-        appFactory.user = success.data.username;
-        appFactory.firstName = success.data.firstname;
-        appFactory.lastName = success.data.lastname;
-        appFactory.email = success.data.email;
+        $scope.userInfo = success.data;
         window.localStorage.setItem('token', success.data.token);
-        console.log("******SIGNUP before LOCATION PATH CHANGE*******");
-        console.log("appFactory.user:",appFactory.user,"appFactory.lastName", appFactory.lastName, "appFactory.firstName", appFactory.firstName, "appFactory.email", appFactory.email);
         $location.path('/userprofile');
       }, function(err){
         console.log("INCORRECT LOGIN");
@@ -115,8 +115,8 @@ angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope,
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
     // $uibModalStack.dismissAll();
-  };
-});
+    };
+  });
 
 angular.module('App.homeCtrl').directive('scrollPosition', function($window){
   return {

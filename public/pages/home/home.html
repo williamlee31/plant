@@ -24,8 +24,11 @@
         <a ng-click="scrollTo('contact')">Contact</a>
     </li>
     <li role = "presentation">
-        <a type="button" ng-click="open()">Login</a>
+        <a ng-hide="isLoggedIn" type="button" ng-click="open()">Login</a>
+        <a ng-show="isLoggedIn" ui-sref="userprofile">{{userInfo.firstname + "\'s Profile"}}</a>
     </li>
+    <!-- <li role = "presentation" ng-show="isLoggedIn">
+    </li> -->
     </ul>
     </div>
     </div>
