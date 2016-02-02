@@ -9,57 +9,26 @@ angular.module('App.userProfileCtrl',[
     return result;
   };
 }])
-.controller('userProfileCtrl', function($scope, $http, showAlertSrvc, userProfileFactory){
+.controller('userProfileCtrl', function($scope, $http, showAlertSrvc, appFactory, userProfileFactory){
 
-
-    $scope.signout = function(){
-      userProfileFactory.signout();
-    }
-
-    $scope.init = function(){
-      return $http({
-        method: 'GET',
-        url: '/api/users',
-        params: {
-          token: window.localStorage.token
-        }
-      }).then(function(success){
-        // console.log(success, success.data.username, "SUCCESS!!!");
-      
-        userProfileFactory.user = success.data.username;
-        userProfileFactory.firstName = success.data.firstname;
-        userProfileFactory.lastName = success.data.lastname; //true or false
-        userProfileFactory.email = success.data.email;
-        $scope.userInfo = userProfileFactory.user;
-        console.log("userProfileFactory.USER!", userProfileFactory.user);
-        $scope.getData();
-        $scope.pageLoad();
-      }, function(err){
-        console.log("INIT ERROR!!!", err);
-      })
-    };
-
-      
   $scope.loading = showAlertSrvc(2000);
   $scope.deviceData = [];
   $scope.userDevices = {};
-  // $scope.userInfo = {};
+  $scope.userInfo = {};
   $scope.plants = {
     hidden: true
-  }
+  };
   $scope.currentGraphData = {};
   $scope.charts = {
-    hidden:true
-  }
+    hidden: true
+  };
   $scope.currentDevice = {};
 
   $scope.getData = function() {
     $scope.deviceData = [];
-    console.log("GET DATA LN 55 ----- username", userProfileFactory.username);
-    userProfileFactory.checkDevices(userProfileFactory.user)
+    userProfileFactory.checkDevices($scope.userInfo.username)
     .then(
       function(result){
-        console.log(result);
         $scope.userDevices = result.data
         angular.forEach($scope.userDevices , function(device){
           var m2xKeys = {
@@ -84,12 +53,15 @@ angular.module('App.userProfileCtrl',[
 
 
             $scope.deviceData.push({
+              user: $scope.userInfo.username,
               name: device.name,
               data: deviceData,
               apiKey: device.apiKey,
-              dangerTrigger: device.dangerTrigger,
-              dryTrigger: device.dryTrigger,
-              drenchedTrigger: device.drenchedTrigger
+              triggers: {
+                dangerTrigger: device.dangerTrigger,
+                dryTrigger: device.dryTrigger,
+                drenchedTrigger: device.drenchedTrigger
+              }
             })
 
             $scope.pageLoad();
@@ -116,8 +88,14 @@ angular.module('App.userProfileCtrl',[
     $scope.currentDevice.name = deviceName;
   }
 
+  $scope.updateDeviceTrigger = function(apiKey, triggerName) {
+    userProfileFactory.updateDeviceTrigger($scope.userInfo.username, apiKey, triggerName).then(function(result){
+      alert(result);
+            })
+  }
+
   $scope.deleteDevice = function(deviceName) {
-    userProfileFactory.deleteDevice(deviceName, userProfileFactory.username).then(function(result){
+    userProfileFactory.deleteDevice(deviceName, $scope.userInfo.username).then(function(result){
       if(result){
         $scope.init();
         $scope.charts.hidden = true;
@@ -133,9 +111,16 @@ angular.module('App.userProfileCtrl',[
     }
   }
 
-  $scope.init();
+  $scope.init = function() {
+    appFactory.getUser().then(function(result){
+      $scope.userInfo = result.data;
+      $scope.getData();
+      $scope.pageLoad();
+    })
+  }
 
-});
+  $scope.init();
+})
 
 // Helper Function
 

@@ -1,5 +1,5 @@
 angular.module('App.homeCtrl', ['ngAnimate', 'ui.bootstrap']);
-angular.module('App.homeCtrl').controller('homeCtrl', function ($scope, $uibModal, $log, $http, $location, userProfileFactory, $anchorScroll, $window) {
+angular.module('App.homeCtrl').controller('homeCtrl', function ($scope, $uibModal, $log, $http, $location, appFactory, $anchorScroll, $window) {
 
 
 
@@ -41,7 +41,7 @@ angular.module('App.homeCtrl').controller('homeCtrl', function ($scope, $uibModa
 
 });
 
-angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, $uibModalStack, $http, userProfileFactory, $location) {
+angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, $uibModalStack, $http, appFactory, $location) {
     
   $scope.signInTrue = true;
 
@@ -59,10 +59,10 @@ angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope,
       .then(function(success){
         console.log($scope.cancel);
         console.log(success);
-        userProfileFactory.user = success.data.username;
-        userProfileFactory.firstName = success.data.firstname;
-        userProfileFactory.lastName = success.data.lastname;
-        userProfileFactory.email = success.data.email;
+        appFactory.user = success.data.username;
+        appFactory.firstName = success.data.firstname;
+        appFactory.lastName = success.data.lastname;
+        appFactory.email = success.data.email;
         window.localStorage.setItem('token', success.data.token);
         $location.path('/userprofile');
       }, function(err){
@@ -93,13 +93,13 @@ angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope,
         $scope.cancel();
         // $uibModalStack.dismissAll();
         console.log("Inside Success within Signup()");
-        userProfileFactory.user = success.data.username;
-        userProfileFactory.firstName = success.data.firstname;
-        userProfileFactory.lastName = success.data.lastname;
-        userProfileFactory.email = success.data.email;
+        appFactory.user = success.data.username;
+        appFactory.firstName = success.data.firstname;
+        appFactory.lastName = success.data.lastname;
+        appFactory.email = success.data.email;
         window.localStorage.setItem('token', success.data.token);
         console.log("******SIGNUP before LOCATION PATH CHANGE*******");
-        console.log("userProfileFactory.user:",userProfileFactory.user,"userProfileFactory.lastName", userProfileFactory.lastName, "userProfileFactory.firstName", userProfileFactory.firstName, "userProfileFactory.email", userProfileFactory.email);
+        console.log("appFactory.user:",appFactory.user,"appFactory.lastName", appFactory.lastName, "appFactory.firstName", appFactory.firstName, "appFactory.email", appFactory.email);
         $location.path('/userprofile');
       }, function(err){
         console.log("INCORRECT LOGIN");

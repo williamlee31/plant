@@ -26,6 +26,8 @@ angular.module('App.userprofile-chartsCtrl',[
            waterData.unshift([Date.UTC(year, month, day, hour, min, sec), parseFloat((chartData[i].value).toFixed(2))]);
        }
 
+       console.log('Water data: ', waterData)
+
         $(function() {
           $('#mainChart').highcharts({
             chart: {
