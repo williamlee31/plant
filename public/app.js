@@ -92,7 +92,11 @@ angular.module('App',[
 					'charts@userprofile': {
 						templateUrl: 'pages/userProfile/templates/userprofile-charts.html',
 						controller: 'userprofile-chartsCtrl'
-					}
+					},
+					'trigger@userprofile': {
+						templateUrl: 'pages/userProfile/templates/userprofile-trigger.html',
+						controller: 'userprofile-triggerCtrl'
+					}						
 				}
 			})
 			.state('productpage', {
@@ -101,11 +105,7 @@ angular.module('App',[
 					'': {
 						templateUrl: 'pages/productPage/productpage.html',
 						controller: 'productpageCtrl'
-					},
-					'trigger@productpage': {
-						templateUrl: 'pages/userProfile/templates/userprofile-trigger.html',
-						controller: 'userprofile-triggerCtrl'
-					}	
+					}
 				}
 			})
 			// .state('deviceregister', {

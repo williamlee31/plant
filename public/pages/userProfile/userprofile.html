@@ -56,6 +56,7 @@
               <div class='deviceTemp'><b>Temperature:</b> {{device.data.temp}}</div>
               <button class='btn btn-sm btn-info' ng-click='prepareCharts(device.name)'>Check charts</button>
               <button class='btn btn-sm btn-danger' ng-click='deleteDevice(device.name)'>Delete device</button>
+              <div ui-view='trigger'></div>
               <br>
             </div>
             <br>
