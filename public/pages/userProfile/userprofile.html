@@ -1,4 +1,11 @@
-<div ng-controller = "userProfileCtrl" class='userProfileCtrl'>
+<div class='userProfileCtrl'>
+
+<!-- ng-controller = "userProfileCtrl" -->
+
+  <nav>
+    <a ui-sref="home">HOME</a>
+    <button ng-click = "signout()">Signout</button>
+  </nav>
 
   <div class="row">
     <div class='col-md-4'>
@@ -6,7 +13,7 @@
         <div ui-view="profileInfo"></div>
       </div>
 
-      <h4>Welcome {{userInfo.username}}!</h4>
+      <h4>Welcome {{userInfo}}!</h4>
 
       <div ui-view="register"></div>
       <br>

@@ -9,12 +9,41 @@ angular.module('App.userProfileCtrl',[
     return result;
   };
 }])
-.controller('userProfileCtrl', function($scope, $http, showAlertSrvc, appFactory, userProfileFactory){
+.controller('userProfileCtrl', function($scope, $http, showAlertSrvc, userProfileFactory){
 
+
+    $scope.signout = function(){
+      userProfileFactory.signout();
+    }
+
+    $scope.init = function(){
+      return $http({
+        method: 'GET',
+        url: '/api/users',
+        params: {
+          token: window.localStorage.token
+        }
+      }).then(function(success){
+        // console.log(success, success.data.username, "SUCCESS!!!");
+      
+        userProfileFactory.user = success.data.username;
+        userProfileFactory.firstName = success.data.firstname;
+        userProfileFactory.lastName = success.data.lastname; //true or false
+        userProfileFactory.email = success.data.email;
+        $scope.userInfo = userProfileFactory.user;
+        console.log("userProfileFactory.USER!", userProfileFactory.user);
+        $scope.getData();
+        $scope.pageLoad();
+      }, function(err){
+        console.log("INIT ERROR!!!", err);
+      })
+    };
+
+      
   $scope.loading = showAlertSrvc(2000);
   $scope.deviceData = [];
   $scope.userDevices = {};
-  $scope.userInfo = {};
+  // $scope.userInfo = {};
   $scope.plants = {
     hidden: true
   }
@@ -26,9 +55,11 @@ angular.module('App.userProfileCtrl',[
 
   $scope.getData = function() {
     $scope.deviceData = [];
-    userProfileFactory.checkDevices($scope.userInfo.username)
+    console.log("GET DATA LN 55 ----- username", userProfileFactory.username);
+    userProfileFactory.checkDevices(userProfileFactory.user)
     .then(
       function(result){
+        console.log(result);
         $scope.userDevices = result.data
         angular.forEach($scope.userDevices , function(device){
           var m2xKeys = {
@@ -86,7 +117,7 @@ angular.module('App.userProfileCtrl',[
   }
 
   $scope.deleteDevice = function(deviceName) {
-    userProfileFactory.deleteDevice(deviceName, $scope.userInfo.username).then(function(result){
+    userProfileFactory.deleteDevice(deviceName, userProfileFactory.username).then(function(result){
       if(result){
         $scope.init();
         $scope.charts.hidden = true;
@@ -102,16 +133,9 @@ angular.module('App.userProfileCtrl',[
     }
   }
 
-  $scope.init = function() {
-    appFactory.getUser().then(function(result){
-      $scope.userInfo = result.data;
-      $scope.getData();
-      $scope.pageLoad();
-    })
-  }
-
   $scope.init();
-})
+
+});
 
 // Helper Function
 
