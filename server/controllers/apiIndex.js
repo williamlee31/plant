@@ -21,8 +21,14 @@ module.exports = {
         res.send(data);
       })
     },
+    put: function (req, res) {
+      console.log('+++line25: inside controllers put users apiIndex.js');
+      models.users.put(function (data){
+
+      })
+    },
     delete: function (req, res) {
-      console.log('+++line25: inside controllers delete users apiIndex.js');
+      console.log('+++line31: inside controllers delete users apiIndex.js');
       models.users.delete(function (data){
 
       })
@@ -30,7 +36,7 @@ module.exports = {
   },
   devices: {
     get: function (req, res) {
-      console.log('+++line33: inside controllers get devices apiIndex.js');
+      console.log('+++line38: inside controllers get devices apiIndex.js');
       var url_parts = url.parse(req.url, true);
       var query = url_parts.query;
       models.devices.get(function (data, msg) {
@@ -42,15 +48,25 @@ module.exports = {
       }, query)
     },
     post: function (req, res) {
-      console.log('+++line45: insde controllers post devices apiIndex.js');
+      console.log('+++line51: inside controllers post devices apiIndex.js');
       console.log('request body inside post device controller :', req.body);
       models.devices.post(function (valid, msg) {
         if(valid){
           res.send(msg);
-        }else{
+        } else {
           res.status(404).send(msg);
         }
       }, req.body)
+    },
+    put: function (req, res) {
+      console.log('+++line62: inside controllers put devices apiIndex.js');
+      models.devices.put(function (valid, msg){
+        if(valid){
+          res.send(msg);
+        } else {
+          res.status(404).send(msg);
+        }
+      },req.body)
     },
     delete: function (req, res) {
       console.log('+++line55: inside controllers delete devices apiIndex.js');
