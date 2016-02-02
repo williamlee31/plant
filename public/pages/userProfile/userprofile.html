@@ -25,7 +25,7 @@
         <div ui-view="profileInfo"></div>
       </div>
 
-      <h4>Welcome {{userInfo}}!</h4>
+      <h4>Welcome {{userInfo.username}}!</h4>
 
       <div ui-view="register"></div>
       <br>
@@ -56,8 +56,37 @@
               <div class='deviceTemp'><b>Temperature:</b> {{device.data.temp}}</div>
               <button class='btn btn-sm btn-info' ng-click='prepareCharts(device.name)'>Check charts</button>
               <button class='btn btn-sm btn-danger' ng-click='deleteDevice(device.name)'>Delete device</button>
-              <div ui-view='trigger'></div>
-              <br>
+              <br>              ​
+              ​
+               <uib-accordion close-others="oneAtATime">
+                <uib-accordion-group is-open="status.open">
+                    <uib-accordion-heading panel-class="panel-success">
+                      Alert me when:<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </uib-accordion-heading>
+                  
+                    <label>Moisture levels
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="streamTriggers" ng-model="device.triggers.dangerTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'dangerTrigger')">Fall below 100 (Danger!)
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="streamTriggers" ng-model="device.triggers.dryTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'dryTrigger')">Fall below 400 (Dry!)
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="streamTriggers" ng-model="device.triggers.drenchedTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'drenchedTrigger')">Rise above 700 (Drenched!)
+                  </label>
+                </div>              ​
+                  </label>
+                  </uib-accordion-group>
+                  </uib-accordion>
+
+              ​
+              </div>
+
             </div>
             <br>
           </div>
@@ -79,3 +108,4 @@
   </div>
 
 </div>
+
