@@ -1,59 +1,4 @@
-<!-- <div class="container-fluid" ng-controller="userprofile-registerCtrl">
-
-	<h3>Nested View - User Register page</h3>      
-	<p>Do something here to register your device</p>  -->
-<!-- /////// -->
-<!-- 		<div ng-controller = "userprofile-registerCtrl">
-		<button ng-click="toggleModal()" class="btn btn-md btn-primary">Register a device</button>
-
-			<modal title="Register Device" visible="showModal">
-				<form role="form" ng-submit = "registerDevice()">
-				<div>	
-
-               <div>
-               <div class="alert alert-danger" role="alert" ng-show="invalidDeviceAlert">
-	               	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-	               	<span class="sr-only">Error:</span>
-	               	 Device ID is invalid
-               </div>
-               </div>
-               <div>
-               <div class="alert alert-danger" role="alert" ng-show="registeredAlert">
-	               	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-	               	<span class="sr-only">Error:</span>
-	               	Device Already Registered
-               </div>
-               </div>
-
-				</div>
-
-
-					<div class="form-group">
-						<label for="text">Device ID</label>
-						<input type="text" class="form-control" id="register" placeholder="Enter device ID" ng-model="device.key" />
-					</div>
-					<div class="form-group">
-						<label for="text">Plant Name</label>
-						<input type="text" class="form-control" id="deviceid" placeholder="Enter Plant Name" ng-model="device.name"/>
-					</div>
-					<div class="text-center">
-					<button type="submit" class="btn btn-md btn-primary">Register Device</button>
-					</div>
-				</form>
-			</modal>
-		</div> -->
-<!-- //////// -->
-<!-- <br>
-
-<a ui-sref=".info" class="btn btn-success">Streams</a>
-
-
-<div style="margin: 10px;"></div>
-<div ui-view></div>
-
-</div> -->
-
-<div ng-controller="userprofile-registerCtrl">
+<div>
 	<!-- <button ng-click="toggleModal()" class="btn btn-md btn-primary">Register a device</button> -->
 	<script type="text/ng-template" id="myModalRegContent.html">
 
@@ -64,7 +9,7 @@
 
 
 			<form role="form" ng-submit = "registerDevice()">
-				<div>	
+				<div>
 
 					<div>
 						<div class="alert alert-danger" role="alert" ng-show="invalidDeviceAlert">
@@ -117,4 +62,3 @@
 	<button ng-click="triggerm2xGET()" class="btn btn-md btn-default">Trigger Data</button>
 	<button ng-click="triggerm2xPOST()" class="btn btn-md btn-default">Trigger POST</button>
 </div>
-

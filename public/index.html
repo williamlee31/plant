@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="styles/main.css" />
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">
 
-    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="./bower_components/angular/angular.js"></script>
     <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="./bower_components/angular-messages/angular-messages.js"></script>
     <script src="./bower_components/jquery/dist/jquery.min.js"></script>
@@ -18,15 +18,15 @@
 
     <script src="./pages/signin/loginCtrl.js"></script>
     <script src="./pages/signup/signupCtrl.js"></script>
-    <script src="./pages/app/appCtrl.js"></script>
     <script src="./pages/userProfile/userProfileCtrl.js"></script>
     <script src="./pages/userProfile/controllers/userprofile-registerCtrl.js"></script>
     <script src="./pages/userProfile/controllers/userprofile-profileInfoCtrl.js"></script>
     <script src="./pages/userProfile/controllers/userprofile-chartsCtrl.js"></script>
     <script src="./pages/userProfile/controllers/userprofile-triggerCtrl.js"></script>
-    <script src="./pages/productPage/productpageCtrl.js"></script>
-    <script src="./pages/app/factories/appFactory.js"></script>
     <script src="./pages/userProfile/factories/userProfileFactory.js"></script>
+    <script src="./pages/productPage/productpageCtrl.js"></script>
+    <script src="./pages/app/appCtrl.js"></script>
+    <script src="./pages/app/factories/appFactory.js"></script>
     <script src="./pages/home/homeCtrl.js"></script>
     <script src='./config.js'></script>
     <script src="./app.js"></script>
@@ -34,27 +34,9 @@
 
 
   <body class = "container" ng-app = "App" style="background-color:beige">
-    <!-- <div class="container"> -->
-    <!-- <div class="navbar">
-      <div class="navbar-header">
-      <a class="navbar-brand" ui-sref="signin">Plant Page</a>
-      </div>
-      <div class="navbar-inner">
-        <ul class="nav navbar-nav" >
-          <li><a ui-sref="signin">Sign-in/Home</a></li>
-          <li><a ui-sref="signup">Sign-up</a></li>
-          <li><a ui-sref="app">Inside App</a></li>
-          <li><a ui-sref="userprofile">User Profile</a></li>
-          <li><a ui-sref="productpage">Product Page</a></li>
-        </ul>
-      </div>
-    </div> -->
-    <!-- </div> -->
+
     <ui-view></ui-view>
 
-
-
-
-
   </body>
+
 </html>

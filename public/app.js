@@ -38,6 +38,7 @@ angular.module('App',[
 		$stateProvider
 			.state('home',{
 				url: '/',
+				authenticate: false,
 				views: {
 					'': {
 						templateUrl: 'pages/home/home.html',
@@ -47,6 +48,7 @@ angular.module('App',[
 			})
 			.state('signin',{
 				url: '/signin',
+				authenticate: false,
 				views: {
 					'': {
 						templateUrl: 'pages/signin/login.html',
@@ -56,6 +58,7 @@ angular.module('App',[
 			})
 			.state('signup',{
 				url: '/signup',
+				authenticate: false,
 				views: {
 					'': {
 						templateUrl: 'pages/signup/signup.html',
@@ -101,6 +104,7 @@ angular.module('App',[
 			})
 			.state('productpage', {
 				url: '/productpage',
+				authenticate: false,
 				views: {
 					'': {
 						templateUrl: 'pages/productPage/productpage.html',
@@ -108,31 +112,22 @@ angular.module('App',[
 					}
 				}
 			})
-			// .state('deviceregister', {
-			// 	url: '/deviceregister',
-			// 	authenticate: true,
-			// 	views: {
-			// 		'': {
-			// 			templateUrl: 'pages/deviceRegister/deviceregister.html',
-			// 			controller: 'deviceregisterCtrl'
-			// 		}
-			// 	}
-			// });
 
 		$urlRouterProvider
 			.otherwise('/');
 	})
 	.run(function($rootScope, $state, appFactory, $location) {
 	  $rootScope.$on('$stateChangeStart', function(e, to) {
+			console.log('+++line116: ', to.authenticate);
 	    if (!to.authenticate) {
 				return;
 			};
-			appFactory.isAuth().then(function(result){
+			e.preventDefault();
+			appFactory.isAuth($state).then(function(result){
 				console.log('+++line78: result', result);
 				if(result){
-					// debugger;
 					to.authenticate = false;
-					$location.path(to.url);
+					$state.go(to.name);
 				}else{
 					$location.path('/signin');
 				}

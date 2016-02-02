@@ -1,28 +1,29 @@
-  <nav class = "navbar">
-      <div class="navbar-header">
-      <a class="navbar-brand">BLOOM</a>
-      </div>
-      <div class="navbar-inner">
-        <ul class="nav navbar-nav" >
-          <li><a ui-sref="home">HOME</a></li>
-          <li><a ui-sref="signin">Sign-in</a></li>
-          <li><a ui-sref="signup">Sign-up</a></li>
-          <li><a ui-sref="app">App</a></li>
-          <li><a ui-sref="userprofile">User Profile</a></li>
-          <li><a ui-sref="productpage">Product Page</a></li>
-          <li><button ng-click = "signout()">Signout</button></li>
-        </ul>
-      </div>
-  </nav>
+<nav class = "navbar">
+    <div class="navbar-header">
+    <a class="navbar-brand">BLOOM</a>
+    </div>
+    <div class="navbar-inner">
+      <ul class="nav navbar-nav" >
+        <li><a ui-sref="home">HOME</a></li>
+        <li><a ui-sref="signin">Sign-in</a></li>
+        <li><a ui-sref="signup">Sign-up</a></li>
+        <li><a ui-sref="app">App</a></li>
+        <li><a ui-sref="userprofile">User Profile</a></li>
+        <li><a ui-sref="productpage">Product Page</a></li>
+        <li><button ng-click = "signout()">Signout</button></li>
+      </ul>
+    </div>
+</nav>
 
   <!-- /////////////////// -->
 
 <div class="row">
-	<div class="col-sm-6">
+
+  <div class="col-sm-6">
 		<div ng-controller = "productpageCtrl">
 			<div>
 				<div>
-					<img ng-src="{{image.src}}"/>	
+					<img ng-src="{{image.src}}"/>
 				</div>
 				<div>
 						<button type="submit" name="go" class="btn btn-md btn-primary" ng-click="routeProfile()"> Register device </button>
@@ -31,17 +32,8 @@
 		</div>
 	</div>
 
-
-
 	<div class="col-sm-6">
 		<div ui-view="trigger"></div>
-
 	</div>
 
-
-
-
 </div>
-
-
-
