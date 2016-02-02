@@ -4,7 +4,13 @@ angular.module('App.userprofile-triggerCtrl',['ui.bootstrap','ngAnimate'])
 
   $scope.userInfo = {};
   //formData for trigger data
-  $scope.formData = {};
+  $scope.formData = {'trigger': {
+    'danger': false,
+    'dry': false,
+    'drenched': false
+    }
+  };
+  
   $scope.userKeys = {};
 
   $scope.oneAtATime = true;
