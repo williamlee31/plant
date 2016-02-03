@@ -1,108 +1,105 @@
-<div class='userProfileCtrl'>
-
-<!-- ng-controller = "userProfileCtrl" -->
-
 <nav class = "navbar">
-    <div class="navbar-header">
+  <div class="navbar-header">
     <a class="navbar-brand">BLOOM</a>
-    </div>
-    <div class="navbar-inner">
-      <ul class="nav navbar-nav" >
-        <li><a ui-sref="home">HOME</a></li>
-        <li><a ui-sref="signin">Sign-in</a></li>
-        <li><a ui-sref="signup">Sign-up</a></li>
-        <li><a ui-sref="app">App</a></li>
-        <li><a ui-sref="userprofile">User Profile</a></li>
-        <li><a ui-sref="productpage">Product Page</a></li>
-        <li><button ng-click = "signout()">Signout</button></li>
-      </ul>
-    </div>
+  </div>
+  <div class="navbar-inner">
+    <ul class="nav navbar-nav" >
+      <li><a ui-sref="home">HOME</a></li>
+      <li><a ui-sref="signin">Sign-in</a></li>
+      <li><a ui-sref="signup">Sign-up</a></li>
+      <li><a ui-sref="app">App</a></li>
+      <li><a ui-sref="userprofile">User Profile</a></li>
+      <li><a ui-sref="productpage">Product Page</a></li>
+      <li><button ng-click = "signout()">Signout</button></li>
+    </ul>
+  </div>
 </nav>
 
-<div class="row">
-  <div class='col-md-4'>
-    <div class='profileInfo'>
-      <div ui-view="profileInfo"></div>
-    </div>
-
-    <h4>Welcome {{userInfo.username}}!</h4>
-
-    <div ui-view="register"></div>
-    <br>
-
-    <span ng-show="loading.hidden">
-      <img src='../../img/gifs/loading_spinner.gif' width='100px' height='100px'>
-    </span>
-
-    <span ng-show="!loading.hidden">
-      <span ng-show="plants.hidden">
-        <div>
-          <h4>You have no devices bruh!</h4>
-    <!--     <a href="#/deviceregister"  style="text-decoration: none">
-        <button type="submit" name="go" class="btn btn-md btn-primary" ng-click=""> Register device </button>
-      </a> -->
-        </div>
-      </span>
-
-      <span ng-show="!plants.hidden">
-        <div>
-          <h4>Your plants:</h4>
-        </div>
-        <div ng-repeat='device in deviceData'>
-          <div class="deviceProfile">
-            <div class='deviceName'><b>Plant:</b> {{device.name}}</div>
-            <div class='deviceLight'><b>Light:</b> {{device.data.light}} {{device.data.lightVal}}</div>
-            <div class='deviceWater'><b>Moisture:</b> {{device.data.water}} {{device.data.waterVal}}</div>
-            <div class='deviceTemp'><b>Temperature:</b> {{device.data.temp}}</div>
-            <button class='btn btn-sm btn-info' ng-click='prepareCharts(device.name)'>Check charts</button>
-            <button class='btn btn-sm btn-danger' ng-click='deleteDevice(device.name)'>Delete device</button>
-            <br>              ​
-            ​
-             <uib-accordion close-others="oneAtATime">
-              <uib-accordion-group is-open="status.open">
-                  <uib-accordion-heading panel-class="panel-success">
-                    Alert me when:<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                  </uib-accordion-heading>
-
-                  <label>Moisture levels
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="streamTriggers" ng-model="device.triggers.dangerTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'dangerTrigger')">Fall below 100 (Danger!)
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="streamTriggers" ng-model="device.triggers.dryTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'dryTrigger')">Fall below 400 (Dry!)
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="streamTriggers" ng-model="device.triggers.drenchedTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'drenchedTrigger')">Rise above 700 (Drenched!)
-                </label>
-              </div>              ​
-                </label>
-                </uib-accordion-group>
-                </uib-accordion>
-
-            ​
-            </div>
-
-          </div>
-          <br>
-        </div>
-      </span>
-    </span>
-
+<div class='profileInfo'>
+  <div ui-view="profileInfo"></div>
 </div>
 
-  <div class='col-md-8'>
-    <span ng-show="charts.hidden">
+<div class="contianer-fluid row">
 
-    </span>
-    <span ng-show="!charts.hidden">
-      <h4>Statistics for {{currentDevice.name}}</h4>
-      <div ui-view='charts'></div>
-    </span>
+  <div class="col-xs-8">
+
+      <h4>Welcome {{userInfo.username}}!</h4>
+
+      <div ui-view="register"></div>
+      <br>
+
+      <span ng-show="loading.hidden">
+        <img src='../../img/gifs/loading_spinner.gif' width='100px' height='100px'>
+      </span>
+
+      <span ng-show="!loading.hidden">
+        <span ng-show="plants.hidden">
+          <div>
+            <h4>You have no devices bruh!</h4>
+      <!--     <a href="#/deviceregister"  style="text-decoration: none">
+          <button type="submit" name="go" class="btn btn-md btn-primary" ng-click=""> Register device </button>
+        </a> -->
+          </div>
+        </span>
+
+        <span ng-show="!plants.hidden">
+          <div>
+            <h4>Your plants:</h4>
+          </div>
+
+          <div ng-repeat='device in deviceData'>
+
+            <div class="deviceProfile" id={{device.name}}>
+
+              <div class='deviceName'><b>Plant:</b> {{device.name}}</div>
+              <div class='deviceLight'><b>Light:</b> {{device.data.light}} {{device.data.lightVal}}</div>
+              <div class='deviceWater'><b>Moisture:</b> {{device.data.water}} {{device.data.waterVal}}</div>
+              <div class='deviceTemp'><b>Temperature:</b> {{device.data.temp}}</div>
+              <button class='btn btn-sm btn-info' ng-click='prepareCharts(device.name)'>Check charts</button>
+              <button class='btn btn-sm btn-danger' ng-click='deleteDevice(device.name)'>Delete device</button>
+              <br>              ​
+              ​
+              <div>
+                <span ng-show="charts.hidden"></span>
+                <span ng-show="!charts.hidden">
+                  <h4>Statistics for {{currentDevice.name}}</h4>
+                  <div ui-view='charts'></div>
+                </span>
+              </div>
+
+                <uib-accordion close-others="oneAtATime">
+                  <uib-accordion-group is-open="status.open">
+                    <uib-accordion-heading panel-class="panel-success" class="alert">
+                      Alert me when:<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </uib-accordion-heading>
+
+                    <label>Moisture levels
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="streamTriggers" ng-model="device.triggers.dangerTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'dangerTrigger')">Fall below 100 (Danger!)
+                        </label>
+                      </div>
+
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="streamTriggers" ng-model="device.triggers.dryTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'dryTrigger')">Fall below 400 (Dry!)
+                        </label>
+                      </div>
+
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="streamTriggers" ng-model="device.triggers.drenchedTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'drenchedTrigger')">Rise above 700 (Drenched!)
+                        </label>
+                      </div>              ​
+                    </label>
+                  </uib-accordion-group>
+                </uib-accordion>
+
+              </div>
+
+            </div>
+        </span>
+      </span>
   </div>
 
 </div>
