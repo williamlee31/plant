@@ -99,7 +99,7 @@ angular.module('App',[
 					'trigger@userprofile': {
 						templateUrl: 'pages/userProfile/templates/userprofile-trigger.html',
 						controller: 'userprofile-triggerCtrl'
-					}						
+					}							
 				}
 			})
 			.state('productpage', {
