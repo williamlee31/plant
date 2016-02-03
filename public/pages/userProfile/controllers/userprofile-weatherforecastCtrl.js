@@ -2,7 +2,7 @@ angular.module('App.userprofile-weatherforecastCtrl',['ngAnimate', 'ui.bootstrap
   ])
 .controller('userprofile-weatherforecastCtrl', function ($scope, $http, userProfileFactory){
 	$scope.zipcode;
-	$scope.weather = [];
+	$scope.weather = "";
 	$scope.displayForecast = function(){
 		userProfileFactory.weatherForecast($scope.zipcode)
 		.then(function(results){
@@ -12,7 +12,11 @@ angular.module('App.userprofile-weatherforecastCtrl',['ngAnimate', 'ui.bootstrap
 				var conditions = response[i].conditions.split(' ');
 				for(var j=0; j < conditions.length; j++){
 					if(conditions[j] === "Rain"){
-						$scope.weather.push(response[i].date.weekday_short);
+						if(i === 0){
+							$scope.weather += "Chance of rain on: " + response[i].date.weekday_short;	
+						} else{
+							$scope.weather += " " + response[i].date.weekday_short;
+						}
 					}
 				}
 			}
