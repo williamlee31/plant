@@ -49,8 +49,6 @@ angular.module('appFactory', [])
       	}).then(function(success){
 				console.log('+++line50: ', success);
 				firstName = success.firstname;
-				console.log(success.firstname);
-				console.log(firstName);
 				return success;
       		}, function(err){
         		console.log('User not loaded');

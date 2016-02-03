@@ -49,26 +49,21 @@
               <h4>Your plants:</h4>
             </div>
 
-            <div ng-repeat='device in deviceData'>
+            <div ng-repeat='device in deviceData | orderBy:"name"'>
 
-              <div class="deviceProfile" id={{device.name}}>
+              <div class="deviceProfile">
 
                 <div class='deviceName'><b>Plant:</b> {{device.name}}</div>
                 <div class='deviceLight'><b>Light:</b> {{device.data.light}} {{device.data.lightVal}}</div>
                 <div class='deviceWater'><b>Moisture:</b> {{device.data.water}} {{device.data.waterVal}}</div>
                 <div class='deviceTemp'><b>Temperature:</b> {{device.data.temp}}</div>
-                <button class='btn btn-sm btn-info' ng-click='prepareCharts(device.name)'>Check charts</button>
-                <button class='btn btn-sm btn-danger' ng-click='deleteDevice(device.name)'>Delete device</button>
+                <div ui-view='charts'></div>
                 <br>              ​
-                ​
                 <div>
-                  <span ng-show="charts.hidden"></span>
-                  <span ng-show="!charts.hidden">
+<!--                   <span ng-if="charts.hidden"></span>
+                  <span ng-if="!charts.hidden">
                     <h4>Statistics for {{currentDevice.name}}</h4>
-                    <div ui-view='charts'></div>
-                  </span>
-                </div>
-
+                  </span> -->
                   <uib-accordion close-others="oneAtATime">
                     <uib-accordion-group is-open="status.open">
                       <uib-accordion-heading panel-class="panel-success" class="alert">
@@ -76,11 +71,12 @@
                       </uib-accordion-heading>
 
                       <label>Moisture levels
+
                         <div class="checkbox">
                           <label>
-                            <input type="checkbox" name="streamTriggers" ng-model="device.triggers.dangerTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'dangerTrigger')">Fall below 100 (Danger!)
+                            <input type="checkbox" name="streamTriggers" ng-model="device.triggers.drenchedTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'drenchedTrigger')">Rise above 700 (Drenched!)
                           </label>
-                        </div>
+                        </div>   
 
                         <div class="checkbox">
                           <label>
@@ -90,12 +86,16 @@
 
                         <div class="checkbox">
                           <label>
-                            <input type="checkbox" name="streamTriggers" ng-model="device.triggers.drenchedTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'drenchedTrigger')">Rise above 700 (Drenched!)
+                            <input type="checkbox" name="streamTriggers" ng-model="device.triggers.dangerTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'dangerTrigger')">Fall below 100 (Danger!)
                           </label>
-                        </div>              ​
+                        </div>
+
+           ​
                       </label>
                     </uib-accordion-group>
                   </uib-accordion>
+                </div>
+
 
                 </div>
 
