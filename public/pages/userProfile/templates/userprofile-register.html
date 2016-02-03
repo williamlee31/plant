@@ -8,9 +8,8 @@
 		<div class="modal-body">
 
 
-			<form role="form" ng-submit = "registerDevice()">
+			<form role="form" ng-submit = "registerDevice()" name="registerForm">
 				<div>
-
 					<div>
 						<div class="alert alert-danger" role="alert" ng-show="invalidDeviceAlert">
 							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -25,29 +24,20 @@
 							Device Already Registered
 						</div>
 					</div>
-					<div>
-						<div class="alert alert-success" role="alert" ng-show="addDeviceAlert" ng-model="device.name">
-							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-							<span class="sr-only">Success:</span>
-							Added your device ({{device.name}}) to your profile!
-						</div>
-					</div>
-
 				</div>
 
 
 				<div class="form-group">
 					<label for="text">Device ID</label>
-					<input type="text" class="form-control" id="register" placeholder="Enter device ID" ng-model="device.key" />
+					<input type="text" class="form-control" id="register" placeholder="Enter device ID" ng-model="device.key" required/>
 				</div>
 				<div class="form-group">
 					<label for="text">Plant Name</label>
-					<input type="text" class="form-control" id="deviceid" placeholder="Enter Plant Name" ng-model="device.name"/>
+					<input type="text" class="form-control" id="deviceid" placeholder="Enter Plant Name" ng-model="device.name" required/>
 				</div>
 
 				<div class="modal-footer" "text-center">
-					<button type="submit" class="btn btn-md btn-primary">Register Device</button>
-					<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+					<button type="submit" class="btn btn-md btn-primary" ng-disabled = "registerForm.$invalid">Register Device</button>
 					<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
 				</div>
 			</form>
