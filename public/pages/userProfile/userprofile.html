@@ -61,6 +61,9 @@
                 <button class='btn btn-sm btn-info' ng-click='prepareCharts(device.name)'>Check charts</button>
                 <button class='btn btn-sm btn-danger' ng-click='deleteDevice(device.name)'>Delete device</button>
                 <br>              ​
+                
+                <div>{{device.weather}}</div>
+
                 <div>
                   <uib-accordion close-others="oneAtATime">
                     <uib-accordion-group is-open="status.open">
