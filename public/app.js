@@ -11,6 +11,7 @@ angular.module('App',[
 	'App.userprofile-chartsCtrl',
 	'App.productpageCtrl',
 	'App.userprofile-triggerCtrl',
+	'App.userprofile-weatherforecastCtrl',
 	'appFactory',
 	'userProfileFactory',
 	'ui.bootstrap',
@@ -99,7 +100,11 @@ angular.module('App',[
 					'trigger@userprofile': {
 						templateUrl: 'pages/userProfile/templates/userprofile-trigger.html',
 						controller: 'userprofile-triggerCtrl'
-					}						
+					},
+					'weatherforecast@userprofile': {
+						templateUrl: 'pages/userProfile/templates/userprofile-weatherforecast.html',
+						controller: 'userprofile-weatherforecastCtrl'
+					}							
 				}
 			})
 			.state('productpage', {

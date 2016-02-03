@@ -38,9 +38,6 @@
           <span ng-show="plants.hidden">
             <div>
               <h4>You have no devices bruh!</h4>
-        <!--     <a href="#/deviceregister"  style="text-decoration: none">
-            <button type="submit" name="go" class="btn btn-md btn-primary" ng-click=""> Register device </button>
-          </a> -->
             </div>
           </span>
 
@@ -53,16 +50,14 @@
 
               <div class="deviceProfile">
 
+              <div class="deviceProfile" id={{device.name}}>
+                <div ui-view='weatherforecast'></div>
                 <div class='deviceName'><b>Plant:</b> {{device.name}}</div>
                 <div class='deviceLight'><b>Light:</b> {{device.data.light}} {{device.data.lightVal}}</div>
                 <div class='deviceWater'><b>Moisture:</b> {{device.data.water}} {{device.data.waterVal}}</div>
                 <div class='deviceTemp'><b>Temperature:</b> {{device.data.temp}}</div>
                 <div ui-view='charts'></div>
                 <div>
-<!--                   <span ng-if="charts.hidden"></span>
-                  <span ng-if="!charts.hidden">
-                    <h4>Statistics for {{currentDevice.name}}</h4>
-                  </span> -->
                   <uib-accordion close-others="oneAtATime">
                     <uib-accordion-group is-open="status.open">
                       <uib-accordion-heading panel-class="panel-success" class="alert">
