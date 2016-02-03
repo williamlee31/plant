@@ -50,6 +50,7 @@
         </div>
         <div ng-repeat='device in deviceData'>
           <div class="deviceProfile">
+            <div ui-view='weatherforecast'></div>
             <div class='deviceName'><b>Plant:</b> {{device.name}}</div>
             <div class='deviceLight'><b>Light:</b> {{device.data.light}} {{device.data.lightVal}}</div>
             <div class='deviceWater'><b>Moisture:</b> {{device.data.water}} {{device.data.waterVal}}</div>
