@@ -86,7 +86,7 @@ angular.module('App.userProfileCtrl',[
     })
     $('#mainChart').html("");
     userProfileFactory.assignCurrentDevice(deviceName, apiKey);
-    $scope.charts.hidden = false;
+    $scope.charts.hidden = $scope.charts.hidden === false ? true: false;
     $scope.currentDevice.name = deviceName;
   }
 
