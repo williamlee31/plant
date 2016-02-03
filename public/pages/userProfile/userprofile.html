@@ -19,6 +19,7 @@
   <div ui-view="profileInfo"></div>
 </div>
 
+
 <div class="container">
 
   <div class="contianer row">
@@ -51,12 +52,15 @@
               <div class="deviceProfile">
 
               <div class="deviceProfile" id={{device.name}}>
-                <div ui-view='weatherforecast'></div>
                 <div class='deviceName'><b>Plant:</b> {{device.name}}</div>
                 <div class='deviceLight'><b>Light:</b> {{device.data.light}} {{device.data.lightVal}}</div>
                 <div class='deviceWater'><b>Moisture:</b> {{device.data.water}} {{device.data.waterVal}}</div>
                 <div class='deviceTemp'><b>Temperature:</b> {{device.data.temp}}</div>
+                
                 <div ui-view='charts'></div>
+                <button class='btn btn-sm btn-info' ng-click='prepareCharts(device.name)'>Check charts</button>
+                <button class='btn btn-sm btn-danger' ng-click='deleteDevice(device.name)'>Delete device</button>
+                <br>              ​
                 <div>
                   <uib-accordion close-others="oneAtATime">
                     <uib-accordion-group is-open="status.open">
