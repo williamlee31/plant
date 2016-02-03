@@ -35,7 +35,10 @@
 					<label for="text">Plant Name</label>
 					<input type="text" class="form-control" id="deviceid" placeholder="Enter Plant Name" ng-model="device.name" required/>
 				</div>
-
+				<div class="form-group">
+					<label for="text">Zip Code</label>
+					<input type="text" class="form-control" id="zipcodeid" placeholder="Enter device Zip Code" ng-model="device.zipCode" required/>
+				</div>
 				<div class="modal-footer" "text-center">
 					<button type="submit" class="btn btn-md btn-primary" ng-disabled = "registerForm.$invalid">Register Device</button>
 					<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
