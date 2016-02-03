@@ -32,6 +32,7 @@ exports.regDevice = function (callback, params) {
           db.Device.bulkCreate([{
             name: params.name,
             apiKey: token,
+            zipCode: params.zipCode,
             UserId: data.dataValues.id
           }])
           .then(function () {
@@ -71,7 +72,7 @@ exports.getDevices = function(callback, params) {
       })
     } else {
       callback(data, 'Invalid username');
-    } 
+    }
   })
 }
 
@@ -126,7 +127,7 @@ exports.deleteDevice = function(callback, params) {
         }
       })
     } else {
-      callback(false, 'Invalid username'); 
+      callback(false, 'Invalid username');
     }
   })
 }

@@ -2,7 +2,6 @@ angular.module('App.userprofile-registerCtrl',['ngAnimate', 'ui.bootstrap'
   ])
 .controller('userprofile-registerCtrl', function ($scope, $http, $uibModal, $log, $state){
 
-
   $scope.animationsEnabled = true;
 
   $scope.open = function (size) {
@@ -70,12 +69,6 @@ angular.module('App.userprofile-registerCtrl',['ngAnimate', 'ui.bootstrap'
       console.log('err: ', err);
     }
   }
-
-
-
-
-
-
 });
 
 
@@ -111,6 +104,7 @@ angular.module('App.userprofile-registerCtrl').controller('ModalInstanceRegCtrl'
         data: {
           name: $scope.device.name,
           apiKey: $scope.device.key,
+          zipCode: $scope.device.zipCode,
           username: $scope.username // grab username from appfactory
         }
       })

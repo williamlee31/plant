@@ -24,6 +24,7 @@ var User = sequelize.define("User", {
 var Device = sequelize.define("Device", {
   name: Sequelize.STRING,
   apiKey: Sequelize.STRING,
+  zipCode: Sequelize.STRING,
   dangerTrigger: {type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false},
   dryTrigger: {type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false},
   drenchedTrigger: {type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false}
