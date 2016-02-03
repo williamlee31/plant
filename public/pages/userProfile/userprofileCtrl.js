@@ -21,9 +21,6 @@ angular.module('App.userProfileCtrl',[
     hidden: true
   };
   $scope.currentGraphData = {};
-  $scope.charts = {
-    hidden: true
-  };
   $scope.currentDevice = {};
 
   $scope.getData = function() {
@@ -52,7 +49,6 @@ angular.module('App.userProfileCtrl',[
             checkWaterVal(streamName.waterVal, deviceData);
             checkLightVal(streamName.lightVal, deviceData);
             checkTempVal(streamName.tempVal, deviceData);
-
 
             $scope.deviceData.push({
               user: $scope.userInfo.username,
@@ -86,7 +82,6 @@ angular.module('App.userProfileCtrl',[
     })
     $('#mainChart').html("");
     userProfileFactory.assignCurrentDevice(deviceName, apiKey);
-    $scope.charts.hidden = $scope.charts.hidden === false ? true: false;
     $scope.currentDevice.name = deviceName;
   }
 
