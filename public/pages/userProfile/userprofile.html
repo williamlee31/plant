@@ -49,9 +49,9 @@
               <h4>Your plants:</h4>
             </div>
 
-            <div ng-repeat='device in deviceData'>
+            <div ng-repeat='device in deviceData | orderBy:"name"'>
 
-              <div class="deviceProfile" id={{device.name}}>
+              <div class="deviceProfile">
 
                 <div class='deviceName'><b>Plant:</b> {{device.name}}</div>
                 <div class='deviceLight'><b>Light:</b> {{device.data.light}} {{device.data.lightVal}}</div>
@@ -71,11 +71,12 @@
                       </uib-accordion-heading>
 
                       <label>Moisture levels
+
                         <div class="checkbox">
                           <label>
-                            <input type="checkbox" name="streamTriggers" ng-model="device.triggers.dangerTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'dangerTrigger')">Fall below 100 (Danger!)
+                            <input type="checkbox" name="streamTriggers" ng-model="device.triggers.drenchedTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'drenchedTrigger')">Rise above 700 (Drenched!)
                           </label>
-                        </div>
+                        </div>   
 
                         <div class="checkbox">
                           <label>
@@ -85,9 +86,11 @@
 
                         <div class="checkbox">
                           <label>
-                            <input type="checkbox" name="streamTriggers" ng-model="device.triggers.drenchedTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'drenchedTrigger')">Rise above 700 (Drenched!)
+                            <input type="checkbox" name="streamTriggers" ng-model="device.triggers.dangerTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'dangerTrigger')">Fall below 100 (Danger!)
                           </label>
-                        </div>              ​
+                        </div>
+
+           ​
                       </label>
                     </uib-accordion-group>
                   </uib-accordion>
