@@ -16,7 +16,6 @@ angular.module('App.userprofile-weatherforecastCtrl',['ngAnimate', 'ui.bootstrap
 					}
 				}
 			}
-			console.log($scope.weather)
 		})
 	}
   $scope.init = function(){
