@@ -1,12 +1,13 @@
 <div>
 
-			<div>
-				<form ng-submit="displayForecast()" name = "loginForm">
-					<input type="text" placeholder = "ZIPCODE" ng-model="zipcode" required>
-					<br>
-					<input type = "submit" value = "SUBMIT">
-			  </form>
-				<div ng-repeat="day in weather">{{day}}</div>
-			</div>
+	<div>
+		<form ng-submit="displayForecast()" name = "loginForm">
+		<form ng-submit = "displayForecast()" name = "loginForm">
+			<input type="text" placeholder = "ZIPCODE" ng-model="zipcode" required>
+			<br>
+			<input type = "submit" value = "SUBMIT">
+	  </form>
+		<div ng-repeat="day in weather">{{day}}</div>
+	</div>
 
 </div>
