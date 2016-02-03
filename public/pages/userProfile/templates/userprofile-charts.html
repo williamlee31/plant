@@ -1,9 +1,23 @@
 <div>
+  <!-- <button ng-click="toggleModal()" class="btn btn-md btn-primary">Register a device</button> -->
+  <script type="text/ng-template" id="myModalCharts.html">
 
-  <button class='btn btn-sm btn-info' ng-click='renderWaterChart()'>Moisture Levels</button>
-  <button class='btn btn-sm btn-info' ng-click='renderLightChart()'>Light Levels</button>
-  <button class='btn btn-sm btn-info' ng-click='renderTempChart()'>Temperature</button>
+    <div class="modal-header">
+      <h3 class="modal-title">Statistics:</h3>
+    </div>
+    <div class="modal-body">
 
-  <div id="mainChart" style="max-width: 700px; height: 400px; margin: 0 auto"></div>
+    <button class='btn btn-sm btn-info' ng-click='renderWaterChart()'>Moisture Levels</button>
+    <button class='btn btn-sm btn-info' ng-click='renderLightChart()'>Light Levels</button>
+    <button class='btn btn-sm btn-info' ng-click='renderTempChart()'>Temperature</button>
+    <div id="mainChart"></div>
+    </div>
+    <div class="modal-footer" "text-center">
 
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Close</button>
+    </div>
+  </script>
+
+  <button class='btn btn-sm btn-info' ng-click='prepareCharts(device.name);open()'>Check charts</button>
+  <button class='btn btn-sm btn-danger' ng-click='deleteDevice(device.name)'>Delete device</button>
 </div>

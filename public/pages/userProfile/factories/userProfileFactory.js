@@ -44,7 +44,7 @@ angular.module('userProfileFactory', [])
       var assignCurrentDevice = function(deviceName, apiKey){
         currentDevice.deviceName = deviceName;
         currentDevice.apiKey = apiKey;
-        console.log('******* HERE HERE HERE: ', apiKey)
+        console.log(currentDevice)
       }
 
       var updateDeviceTrigger = function(userName, apiKey, deviceTrigger){
@@ -85,7 +85,9 @@ angular.module('userProfileFactory', [])
             // }
           })
           .then(function(success){
-            return success;
+            return {chartData: success,
+              deviceName: currentDevice.deviceName
+            };
           }, function(err){
             console.log("Data not retrieved");
           })
