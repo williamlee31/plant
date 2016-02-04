@@ -1,9 +1,17 @@
+.spinner {
+	display: block;
+	width:100px;
+	height:100px;
+	margin: 0px auto;
+}
+
 .profileInfo {
+	background-color: white;
 	width: 230px;
 	border: 2px solid black;
-	margin: 10px;
+	border-radius: 10px;
+	margin: 0px auto 10px auto;
   padding: 10px;
-	float: left;
 }
 
 .profileImg {
@@ -11,4 +19,67 @@
 	width: 200px;
 	display: block;
 	margin: 10px auto;
+}
+
+.trigger {
+	width: 180px;
+}
+
+.deviceProfile {
+	width: 210px;
+	border: .5px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.4);
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+.deviceInfo {
+	min-width: 100%;
+	min-height: 100%;
+	overflow: hidden;
+	padding: 15px;
+	font-size: 15px;
+	background-color: #EDEDED;
+	height: inherit;
+}
+
+.chanceRain {
+	border-radius: 10px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 15px;
+	background-color: #FF4040;
+	position: relative;
+	top: 0;
+}
+
+@media (min-width: 300px) {
+
+}
+
+@media (min-width: 1000px) {
+	.alert {
+		width: 500px;
+	}
+	.chanceRain {
+		font-size: 25px;
+	}
+	.profileInfo {
+		margin: 0px 10px 10px 10px;
+		float: left;
+	}
+	.deviceProfile {
+		width: 100%;
+	}
+	.deviceInfo {
+		font-size: 25px;
+		min-width: 70%;
+		min-height: 100%;
+		overflow: hidden;
+	}
 }
