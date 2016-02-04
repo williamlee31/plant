@@ -5,7 +5,23 @@
 	background-size: cover !important;
 	width: 100%;
 	background-image: url("../../img/backdrops/plant.jpg");
-	height: 800px;
+	height: 1000px;
+	display: block;
+	position: relative;
+}
+
+/*background-color:#272722*/
+
+.intro-section{
+	position: absolute;
+	height: 15%;
+	padding-top:45%;
+	padding-bottom:40%;
+	text-align: center;
+	/*overflow: hidden;*/
+	/*padding-bottom: 25%;
+	text-align: center;
+	margin-bottom: 0px;*/
 }
 
 .nav>li>a {
@@ -14,15 +30,73 @@
 
 .navBarText {
 	color: white;
+	font-family: 'Arial', sans-serif;
+	/*font-family: 'Bree Serif', serif;
+	font-size: 20px;*/
+}
+
+.navBarText:hover {
+	color:#13322a !important;
+	font-weight: bold;
+	text-decoration: none;
 }
 
 .navbarLogo {
     float: left;
     height: 50px;
-    padding: 15px 100px;
-    font-size: 35px;
+    padding: 9px 130px 16px 130px;
+    font-size: 160px;
     line-height: 20px;
     color: white;
+    margin-top: 80px;
     font-family: 'Lobster', cursive;
+    width: 700px;
 }
 
+.nav-justified {
+	padding: 20px;
+}
+
+#product {
+	/*background-color: #244029;*/
+	/*background-color: #0d241c;*/
+	background-color: white;
+	height:800px;
+	z-index: -90;
+}
+
+#features {
+	margin-top: 0px;
+	position: relative;
+}
+
+.productPhoto {
+	margin: auto;
+	width: 50%;
+	height: 50%;
+	background-image: url("../../img/product/product.png");
+	background-repeat: no-repeat;
+	background-size: 50%;
+}
+
+.tellMeMore {
+	margin-top: -50px;
+	position: absolute;
+	z-index: 100;
+}
+
+.inBetweenPhoto{
+	background-image: url("../../img/backdrops/leaf2.jpg");
+	height: 400px;
+	width: 100%;
+	background-attachment: fixed;
+	position: relative;
+}
+
+.feedback {
+	padding-top: 50px;
+}
+
+#message {
+	height: 132px !important;
+}

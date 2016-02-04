@@ -1,10 +1,31 @@
 angular.module('App.homeCtrl', ['ngAnimate', 'ui.bootstrap']);
-angular.module('App.homeCtrl').controller('homeCtrl', function ($scope, $uibModal, $log, $http, $location, appFactory, $anchorScroll, $window) {
+angular.module('App.homeCtrl').controller('homeCtrl', function ($scope, $uibModal, $log, $http, $location, appFactory, $anchorScroll, $window, $filter) {
+
+  $filter('lowercase')();
 
   $(document).on('scroll', function (e) {
     console.log("SCROLL JQUERY");
     console.log(document.body.scrollTop);
-    $('.navBarBackground').css('opacity', ($(document).scrollTop() / 500));
+
+    var r = 255 - $(document).scrollTop();
+    var g = 255 - $(document).scrollTop();
+    var b = 255 - $(document).scrollTop();
+    var marg = 80 - $(document).scrollTop();
+    var font = 160 - ($(document).scrollTop() * 1.619);
+
+
+    if($(document).scrollTop() > 126){ r = 129;}
+    if($(document).scrollTop() > 89){ g = 166;}
+    if($(document).scrollTop() > 220){b = 35;}
+    if($(document).scrollTop() > 71){font = 45;}
+    if($(document).scrollTop() > 71){marg = 9;} 
+
+    $('.navBarBackground').css('opacity', ($(document).scrollTop() / 300));
+    $('.navbarLogo').css('color', "rgb(" + r + "," + g + "," + b +")");
+    $('.navBarText').css('color', "rgb(" + r + "," + g + "," + b +")");
+    $('.navbarLogo').css('margin-top', marg);
+    $('.navbarLogo').css('font-size', font);
+
   });
 
   $scope.scrollTo = function(id){
@@ -16,7 +37,7 @@ angular.module('App.homeCtrl').controller('homeCtrl', function ($scope, $uibModa
   
   
   $scope.userInfo = {};
-  $scope.firstName = $scope.userInfo.firstname;
+  $scope.firstName = "";
   $scope.isLoggedIn = false;
   
   $scope.init = function(){
@@ -24,6 +45,11 @@ angular.module('App.homeCtrl').controller('homeCtrl', function ($scope, $uibModa
       if(result){
         console.log(result.data);
         $scope.userInfo = result.data;
+        $scope.firstname = result.data.firstname;
+        // $scope.firstname = $scope.userInfo.firstname;
+        // $scope.firstname = $scope.firstname.toUpperCase();
+        console.log("scope.userInfo.firstname", $scope.firstname);
+        console.log("scope.userInfo.firstname", result.data.firstname.toUpperCase());
         $scope.isLoggedIn = true;
       }
     })
