@@ -13,7 +13,7 @@ angular.module('App.userProfileCtrl',[
 
   $scope.signout = appFactory.signout;
 
-  $scope.loading = showAlertSrvc(2000);
+  $scope.loading = showAlertSrvc(1000);
   $scope.deviceData = [];
   $scope.userDevices = {};
   $scope.userInfo = {};
@@ -50,7 +50,7 @@ angular.module('App.userProfileCtrl',[
             checkWaterVal(streamName.waterVal, deviceData);
             checkLightVal(streamName.lightVal, deviceData);
             checkTempVal(streamName.tempVal, deviceData);
-            
+
             $scope.displayForecast(device.zipCode).then(function(zipCode){
               $scope.deviceData.push({
                 user: $scope.userInfo.username,
@@ -115,7 +115,7 @@ angular.module('App.userProfileCtrl',[
   $scope.displayForecast = function(zipCode){
     return userProfileFactory.weatherForecast(zipCode)
     .then(function(results){
-      var weather ="";
+      var weather = "";
       var response = results.data.forecast.simpleforecast.forecastday;
       console.log("+++++ line 9: ", response)
       for(var i=0; i < 7; i++){
@@ -123,7 +123,7 @@ angular.module('App.userProfileCtrl',[
         for(var j=0; j < conditions.length; j++){
           if(conditions[j] === "Rain"){
             if(i === 0){
-              weather += "Chance of rain on: " + response[i].date.weekday_short; 
+              weather += "Chance of rain on: " + response[i].date.weekday_short;
             } else{
               weather += " " + response[i].date.weekday_short;
             }
@@ -169,7 +169,7 @@ function checkDataStreamName(data){
 function checkWaterVal(waterVal, deviceData) {
   if (waterVal === null){
     deviceData.waterVal = 'N/A';
-    deviceData.water = '';
+    deviceData.water = 'N/A';
   } else {
     deviceData.waterVal = '(' + waterVal + ')';
     if(waterVal <= 100){
@@ -187,7 +187,7 @@ function checkWaterVal(waterVal, deviceData) {
 function checkLightVal(lightVal, deviceData) {
   if(lightVal === null){
     deviceData.lightVal = 'N/A';
-    deviceData.light = '';
+    deviceData.light = 'N/A';
   } else {
     deviceData.lightVal = '(' + lightVal + ')';
     if(lightVal < 340 && lightVal !== 0){
