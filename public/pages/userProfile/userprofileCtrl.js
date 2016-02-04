@@ -22,6 +22,7 @@ angular.module('App.userProfileCtrl',[
   };
   $scope.currentGraphData = {};
   $scope.currentDevice = {};
+  $scope.weather = "";
 
   $scope.getData = function() {
     $scope.deviceData = [];
@@ -49,20 +50,23 @@ angular.module('App.userProfileCtrl',[
             checkWaterVal(streamName.waterVal, deviceData);
             checkLightVal(streamName.lightVal, deviceData);
             checkTempVal(streamName.tempVal, deviceData);
-
-            $scope.deviceData.push({
-              user: $scope.userInfo.username,
-              name: device.name,
-              data: deviceData,
-              apiKey: device.apiKey,
-              triggers: {
-                dangerTrigger: device.dangerTrigger,
-                dryTrigger: device.dryTrigger,
-                drenchedTrigger: device.drenchedTrigger
-              }
+            
+            $scope.displayForecast(device.zipCode).then(function(zipCode){
+              $scope.deviceData.push({
+                user: $scope.userInfo.username,
+                name: device.name,
+                data: deviceData,
+                apiKey: device.apiKey,
+                weather: zipCode,
+                triggers: {
+                  dangerTrigger: device.dangerTrigger,
+                  dryTrigger: device.dryTrigger,
+                  drenchedTrigger: device.drenchedTrigger
+                }
+              })
+              $scope.pageLoad();
             })
 
-            $scope.pageLoad();
 
           }, function(err){
             console.log("Data not retrieved");
@@ -106,6 +110,28 @@ angular.module('App.userProfileCtrl',[
     } else {
       $scope.plants.hidden = false;
     }
+  }
+
+  $scope.displayForecast = function(zipCode){
+    return userProfileFactory.weatherForecast(zipCode)
+    .then(function(results){
+      var weather ="";
+      var response = results.data.forecast.simpleforecast.forecastday;
+      console.log("+++++ line 9: ", response)
+      for(var i=0; i < 7; i++){
+        var conditions = response[i].conditions.split(' ');
+        for(var j=0; j < conditions.length; j++){
+          if(conditions[j] === "Rain"){
+            if(i === 0){
+              weather += "Chance of rain on: " + response[i].date.weekday_short; 
+            } else{
+              weather += " " + response[i].date.weekday_short;
+            }
+          }
+        }
+      }
+      return weather;
+    })
   }
 
   $scope.init = function() {

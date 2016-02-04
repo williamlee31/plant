@@ -55,7 +55,7 @@ exports.getDevices = function(callback, params) {
   .then(function (data) {
     if(data){
       var userid = data.dataValues.id;
-      db.Device.findAll({where: {UserId: userid}, attributes: ['name', 'apiKey', 'dryTrigger', 'dangerTrigger', 'drenchedTrigger']})
+      db.Device.findAll({where: {UserId: userid}, attributes: ['name', 'apiKey', 'zipCode', 'dryTrigger', 'dangerTrigger', 'drenchedTrigger']})
       .then(function (data) {
         if(data){
           // var token = jwt.decode(data.dataValues.apiKey, 'secret');

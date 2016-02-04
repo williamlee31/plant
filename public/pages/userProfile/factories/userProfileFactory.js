@@ -94,11 +94,24 @@ angular.module('userProfileFactory', [])
         }
       }
 
+      var weatherForecast = function(zipcode){
+        return $http({
+            method: 'GET',
+            url: "http://api.wunderground.com/api/e472269ffde1bf7f/forecast10day/q/"+zipcode+".json"
+          })
+          .then(function(success){
+            return success;
+          }, function(err){
+            console.log("Data not retrieved");
+        })
+      }
+
       return {
         checkDevices: checkDevices,
         deleteDevice: deleteDevice,
         assignCurrentDevice: assignCurrentDevice,
         updateDeviceTrigger: updateDeviceTrigger,
-        getChartData: getChartData
+        getChartData: getChartData,
+        weatherForecast: weatherForecast
       }
     })
