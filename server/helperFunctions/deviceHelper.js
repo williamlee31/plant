@@ -81,6 +81,16 @@ exports.updateDeviceTrigger = function(callback, params) {
   var token = jwt.encode(params.apiKey, 'secret');
   var triggerName = params.triggerName;
   var triggerObject = {};
+  var trig;
+
+  if(triggerName === 'dryTrigger'){
+    trig = 'dry alert';
+  } else if (triggerName === 'drenchedTrigger'){
+    trig = 'drenched alert';
+  } else if (triggerName === 'dangerTrigger'){
+    trig = 'danger alert';
+  }
+
   db.User.find({where: {username: username}})
   .then(function (data) {
     if(data){
@@ -92,12 +102,12 @@ exports.updateDeviceTrigger = function(callback, params) {
             console.log('+++line98: trigger is currently true, proceeding to change to false');
             triggerObject[triggerName] = false;
             device.update(triggerObject);
-            callback(true, 'Device ' + triggerName + ' turned off');
+            callback(true, device.dataValues.name + "'s " + trig + " switched to off!");
           } else if (!device.dataValues[triggerName]){
             console.log('+++line103: trigger is currently false, proceeding to change to true');
             triggerObject[triggerName] = true;
             device.update(triggerObject);
-            callback(true, 'Device ' + triggerName + ' turned on');
+            callback(true, device.dataValues.name + "'s " + trig + " switched to on!");
           }
         } else {
           callback(false, 'No device to update')

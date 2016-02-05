@@ -39,28 +39,22 @@ angular.module('appFactory', [])
 			})
 		};
 
-		var getUser = function() {
-		return $http({
-        	method: 'GET',
-        	url: '/api/users',
-        	params: {
-          		token: window.localStorage.token
-        	}
-      	}).then(function(success){
-				console.log('+++line50: ', success);
-				firstName = success.firstname;
-				return success;
-      		}, function(err){
-        		console.log('User not loaded');
-        		return false;
-      		})
-		}
-
-		// ,
-		// 	user: user,
-		// 	firstName: firstName,
-		// 	lastName: lastName,
-		// 	email: email
+    var getUser = function() {
+      return $http({
+        method: 'GET',
+        url: '/api/users',
+        params: {
+          token: window.localStorage.token
+        }
+      }).then(function(success){
+        console.log('+++line50: ', success);
+        firstName = success.firstname;
+        return success;
+      }, function(err){
+        console.log('User not loaded');
+        return false;
+      })
+    };
 
 		return {
 			isAuth: isAuth,
