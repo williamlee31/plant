@@ -129,7 +129,7 @@ angular.module('App.userProfileCtrl',[
         var conditions = response[i].conditions.split(' ');
         for(var j=0; j < conditions.length; j++){
           if(conditions[j] === "Rain"){
-            if(i === 0){
+            if(weather === ""){
               weather += "Chance of rain on: " + response[i].date.weekday_short;
             } else{
               weather += " " + response[i].date.weekday_short;
