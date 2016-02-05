@@ -1,7 +1,29 @@
 angular.module('App.userprofile-triggerCtrl',['ui.bootstrap','ngAnimate'])
-.controller('userprofile-triggerCtrl', function ($scope, $http, userProfileFactory, appFactory){
+.controller('userprofile-triggerCtrl', function ($scope, $http, userProfileFactory, appFactory, $uibModal, $log){
 
 
+
+    $scope.animationsEnabled = true;
+
+    $scope.open = function (size) {
+
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'myModalTriggerContent.html',
+        controller: 'ModalInstanceTriggerCtrl',
+        size: size
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }; 
+
+
+
+//////////////////////////////////////
   $scope.userInfo = {};
   //formData for trigger data
   $scope.formData = {'trigger': {
@@ -66,18 +88,6 @@ angular.module('App.userprofile-triggerCtrl',['ui.bootstrap','ngAnimate'])
     }
   }
 
-  $scope.array = [];
-  $scope.array_ = angular.copy($scope.array);
-  $scope.list = [{
-      "id": 1,
-      "value": "Danger Trigger",
-  }, {
-      "id": 3,
-      "value": "Dry Trigger",
-  }, {
-      "id": 5,
-      "value": "Drenched Trigger"
-  }];
 
   $scope.update = function() {
       if ($scope.array.toString() !== $scope.array_.toString()) {
@@ -86,7 +96,6 @@ angular.module('App.userprofile-triggerCtrl',['ui.bootstrap','ngAnimate'])
           return "Not Changed";
       }
   }     
-
 
 
   $scope.triggerEvents = function() {
@@ -103,46 +112,29 @@ angular.module('App.userprofile-triggerCtrl',['ui.bootstrap','ngAnimate'])
 
 
 
+})
+
+angular.module('App.userprofile-triggerCtrl').controller('ModalInstanceTriggerCtrl', function ($scope, $uibModalInstance, $http, appFactory, $location, $state, userProfileFactory) {
+
+
+  $scope.deviceData = [];
+  $scope.userDevices = {};
+  $scope.userInfo = {};
+
+
+
+  $scope.updateDeviceTrigger = function(triggerName) {
+    userProfileFactory.updateDeviceTrigger(triggerName).then(function(result){
+      alert(result);
+            })
+  }
+
   $scope.init = function() {
     appFactory.getUser().then(function(result){
       $scope.userInfo = result.data;
-      $scope.triggerEvents();
     })
   }
 
-  $scope.init();
+  $scope.init();  
 
-
-
-})
-
-.directive("checkboxGroup", function() {
-    return {
-        restrict: "A",
-        link: function(scope, elem, attrs) {
-            // Determine initial checked boxes
-            if (scope.array.indexOf(scope.item.value) !== -1) {
-                elem[0].checked = true;
-            }
-
-            // Update array on click
-            elem.bind('click', function() {
-                var index = scope.array.indexOf(scope.item.value);
-                // Add if checked
-                if (elem[0].checked) {
-                    if (index === -1) scope.array.push(scope.item.value);
-                }
-                // Remove if unchecked
-                else {
-                    if (index !== -1) scope.array.splice(index, 1);
-                }
-                // Sort and update DOM display
-                scope.$apply(scope.array.sort(function(a, b) {
-                    return a - b;
-                }));
-            });
-        }
-    }
-
-
-});   
+});

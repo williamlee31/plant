@@ -2,6 +2,7 @@ angular.module('userProfileFactory', [])
   .factory('userProfileFactory', function($location, $http, $state){
 
     var currentDevice = {};
+    var currentTriggerDevice = {};
 
       var checkDevices = function(username) {
         console.log('Checking for devices');
@@ -47,13 +48,22 @@ angular.module('userProfileFactory', [])
         console.log(currentDevice)
       }
 
-      var updateDeviceTrigger = function(userName, apiKey, deviceTrigger){
+      var assignTriggerDevice = function(username, apiKey){
+        currentTriggerDevice.apiKey = apiKey;
+        currentTriggerDevice.username = username;
+        console.log(currentDevice);
+      }
+
+      var updateDeviceTrigger = function(deviceTrigger){
+        console.log('currentTriggerDevice.username: ', currentTriggerDevice.username);
+        console.log('currentTriggerDevice.apiKey: ', currentTriggerDevice.apiKey);
+        console.log('deviceTrigger:', deviceTrigger);
         return $http({
           method: 'PUT',
           url: '/api/devices',
           data: {
-            username: userName,
-            apiKey: apiKey,
+            username: currentTriggerDevice.username,
+            apiKey: currentTriggerDevice.apiKey,
             triggerName: deviceTrigger
           }
         })
@@ -112,6 +122,7 @@ angular.module('userProfileFactory', [])
         assignCurrentDevice: assignCurrentDevice,
         updateDeviceTrigger: updateDeviceTrigger,
         getChartData: getChartData,
+        assignTriggerDevice: assignTriggerDevice,
         weatherForecast: weatherForecast
       }
     })
