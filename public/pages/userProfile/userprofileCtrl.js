@@ -9,7 +9,7 @@ angular.module('App.userProfileCtrl',[
     return result;
   };
 }])
-.controller('userProfileCtrl', function($scope, $http, showAlertSrvc, appFactory, userProfileFactory){
+.controller('userProfileCtrl', function ($scope, $http, showAlertSrvc, appFactory, userProfileFactory, $uibModal, $log){
 
   $scope.signout = appFactory.signout;
 
@@ -23,6 +23,7 @@ angular.module('App.userProfileCtrl',[
   $scope.currentGraphData = {};
   $scope.currentDevice = {};
   $scope.weather = "";
+ 
 
   $scope.getData = function() {
     $scope.deviceData = [];
@@ -89,6 +90,10 @@ angular.module('App.userProfileCtrl',[
     $scope.currentDevice.name = deviceName;
   }
 
+  $scope.prepareTriggers = function(apiKey){
+    userProfileFactory.assignTriggerDevice($scope.userInfo.username, apiKey);
+  }
+
   $scope.updateDeviceTrigger = function(apiKey, triggerName) {
     userProfileFactory.updateDeviceTrigger($scope.userInfo.username, apiKey, triggerName).then(function(result){
       alert(result);
@@ -143,7 +148,9 @@ angular.module('App.userProfileCtrl',[
   }
 
   $scope.init();
-})
+
+
+});
 
 // Helper Function
 

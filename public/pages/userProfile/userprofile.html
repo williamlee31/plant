@@ -34,70 +34,36 @@
             <img src='../../img/gifs/loading_spinner.gif' class="spinner">
           </span>
 
-          <span ng-show="!loading.hidden">
-            <span ng-show="plants.hidden">
-              <div>
-                <h4>You have no devices bruh!</h4>
-          <!--     <a href="#/deviceregister"  style="text-decoration: none">
-              <button type="submit" name="go" class="btn btn-md btn-primary" ng-click=""> Register device </button>
-            </a> -->
-              </div>
-            </span>
+        <span ng-show="!loading.hidden">
+          <span ng-show="plants.hidden">
+            <div>
+              <h4>You have no devices bruh!</h4>
 
-            <span ng-show="!plants.hidden">
+            </div>
+          </span>
+
+          <span ng-show="!plants.hidden">
               <div>
                 <h4>Your devices:</h4>
               </div>
 
               <div ng-repeat='device in deviceData | orderBy:"name"'>
-
+                
                 <div class="deviceProfile">
+                    <div class='chanceRain'>{{device.weather}}</div>
+                    <div class='deviceName'><b>{{device.name}}</b></div>
+                    <div class='deviceLight'><b>Light:</b> {{device.data.light}}</div>
+                    <div class='deviceWater'><b>Moisture:</b> {{device.data.water}}</div>
+                    <div class='deviceTemp'><b>Temperature:</b> {{device.data.temp}}</div>
 
-                  <div class='chanceRain'>{{device.weather}}</div>
-                  <div class='deviceName'><b>{{device.name}}</b></div>
-                  <div class='deviceLight'><b>Light:</b> {{device.data.light}}</div>
-                  <div class='deviceWater'><b>Moisture:</b> {{device.data.water}}</div>
-                  <div class='deviceTemp'><b>Temperature:</b> {{device.data.temp}}</div>
-
-                  <div ui-view='charts'></div>
-                  <div class="trigger">
-                    <uib-accordion close-others="oneAtATime">
-                      <uib-accordion-group is-open="status.open">
-                        <uib-accordion-heading class="alert">
-                          Alert me when:<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                        </uib-accordion-heading>
-
-                          Moisture levels
-
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" name="streamTriggers" ng-model="device.triggers.drenchedTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'drenchedTrigger')">Rise above 700 (Drenched!)
-                            </label>
-                          </div>
-
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" name="streamTriggers" ng-model="device.triggers.dryTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'dryTrigger')">Fall below 400 (Dry!)
-                            </label>
-                          </div>
-
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" name="streamTriggers" ng-model="device.triggers.dangerTrigger" ng-click="updateDeviceTrigger(device.apiKey, 'dangerTrigger')">Fall below 100 (Danger!)
-                            </label>
-                          </div>
-
-                      </uib-accordion-group>
-                    </uib-accordion>
-                  </div>
-
-
-                  </div>
-
+                    <div ui-view='charts'></div>
+                    <div ui-view='trigger'></div>
                 </div>
-            </span>
+
+            </div>
           </span>
-        </div>
+        </span>
       </div>
     </div>
+  </div>
 </div>

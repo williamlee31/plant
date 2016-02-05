@@ -1,104 +1,53 @@
 <div>
 
-<!-- 	<button ng-click="triggerm2xGET()" class="btn btn-md btn-default">Trigger Data</button>
-	<button ng-click="triggerm2xPOST()" class="btn btn-md btn-default">Trigger POST</button> -->
-<!--
-	<br>
-	<br>
 
-	<div>
-		<label>Trigger Events:</label>
-	    <div ng-repeat="item in list">
-	        <input type="checkbox" checkbox-group />
-	        <label>{{item.value}}</label>
-	    </div>
-	    <br>
+  <script type="text/ng-template" id="myModalTriggerContent.html">
 
-	    <div>inside array: {{array}}</div>
-	    <br>
-	    <div>inside list: {{list}}</div>
-	</div> -->
+    <div class="modal-header">
+      <h3 class="modal-title">Choose a Trigger!</h3>
+    </div>
+    <div class="modal-body">
 
-<!-- ////////////////////////// -->
-<!-- 	<button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
-	<hr />
-	<div collapse="isCollapsed">
-		<div class="well well-lg">
-			Content
-			<label>Water Triggers</label>
-			<div class="form-group">
-				<label class="checkbox">
-					<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.danger"> Danger Trigger
-				</label>
-				<label class="checkbox">
-					<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.dry"> Dry Trigger
-				</label>
-				<label class="checkbox">
-					<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.drenched"> Drenched Trigger
-				</label>
-			</div>
 
-			<br>
-			<div>inside formData: {{formData}}</div>
-		</div>
-	</div>
-</div> -->
-<br>
-<uib-accordion close-others="oneAtATime">
-<uib-accordion-group heading="Add Triggers" panel-class="panel-success">
-	<h5>Water Triggers</h5>
-	<hr>
-	<div class="checkbox">
-		<label>
-			<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.danger"> Danger Trigger
-		</label>
-	</div>
-	<div class="checkbox">
-		<label>
-			<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.dry"> Dry Trigger
-		</label>
-	</div>
-	<div class="checkbox">
-		<label>
-			<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.drenched"> Drenched Trigger
-		</label>
-	</div>
-	<div>inside formData: {{formData}}</div>
-    <button class="btn btn-sm btn-success">Submit</button>
-</uib-accordion-group>
-</uib-accordion>
+                <div>
+                  <uib-accordion close-others="oneAtATime">
+                    <uib-accordion-group is-open="status.open">
+                      <uib-accordion-heading panel-class="panel-success" class="alert">
+                        Alert me when:<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                      </uib-accordion-heading>
+
+                      <label>Moisture levels
+
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" name="streamTriggers" ng-model="device.triggers.drenchedTrigger" ng-click="updateDeviceTrigger('drenchedTrigger')">Rise above 700 (Drenched!)
+                          </label>
+                        </div>   
+
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" name="streamTriggers" ng-model="device.triggers.dryTrigger" ng-click="updateDeviceTrigger('dryTrigger')">Fall below 400 (Dry!)
+                          </label>
+                        </div>
+
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" name="streamTriggers" ng-model="device.triggers.dangerTrigger" ng-click="updateDeviceTrigger('dangerTrigger')">Fall below 100 (Danger!)
+                          </label>
+                        </div>
+
+           ​
+                      </label>
+                    </uib-accordion-group>
+                  </uib-accordion>
+                </div>
 
 
 
- <uib-accordion close-others="oneAtATime">
-	<uib-accordion-group is-open="status.open">
-      <uib-accordion-heading panel-class="panel-success">
-        Trigger Title<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-      </uib-accordion-heading>
+    </div>
+  </script>
 
-      <label>Water Triggers
-      <hr/>
-	<div class="checkbox">
-		<label>
-			<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.danger"> Danger Trigger
-		</label>
-	</div>
-	<div class="checkbox">
-		<label>
-			<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.dry"> Dry Trigger
-		</label>
-	</div>
-	<div class="checkbox">
-		<label>
-			<input type="checkbox" name="streamTriggers" ng-model="formData.trigger.drenched"> Drenched Trigger
-		</label>
-	</div>
-	<div>inside formData: {{formData}}</div>
-
-		</label>
-    </uib-accordion-group>
-
-
+  <button ng-click="open(); prepareTriggers(device.apiKey)" class="btn btn-md btn-primary">New test Triggers</button>
 
 
 
