@@ -48,10 +48,14 @@ angular.module('userProfileFactory', [])
         console.log(currentDevice)
       }
 
-      var assignTriggerDevice = function(username, apiKey){
+      var assignTriggerDevice = function(username, apiKey, triggers){
         currentTriggerDevice.apiKey = apiKey;
         currentTriggerDevice.username = username;
-        console.log(currentDevice);
+        currentTriggerDevice.triggers = triggers;
+      }
+
+      var getTriggers = function() {
+        return currentTriggerDevice;
       }
 
       var updateDeviceTrigger = function(deviceTrigger){
@@ -73,6 +77,48 @@ angular.module('userProfileFactory', [])
         }, function(err){
           console.log(dbResponse)
           return dbResponse.data;
+        })
+      }
+
+      var deleteDeviceData = function(apiKey, days){
+        var m2xKeys = {
+          master: deviceMasterKey,
+          device: apiKey
+        }
+        var streams = [
+          'water',
+          'light',
+          'temp'
+        ]
+        var currentTime = new Date();
+        currentTime.setDate(currentTime.getDate() - days);
+
+        var startTime = currentTime.getUTCFullYear()
+                      + '-' + ("0" + (currentTime.getUTCMonth()+1)).slice(-2)
+                      + '-' + ("0" + currentTime.getUTCDate()).slice(-2)
+                      + 'T' + (currentTime.getUTCHours()+1)
+                      + ':' + (currentTime.getUTCMinutes()+1)
+                      + ':' + (currentTime.getUTCSeconds()+1) + 'Z';
+        
+        angular.forEach(streams, function(stream){
+          console.log(stream);              
+          return $http({
+            method: 'DELETE',
+            url: 'https://api-m2x.att.com/v2/devices/'+m2xKeys.device+'/streams/'+stream+'/values',
+            headers: {
+              "X-M2X-KEY": m2xKeys.master
+            },
+            contentType: 'application/json',
+            params: {
+              "from": "1980-01-01T01:00:00.000Z",
+              "end": startTime
+            }
+          })
+          .then(function(success){
+            console.log('Delete data successful: ', success);
+          }, function(err){
+            console.log('Delete data unsuccessful: ', err);
+          })
         })
       }
 
@@ -120,7 +166,9 @@ angular.module('userProfileFactory', [])
         checkDevices: checkDevices,
         deleteDevice: deleteDevice,
         assignCurrentDevice: assignCurrentDevice,
+        getTriggers: getTriggers,
         updateDeviceTrigger: updateDeviceTrigger,
+        deleteDeviceData: deleteDeviceData,
         getChartData: getChartData,
         assignTriggerDevice: assignTriggerDevice,
         weatherForecast: weatherForecast

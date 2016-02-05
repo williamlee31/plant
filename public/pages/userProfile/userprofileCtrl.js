@@ -21,9 +21,7 @@ angular.module('App.userProfileCtrl',[
     hidden: true
   };
   $scope.currentGraphData = {};
-  $scope.currentDevice = {};
-  $scope.weather = "";
- 
+  $scope.currentDevice = {}; 
 
   $scope.getData = function() {
     $scope.deviceData = [];
@@ -90,14 +88,14 @@ angular.module('App.userProfileCtrl',[
     $scope.currentDevice.name = deviceName;
   }
 
-  $scope.prepareTriggers = function(apiKey){
-    userProfileFactory.assignTriggerDevice($scope.userInfo.username, apiKey);
+  $scope.prepareTriggers = function(apiKey, triggers){
+    userProfileFactory.assignTriggerDevice($scope.userInfo.username, apiKey, triggers);
   }
 
   $scope.updateDeviceTrigger = function(apiKey, triggerName) {
     userProfileFactory.updateDeviceTrigger($scope.userInfo.username, apiKey, triggerName).then(function(result){
       alert(result);
-            })
+    })
   }
 
   $scope.deleteDevice = function(deviceName) {
@@ -107,6 +105,10 @@ angular.module('App.userProfileCtrl',[
         $scope.charts.hidden = true;
       }
     });
+  }
+
+  $scope.deleteDeviceData = function(apiKey) {
+    userProfileFactory.deleteDeviceData(apiKey, 3);
   }
 
   $scope.pageLoad = function() {
@@ -149,10 +151,9 @@ angular.module('App.userProfileCtrl',[
 
   $scope.init();
 
-
 });
 
-// Helper Function
+// Helper Functions
 
 function checkDataStreamName(data){
   results = {
