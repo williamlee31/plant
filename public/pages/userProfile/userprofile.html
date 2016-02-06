@@ -1,58 +1,60 @@
+<<<<<<< ff4e42b51e889d53b38ad9e6417854b9cf99f317
   <nav class="navbar navbar-fixed-top" style="background-color: white; z-index:2; box-shadow: -5px -12px 20px 15px #888888; height: 60px !important; margin-bottom: 10px;" role = "navigation">
     <div>
-    <div class="navbar-header">
-    <p style="font-size:48px; color: #81A623; font-family: 'Lobster', cursive; padding-right: 100px; padding-left:50px;">Bloom</p>
-    </div>
-    <div class="collapse navbar-collapse">
-    <ul class = "nav-justified">
-    <li role = "presentation">
-        <a ui-sref="home" style="font-size: 14px; color: #81A623">HOME</a>
-    </li>
-    <li role = "presentation">
-        <a style="font-size:14px; color: #81A623" ng-click="signout()">SIGNOUT</a>
-    </li>
-    </ul>
-    </div>
-    </div>
-    </nav>
-
-<div class='profileInfo'>
-  <div ui-view="profileInfo"></div>
-</div>
-
-<div class="deviceInfo">
-  <h4>Welcome {{userInfo.username}}!</h4>
-
-  <div ui-view="register"></div>
-  <br>
-
-  <span ng-show="loading.hidden">
-    <img src='../../img/gifs/loading_spinner.gif' class="spinner">
-  </span>
-
-  <span ng-show="!loading.hidden">
-    <span ng-show="plants.hidden">
-    <div>
-      <h4>You have no devices bruh!</h4>
-    </div>
-  </span>
-
-  <span ng-show="!plants.hidden">
-    <div>
-      <h4>Your devices:</h4>
-    </div>
-
-    <div ng-repeat='device in deviceData | orderBy:"name"'>
-      <div class="deviceProfile">
-          <div class='chanceRain'>{{device.weather}}</div>
-          <div class='deviceName'><b>{{device.name}}</b></div>
-          <div ui-view='trigger'></div>
-          <div class='deviceLight'><b>Light:</b> {{device.data.light}}</div>
-          <div class='deviceWater'><b>Moisture:</b> {{device.data.water}}</div>
-          <div class='deviceTemp'><b>Temperature:</b> {{device.data.temp}}</div>
-
-          <div ui-view='charts'></div>
+      <div class="navbar-header">
+        <p style="font-size:48px; color: #81A623; font-family: 'Lobster', cursive; padding-right: 100px; padding-left:50px;">Bloom</p>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class = "nav-justified">
+          <li role = "presentation">
+              <a ui-sref="home" style="font-size: 14px; color: #81A623">HOME</a>
+          </li>
+          <li role = "presentation">
+              <a style="font-size:14px; color: #81A623" ng-click="signout()">SIGNOUT</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </span>
+  </nav>
+
+<div class="userProfile">
+  <div class='profileInfo'>
+    <div ui-view="profileInfo"></div>
+  </div>
+
+  <div class="deviceInfo">
+    <h4>Welcome {{userInfo.username}}!</h4>
+
+    <div ui-view="register"></div>
+    <br>
+
+    <span ng-show="loading.hidden">
+      <img src='../../img/gifs/loading_spinner.gif' class="spinner">
+    </span>
+
+    <span ng-show="!loading.hidden">
+      <span ng-show="plants.hidden">
+      <div>
+        <h4>You have no devices bruh!</h4>
+      </div>
+    </span>
+
+    <span ng-show="!plants.hidden">
+      <div>
+        <h4>Your devices:</h4>
+      </div>
+
+      <div ng-repeat='device in deviceData | orderBy:"name"'>
+        <div class="deviceProfile">
+            <div class='chanceRain'>{{device.weather}}</div>
+            <div class='deviceName'>{{device.name}}</div>
+            <div class='deviceLight'>Light: {{device.data.light}}</div>
+            <div class='deviceWater'>Moisture: {{device.data.water}}</div>
+            <div class='deviceTemp'>Temperature: {{device.data.temp}}</div>
+            <div ui-view='trigger' class="deviceSetting"></div>
+            <div ui-view='charts'></div>
+        </div>
+      </div>
+    </span>
+  </div>
 </div>
