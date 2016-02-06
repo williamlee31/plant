@@ -12,7 +12,7 @@
 	width: 230px;
 	border: 2px solid black;
 	border-radius: 10px;
-	margin: 0px auto 10px auto;
+	margin: 15px auto 10px auto;
   padding: 10px;
 }
 
@@ -41,10 +41,12 @@
 
 .deviceInfo {
 	overflow: hidden;
+	min-height: 75%;
 	padding: 15px;
 	font-size: 15px;
-	background-color: #EDEDED;
-	height: inherit;
+	background-color: #96CA2D;
+	margin-bottom: 25px;
+	border-radius: 10px;
 }
 
 .chanceRain {
@@ -116,6 +118,12 @@
 }
 
 @media (min-width: 900px) {
+	.deviceInfo {
+		width: 68%;
+	}
+}
+
+@media (min-width: 1000px) {
 	.deviceInfo {
 		width: 70%;
 	}
