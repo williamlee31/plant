@@ -32,7 +32,6 @@ angular.module('userProfileFactory', [])
         })
         .then(function(dbResponse){
           if(dbResponse.status === 200){
-            alert('Deleted ' + deviceName + ' from your profile');
             console.log('Device deleted');
             return true;
           }

@@ -102,7 +102,6 @@ angular.module('App.userProfileCtrl',[
     userProfileFactory.deleteDevice(deviceName, $scope.userInfo.username).then(function(result){
       if(result){
         $scope.init();
-        $scope.charts.hidden = true;
       }
     });
   }

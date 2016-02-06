@@ -20,23 +20,21 @@
   </span>
 
   <span ng-show="!plants.hidden">
-      <div>
-        <h4>Your devices:</h4>
+    <div>
+      <h4>Your devices:</h4>
+    </div>
+
+    <div ng-repeat='device in deviceData | orderBy:"name"'>
+      <div class="deviceProfile">
+          <div class='chanceRain'>{{device.weather}}</div>
+          <div class='deviceName'><b>{{device.name}}</b></div>
+          <div ui-view='trigger'></div>
+          <div class='deviceLight'><b>Light:</b> {{device.data.light}}</div>
+          <div class='deviceWater'><b>Moisture:</b> {{device.data.water}}</div>
+          <div class='deviceTemp'><b>Temperature:</b> {{device.data.temp}}</div>
+
+          <div ui-view='charts'></div>
       </div>
-
-      <div ng-repeat='device in deviceData | orderBy:"name"'>
-
-        <div class="deviceProfile">
-            <div class='chanceRain'>{{device.weather}}</div>
-            <div class='deviceName'><b>{{device.name}}</b></div>
-            <div ui-view='trigger'></div>
-            <div class='deviceLight'><b>Light:</b> {{device.data.light}}</div>
-            <div class='deviceWater'><b>Moisture:</b> {{device.data.water}}</div>
-            <div class='deviceTemp'><b>Temperature:</b> {{device.data.temp}}</div>
-
-            <div ui-view='charts'></div>
-        </div>
-
     </div>
   </span>
 </div>

@@ -40,9 +40,45 @@
     <ul class="dropdown-menu">
       <li><button class='btn btn-sm btn-primary' ng-click='prepareTriggers(device.apiKey, device.triggers);open()'>Set triggers</button></li>
       <li role="separator" class="divider"></li>
-      <li><button class='btn btn-sm btn-danger' ng-click='deleteDeviceData(device.apiKey)'>Delete data (3 days)</button></li>
-      <li><button class='btn btn-sm btn-danger' ng-click='deleteDevice(device.name)'>Delete device</button></li>
+      <li><button class='btn btn-sm btn-danger' data-toggle="modal" data-target="#confirmDataDelete">Delete data (3 days)</button></li>
+      <li><button class='btn btn-sm btn-danger' data-toggle="modal" data-target="#confirmDeviceDelete">Delete device</button></li>
     </ul>
+  </div>
+
+  <div class="modal" id="confirmDataDelete" tabindex="-1" role="dialog" aria-labelledby="dataDeleteModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="dataDeleteModal">Confirm Delete</h4>
+        </div>
+        <div class="modal-body">
+          <h5>You are about to delete data older than 3 days for {{device.name}}.</h5>
+          <h5>Do you want to proceed?</h5>
+        </div>     
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-danger btn-ok" data-dismiss="modal" ng-click='deleteDeviceData(device.apiKey)'>Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="confirmDeviceDelete" tabindex="-1" role="dialog" aria-labelledby="deviceDeleteModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="deviceDeleteModal">Confirm Delete</h4>
+        </div>
+        <div class="modal-body">
+          <h5>You are about to delete {{device.name}} from your profile.</h5>
+          <h5>Do you want to proceed?</h5>
+        </div>      
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-danger btn-ok" data-dismiss="modal" ng-click='deleteDevice(device.name)'>Delete</button>
+        </div>
+      </div>
+    </div>
   </div>
 
 </div>
