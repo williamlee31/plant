@@ -92,11 +92,11 @@ angular.module('userProfileFactory', [])
         var currentTime = new Date();
         currentTime.setDate(currentTime.getDate() - days);
 
-        var startTime = currentTime.getUTCFullYear()
+        var startTime = currentTime.getUTCFullYear() 
                       + '-' + ("0" + (currentTime.getUTCMonth()+1)).slice(-2)
                       + '-' + ("0" + currentTime.getUTCDate()).slice(-2)
-                      + 'T' + (currentTime.getUTCHours()+1)
-                      + ':' + (currentTime.getUTCMinutes()+1)
+                      + 'T' + ("0" + (currentTime.getUTCHours()+1)).slice(-2)
+                      + ':' + ("0" + (currentTime.getUTCMinutes()+1)).slice(-2)
                       + ':' + (currentTime.getUTCSeconds()+1) + 'Z';
         
         angular.forEach(streams, function(stream){
