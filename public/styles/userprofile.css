@@ -1,3 +1,5 @@
+/*#81A623*/
+
 .spinner {
 	display: block;
 	width:100px;
@@ -26,7 +28,6 @@
 }
 
 .deviceProfile {
-	width: 210px;
 	border: .5px;
   border-radius: 10px;
   background-color: white;
@@ -39,8 +40,6 @@
 }
 
 .deviceInfo {
-	min-width: 100%;
-	min-height: 100%;
 	overflow: hidden;
 	padding: 15px;
 	font-size: 15px;
@@ -59,27 +58,65 @@
 }
 
 @media (min-width: 300px) {
-
+	.deviceInfo {
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 25px;
+		width: 230px;
+	}
 }
 
-@media (min-width: 1000px) {
-	.alert {
-		width: 500px;
+@media (min-width: 350px) {
+	.deviceInfo {
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 25px;
+		width: 330px;
 	}
+}
+
+@media (min-width: 600px) {
+	.deviceInfo {
+		width: 80%;
+	}
+}
+
+@media (min-width: 700px) {
 	.chanceRain {
 		font-size: 25px;
 	}
 	.profileInfo {
-		margin: 0px 10px 10px 10px;
-		float: left;
+		margin: 0px 10px 10px 20px;
+		position: absolute;
+		top: 0;
+		left: 0;
 	}
 	.deviceProfile {
 		width: 100%;
 	}
 	.deviceInfo {
+		min-height: 95%;
+		margin-left: 270px;
+		padding-left: 25px;
+		padding-right: 25px;
 		font-size: 25px;
-		min-width: 70%;
+		width: 60%;
+	}
+}
+
+@media (min-width: 800px) {
+	.deviceInfo {
 		min-height: 100%;
-		overflow: hidden;
+		margin-left: 270px;
+		padding-left: 25px;
+		padding-right: 25px;
+		font-size: 25px;
+		width: 65%;
+	}
+}
+
+@media (min-width: 900px) {
+	.deviceInfo {
+		width: 70%;
 	}
 }
