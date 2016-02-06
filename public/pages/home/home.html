@@ -46,20 +46,30 @@
         </section> -->
     </div>
     <section id="product">
-        <div class="productPhoto"><div>
+        <div class="productBar1">
+            <div style="height:35px;"></div>
+        </div>
+        <div class="productBar2">
+            <div style="height:35px;"></div>
+        </div>
+        <div class="productBar3">
+            <div style="height:35px"></div>
+        </div>
+        <!-- <div class="productPhoto"><div> -->
     </section>
     <div class="inBetweenPhoto">
         <div style="height:400px"></div>
     </div>
-    <section id="features" style="height:1000px; background-color:red">
+    <section id="features" style="height:1000px; background-color:white">
     </section>
     <section id="setup" style="height:1000px; background-color:yellow">
         <h5>setup</h5>
     </section>
     <section id="team" style="height:1000px; background-color:green">
         <h5>team</h5>
+        <i class="fa fa-linkedin-square"></i>
     </section>
-    <section id="contact" style="height:1000px; background-color:orange">
+    <section id="contact" style="height:380px; background-color:orange">
         <h2 style="text-align:center;">Contact Us</h2>
         <h5 style="text-align:center;">Give us your feedback!</h5>
         <div class="container feedback">
@@ -98,54 +108,119 @@
             </div>
             </div>
 
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
+                <p class="pTeam">Chris Kuh | David Dame-Boyle | Jefferson Lim | Sean Chamanara | William Lee</p>
+            
+    		<!-- <form ng-submit = "login()" name = "loginForm">
+    			<input type="text" placeholder = "USERNAME" ng-model="userLogin" required>
+    			<br>
+    			<input type="text" placeholder = "PASSWORD" ng-model="passLogin" required>
+    			<br>
+    			<input type = "submit" value = "LOGIN" ng-disabled = "loginForm.$invalid">
+    		</form> -->
+            <!-- <form ng-submit = "signup()" name = "signupForm">
+            <input type="text" placeholder = "USERNAME" ng-model="user" required>
+                <br>
+                <input type="text" placeholder = "FIRST NAME" ng-model="firstname" required>
+                <br>
+                <input type="text" placeholder = "LAST NAME" ng-model="lastname" required>
+                <br>
+                <input type="text" placeholder = "PASSWORD" ng-model="pass" required>
+                <br>
+                <input type = 'email' placeholder = "EMAIL" ng-model = "email" required>
+                <input type = "submit" value = "SIGNUP" ng-disabled = "signupForm.$invalid">
+            </form> -->
     </section>
 
 
 
     <script type="text/ng-template" id="myModalContent.html">
 
-        <div class="modal-header">
-            <h3 class="modal-title">Nah Im playing Wills A G!</h3>
+        <div class="modal-header signInGreen" ng-show="signInTrue">
+            <h3 class="greenModal"> Sign In </h3>
+        </div>
+        <div class="modal-header signUpGreen" ng-show="!signInTrue">
+            <h3 class="greenModal"> Sign Up </h3>
         </div>
         <div class="modal-body">
 
-    	<div ng-show = "signInTrue">
-    		<p> Sign In <a ng-click = "signInUpToggle()">SignUp</a> </p>
-    		<form ng-submit = "login()" name = "loginForm">
-    			<input type="text" placeholder = "USERNAME" ng-model="userLogin" required>
-    			<br>
-    			<input type="text" placeholder = "PASSWORD" ng-model="passLogin" required>
-    			<br>
-    			<input type = "submit" value = "LOGIN" ng-disabled = "loginForm.$invalid">
-    		</form>
+        <div ng-show = "signInTrue">
+            <form style="text-align: center;" ng-submit = "login()" name = "loginForm">
+                <div style="border-bottom:solid 1px; border-bottom-color: #e5e5e5;">
+                <br>
+                <ul class="noBullet">
+                <li>
+                <md-input-container>
+                    <label for="usernameInput" class="labelSignin">USERNAME</label>
+                    <input type="text" id="usernameInput" ng-model="userLogin" md-autofocus="" required>
+                </md-input-container>
+                </li>
+                <li>
+                <md-input-container>
+                    <label for="passwordInput" class="labelSignin">PASSWORD</label>
+                    <input type="text" id="passwordInput" ng-model="passLogin" md-autofocus="" required>
+                </md-input-container>
+                </li>
+                <p>No account? <a ng-click = "signInUpToggle()">Sign Up</a></p>
+                </div>
+                <ul class="noBullet" style="margin-top: 10px;">
+                <liclass="inline">
+                <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                </li>
+                <li class="inline">
+                <button class="btn btn-primary signInGreen" type="submit" ng-disabled = "loginForm.$invalid">Sign In</button>
+                </li>
+                </ul>
+            </form>
     	</div>
 
     	<div ng-show = "!signInTrue">
-    		<p><a ng-click = "signInUpToggle()">Sign In</a> SignUp</p>
-    		<form ng-submit = "signup()" name = "signupForm">
-    		<input type="text" placeholder = "USERNAME" ng-model="user" required>
-    			<br>
-    			<input type="text" placeholder = "FIRST NAME" ng-model="firstname" required>
-    			<br>
-    			<input type="text" placeholder = "LAST NAME" ng-model="lastname" required>
-    			<br>
-    			<input type="text" placeholder = "PASSWORD" ng-model="pass" required>
-    			<br>
-    			<input type = 'email' placeholder = "EMAIL" ng-model = "email" required>
-    			<input type = "submit" value = "SIGNUP" ng-disabled = "signupForm.$invalid">
-    		</form>
-    	</div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="button">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+            <br>
+            <form ng-submit = "signup()" name = "signupForm" style="text-align: center;">
+                <div style="border-bottom:solid 1px; border-bottom-color: #e5e5e5;">
+                <br>
+                <ul class="noBullet">
+                <li>
+                <md-input-container>
+                    <label for="usernameInput" class="labelSignup">USERNAME</label>
+                    <input type="text" id="usernameInput" ng-model="user" md-autofocus="" required>
+                </md-input-container>
+                </li>
+                <li>
+                <md-input-container>
+                    <label for="firstnameInput" class="labelSignup">FIRST NAME</label>
+                    <input type="text" id="firstnameInput" ng-model="firstname" md-autofocus="" required>
+                </md-input-container>
+                </li>
+                <li>
+                <md-input-container>
+                    <label for="lastnameInput" class="labelSignup">LAST NAME</label>
+                    <input type="text" id="lastnameInput" ng-model="lastname" md-autofocus="" required>
+                </md-input-container>
+                </li>
+                <li>
+                <md-input-container>
+                    <label for="passInput" class="labelSignup">PASSWORD</label>
+                    <input type="text" id="passInput" ng-model="pass" md-autofocus="" required>
+                </md-input-container>
+                </li>
+                <li>
+                <md-input-container>
+                    <label for="emailInput" class="labelSignup">EMAIL</label>
+                    <input type="email" id="emailInput" ng-model="email" md-autofocus="" required>
+                </md-input-container>
+                </li>
+                </ul>
+                <p>Have an account? <a ng-click = "signInUpToggle()">Sign In</a></p>
+                </div>
+                <ul class="noBullet" style="margin-top: 10px;">
+                <liclass="inline">
+                <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                </li>
+                <li class="inline">
+                <button class="btn btn-primary signUpGreen" type="submit" ng-disabled = "signupForm.$invalid">Sign Up</button>
+                </li>
+                </ul>
+            </form>
         </div>
     </script>
 
