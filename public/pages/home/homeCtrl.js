@@ -1,4 +1,4 @@
-angular.module('App.homeCtrl', ['ngAnimate', 'ui.bootstrap']);
+angular.module('App.homeCtrl', ['ngAnimate', 'ui.bootstrap', 'ngMaterial']);
 angular.module('App.homeCtrl').controller('homeCtrl', function ($scope, $uibModal, $log, $http, $location, appFactory, $anchorScroll, $window, $filter) {
 
   $filter('lowercase')();
@@ -93,6 +93,8 @@ angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope,
         }
       })
       .then(function(success){
+        // $scope.cancel();
+        $uibModalStack.dismissAll();
         $scope.userInfo = success.data;
         window.localStorage.setItem('token', success.data.token);
         $location.path('/userprofile');
@@ -121,14 +123,14 @@ angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope,
         }
       })
       .then(function(success){
-        $scope.cancel();
+        // $scope.cancel();
         // $uibModalStack.dismissAll();
         console.log("Inside Success within Signup()");
         $scope.userInfo = success.data;
         window.localStorage.setItem('token', success.data.token);
         $location.path('/userprofile');
       }, function(err){
-        console.log("INCORRECT LOGIN");
+        console.log("INCORRECT SIGNUP");
       })
   }
 
@@ -143,9 +145,3 @@ angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope,
     // $uibModalStack.dismissAll();
     };
   });
-
-angular.module('App.homeCtrl').directive('scrollPosition', function($window){
-  return {
-    scope
-  }
-})

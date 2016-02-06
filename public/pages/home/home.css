@@ -36,9 +36,10 @@
 }
 
 .navBarText:hover {
-	color:#13322a !important;
+	color:#497631 !important;
 	font-weight: bold;
 	text-decoration: none;
+    text-shadow: 0px 2px 10px #81A623;
 }
 
 .navbarLogo {
@@ -65,10 +66,32 @@
 	z-index: -90;
 }
 
+.productBar1{
+	background-color: #497631;
+	/*box-shadow: 0px 4px 4px -2px #888888;
+	z-index: 1;*/
+	position: relative;
+}
+
+.productBar2{
+	background-color: #AFBC88;
+	/*box-shadow: 0px 4px 4px -2px #888888;
+	z-index: 0.5;*/
+	position: relative;
+}
+
+.productBar3{
+	background-color: #C4E56F;
+	position: fixed;
+	margin-bottom: 0px;
+}
+
 #features {
 	margin-top: 0px;
 	position: relative;
 }
+
+
 
 .productPhoto {
 	margin: auto;
@@ -99,4 +122,57 @@
 
 #message {
 	height: 132px !important;
+}
+
+.pTeam {
+	text-align:center;
+	margin-top: 20px;
+}
+
+.signInGreen{
+	background-color: #81A623 !important;
+}
+
+.signUpGreen{
+	background-color: #3F5111 !important;
+}
+
+.greenModal {
+	color: white;
+	font-family: 'Lobster', cursive;
+	font-size: 24px;
+	margin-bottom: 5px !important;
+	margin-top: 5px !important;
+}
+
+.noBullet {
+	list-style: none;
+	padding-left: 0;
+}
+
+md-input-container {
+	margin-top: 1px !important;
+	margin-bottom: 1px !important;
+	text-align: center;
+}
+
+
+.labelSignin {
+	color: #81A623 !important; 
+}
+
+.labelSignup {
+	color: #3F5111 !important; 
+}
+
+md-input-container .md-input-focused {
+	border-color: #81A623 !important; 
+}
+
+.modal-header {
+	margin-bottom: 5px !important;
+}
+
+.inline {
+	display: inline;
 }
