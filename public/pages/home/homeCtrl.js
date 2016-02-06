@@ -123,8 +123,8 @@ angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope,
         }
       })
       .then(function(success){
-        // $scope.cancel();
-        // $uibModalStack.dismissAll();
+        $scope.cancel();
+        $uibModalStack.dismissAll();
         console.log("Inside Success within Signup()");
         $scope.userInfo = success.data;
         window.localStorage.setItem('token', success.data.token);
