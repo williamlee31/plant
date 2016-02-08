@@ -1,8 +1,29 @@
 /*#81A623*/
 .up {
 	bottom:100% !important;
-	top:auto !important; 
+	top:auto !important;
 }
+
+.userBloom {
+	font-size:48px;
+	color: #81A623;
+	font-family: 'Lobster', cursive;
+	padding-right: 100px;
+	padding-left:50px;
+}
+
+.userNav {
+	background-color: white;
+	z-index:2;
+	box-shadow: -5px -12px 20px 15px #888888;
+	height: 60px !important;
+}
+
+.userNav a {
+	font-size:14px;
+	color: #81A623;
+}
+
 #triggerSettings {
 	min-width: 230px;
 	font-size: 25px;
@@ -23,19 +44,25 @@
 }
 
 .profileInfo {
+	position: absolute;
+	top: 70px;
 	background-color: white;
 	width: 230px;
-	border: 2px solid black;
-	border-radius: 10px;
-	margin: 15px auto 10px auto;
   padding: 10px;
+	text-align: left;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+.profileInfo h1 {
+	margin-top: 0px;
 }
 
 .profileImg {
 	border: 2px solid black;
 	width: 200px;
 	display: block;
-	margin: 10px auto;
+	margin: 20px auto;
 }
 
 .trigger {
@@ -43,11 +70,11 @@
 }
 
 .deviceProfile {
-	border: .5px;
-  border-radius: 10px;
+	height: 150px;
+	border-top: 5px solid #81A623;
+	border-left: 5px solid #81A623;
+	border-bottom: 5px solid #81A623;
   background-color: white;
-  box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.5);
-	margin-top: 15px;
 	margin-bottom: 15px;
 	margin-left: auto;
 	margin-right: auto;
@@ -55,14 +82,23 @@
 	position:relative;
 }
 
+.deviceProfile h1{
+	margin-top: 0px;
+}
+
+.deviceDataName {
+	font-weight: bold;
+}
+
 .deviceInfo {
-	overflow: hidden;
-	min-height: 75%;
-	padding: 15px;
+  overflow-y: scroll;
+	display: block;
+	height: 500px;
+	padding:0 0 15px 15px;
 	font-size: 15px;
-	background-color: #96CA2D;
-	margin-bottom: 25px;
-	border-radius: 10px;
+	position:absolute;
+	top: 200px;
+	right: 0;
 }
 
 .chanceRain {
@@ -77,70 +113,64 @@
 
 @media (min-width: 300px) {
 	.deviceInfo {
-		margin-left: auto;
-		margin-right: auto;
-		margin-top: 25px;
 		width: 230px;
 	}
 }
 
 @media (min-width: 350px) {
 	.deviceInfo {
-		margin-left: auto;
-		margin-right: auto;
-		margin-top: 25px;
+		width: 330px;
+	}
+	.profileInfo {
 		width: 330px;
 	}
 }
 
 @media (min-width: 600px) {
+	.deviceProfile h1{
+		margin-top: 0px;
+		font-size: 55px;
+	}
+
+	.deviceProfile {
+		height: 270px;
+	}
+
 	.deviceInfo {
-		width: 80%;
+		font-size: 20px;
+		padding-left: 25px;
+		padding-right: 0;
+		margin-right: -10px;
+		width: 60%;
+		height: 85%;
+		top: 70px;
+	}
+
+	.profileInfo {
+		padding-top: 0;
+		margin-top: 0;
+		width: 230px;
+		position: absolute;
+		top: 70px;
+		left: 0;
 	}
 }
 
 @media (min-width: 700px) {
+	.deviceInfo {
+		margin-top: 0;
+	}
+
 	.chanceRain {
 		font-size: 25px;
-	}
-	.profileInfo {
-		margin: 0px 10px 10px 20px;
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
-	.deviceProfile {
-		width: 100%;
-	}
-	.deviceInfo {
-		min-height: 95%;
-		margin-left: 270px;
-		padding-left: 25px;
-		padding-right: 25px;
-		font-size: 25px;
-		width: 60%;
 	}
 }
 
 @media (min-width: 800px) {
-	.deviceInfo {
-		min-height: 100%;
-		margin-left: 270px;
-		padding-left: 25px;
-		padding-right: 25px;
-		font-size: 25px;
-		width: 65%;
-	}
 }
 
 @media (min-width: 900px) {
-	.deviceInfo {
-		width: 68%;
-	}
 }
 
 @media (min-width: 1000px) {
-	.deviceInfo {
-		width: 70%;
-	}
 }
