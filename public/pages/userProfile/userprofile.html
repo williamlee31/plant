@@ -14,16 +14,16 @@
     </div>
 </nav>
 
-<div class="userProfile">
+<div>
 
-  <div>
+  <div class="userProfile">
 
     <div class='profileInfo'>
       <div ui-view="profileInfo"></div>
       <div ui-view="register"></div>
     </div>
 
-    <div class="deviceInfo">
+    <div class="deviceInfo" ng-style="deviceInfo">
 
       <span ng-show="loading.hidden">
         <img src='../../img/gifs/loading_spinner.gif' class="spinner">
@@ -40,15 +40,20 @@
 
         <div ng-repeat='device in deviceData | orderBy:"name"'>
           <div class="deviceProfile">
-              <div class='chanceRain'>{{device.weather}}</div>
+              <div class='chanceRain'></div>
               <div class='deviceName'><h1>{{device.name}}</h1></div>
+              <div><span>{{device.location}}</span></div>
+              <br>
               <span>
                 <div class='deviceLight'><span class="deviceDataName">Light: </span>{{device.data.light}}</div>
                 <div class='deviceWater'><span class="deviceDataName">Moisture: </span>{{device.data.water}}</div>
                 <div class='deviceTemp'><span class="deviceDataName">Temperature: </span>{{device.data.temp}}</div>
               </span>
-              <div ui-view='trigger' class="deviceSetting"></div>
-              <div ui-view='charts'></div>
+              <div ui-view='trigger' id="deviceSetting"></div>
+              <div ui-view='charts' id="deviceCharts"></div>
+              <div id="deviceRain">
+                <button class='btn btn-sm' id="deviceWeatherButton"><img ng-src="{{device.image.src}}"/></button>
+              </div>
           </div>
         </div>
       </span>

@@ -31,10 +31,57 @@
 	text-align: left;
 }
 
-.deviceSetting {
+#deviceRain {
 	position: absolute;
-	bottom: 10px;
+	top: 5%;
 	right: 10px;
+}
+
+#deviceWeatherButton {
+	background-color: transparent;
+	box-shadow: 0 0 0;
+	padding: 0;
+}
+
+#deviceWeatherButton img{
+	height: 45px;
+	width: 45px;
+}
+
+#deviceSetting {
+	position: absolute;
+	bottom: 5%;
+	right: 10px;
+}
+
+#deviceSettingButton {
+	background-color: transparent;
+	box-shadow: 0 0 0;
+	padding: 0;
+}
+
+#deviceSettingButton img {
+	height: 45px;
+	width: 45px;
+}
+
+#deviceCharts {
+	position: absolute;
+	top: 35%;
+	right: 10px;
+}
+
+#deviceChartsButton {
+	background-color: transparent;
+	border-radius: 0;
+	border-color: transparent;
+	box-shadow: 0 0 0;
+	padding: 0;
+}
+
+#deviceChartsButton img {
+	height: 45px;
+	width: 45px;
 }
 
 .spinner {
@@ -78,7 +125,8 @@
 }
 
 .deviceProfile h1{
-	margin-top: 0px;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 .deviceDataName {
@@ -86,16 +134,20 @@
 }
 
 .deviceInfo {
-  overflow-y: scroll;
+  overflow: auto;
 	display: block;
 	height: 70%;
 	width: 90%;
 	padding:0 15px 15px 0;
 	font-size: 15px;
-	position:absolute;;
+	position:absolute;
 }
 
-.chanceRain {
+.userProfile {
+	overflow: hidden;
+}
+
+/*.chanceRain {
 	border-radius: 10px;
 	text-align: center;
 	font-weight: bold;
@@ -103,14 +155,22 @@
 	background-color: #FF4040;
 	position: relative;
 	top: 0;
-}
+}*/
 
 @media (min-width: 300px) {
 }
 
 @media (min-width: 400px) {
+	.deviceInfo {
+		height: 75%;
+	}
 }
 
+@media (min-width: 500px) {
+	#deviceCharts {
+		top: 40%;
+	}
+}
 @media (min-width: 600px) {
 	.deviceProfile h1{
 		margin-top: 0px;

@@ -257,7 +257,7 @@ angular.module('App.userprofile-chartsCtrl').controller('ModalChartsCtrl', funct
               });
             });
           }
-        })   
+        })
       }
 
       $scope.renderTempChart = function() {
