@@ -21,7 +21,7 @@ angular.module('App.userProfileCtrl',[
     hidden: true
   };
   $scope.currentGraphData = {};
-  $scope.currentDevice = {}; 
+  $scope.currentDevice = {};
 
   $scope.getData = function() {
     $scope.deviceData = [];
@@ -50,20 +50,32 @@ angular.module('App.userProfileCtrl',[
             checkLightVal(streamName.lightVal, deviceData);
             checkTempVal(streamName.tempVal, deviceData);
 
-            $scope.displayForecast(device.zipCode).then(function(zipCode){
-              $scope.deviceData.push({
-                user: $scope.userInfo.username,
-                name: device.name,
-                data: deviceData,
-                apiKey: device.apiKey,
-                weather: zipCode,
-                triggers: {
-                  dangerTrigger: device.dangerTrigger,
-                  dryTrigger: device.dryTrigger,
-                  drenchedTrigger: device.drenchedTrigger
+            $scope.displayForecast(device.zipCode).then(function(weather){
+              userProfileFactory.getLocation(device.zipCode).then(function(location){
+                var image;
+                if(weather){
+                  image = {src: '../img/icons/rain.png'};
+                }else{
+                  image = {src: '../img/icons/light.png'};
                 }
+
+                var location = location.results[0].address_components[1].long_name + ", " + location.results[0].address_components[3].short_name;
+                $scope.deviceData.push({
+                  user: $scope.userInfo.username,
+                  name: device.name,
+                  data: deviceData,
+                  apiKey: device.apiKey,
+                  weather: weather,
+                  location: location,
+                  image: image,
+                  triggers: {
+                    dangerTrigger: device.dangerTrigger,
+                    dryTrigger: device.dryTrigger,
+                    drenchedTrigger: device.drenchedTrigger
+                  }
+                })
+                $scope.pageLoad();
               })
-              $scope.pageLoad();
             })
 
 

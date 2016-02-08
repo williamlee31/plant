@@ -92,15 +92,15 @@ angular.module('userProfileFactory', [])
         var currentTime = new Date();
         currentTime.setDate(currentTime.getDate() - days);
 
-        var startTime = currentTime.getUTCFullYear() 
+        var startTime = currentTime.getUTCFullYear()
                       + '-' + ("0" + (currentTime.getUTCMonth()+1)).slice(-2)
                       + '-' + ("0" + currentTime.getUTCDate()).slice(-2)
                       + 'T' + ("0" + (currentTime.getUTCHours()+1)).slice(-2)
                       + ':' + ("0" + (currentTime.getUTCMinutes()+1)).slice(-2)
                       + ':' + (currentTime.getUTCSeconds()+1) + 'Z';
-        
+
         angular.forEach(streams, function(stream){
-          console.log(stream);              
+          console.log(stream);
           return $http({
             method: 'DELETE',
             url: 'https://api-m2x.att.com/v2/devices/'+m2xKeys.device+'/streams/'+stream+'/values',
@@ -161,6 +161,19 @@ angular.module('userProfileFactory', [])
         })
       }
 
+      var getLocation = function(zipcode){
+        var url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + zipcode + "&sensor=true";
+        return $http({
+            method: 'GET',
+            url: url
+          })
+          .then(function(success){
+            return success.data;
+          }, function(err){
+            console.log("Data not retrieved");
+        })
+      }
+
       return {
         checkDevices: checkDevices,
         deleteDevice: deleteDevice,
@@ -170,6 +183,7 @@ angular.module('userProfileFactory', [])
         deleteDeviceData: deleteDeviceData,
         getChartData: getChartData,
         assignTriggerDevice: assignTriggerDevice,
-        weatherForecast: weatherForecast
+        weatherForecast: weatherForecast,
+        getLocation: getLocation
       }
     })

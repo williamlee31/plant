@@ -1,4 +1,88 @@
 /*#81A623*/
+.up {
+	bottom:100% !important;
+	top:auto !important;
+}
+
+#userNav {
+	border-radius: 0;
+	margin-bottom: 0;
+}
+
+#userBloom {
+	font-size:48px;
+	color: #81A623;
+	font-family: 'Lobster', cursive;
+	padding-left:15px;
+}
+
+#userNavBurger {
+	margin-top: 11px;
+	border: 0;
+}
+
+#userNavBurger span {
+	background-color: #81A623;
+}
+
+#triggerSettings {
+	min-width: 230px;
+	font-size: 25px;
+	text-align: left;
+}
+
+#deviceRain {
+	position: absolute;
+	top: 5%;
+	right: 10px;
+}
+
+#deviceWeatherButton {
+	background-color: transparent;
+	box-shadow: 0 0 0;
+	padding: 0;
+}
+
+#deviceWeatherButton img{
+	height: 45px;
+	width: 45px;
+}
+
+#deviceSetting {
+	position: absolute;
+	bottom: 5%;
+	right: 10px;
+}
+
+#deviceSettingButton {
+	background-color: transparent;
+	box-shadow: 0 0 0;
+	padding: 0;
+}
+
+#deviceSettingButton img {
+	height: 45px;
+	width: 45px;
+}
+
+#deviceCharts {
+	position: absolute;
+	top: 35%;
+	right: 10px;
+}
+
+#deviceChartsButton {
+	background-color: transparent;
+	border-radius: 0;
+	border-color: transparent;
+	box-shadow: 0 0 0;
+	padding: 0;
+}
+
+#deviceChartsButton img {
+	height: 45px;
+	width: 45px;
+}
 
 .spinner {
 	display: block;
@@ -8,19 +92,22 @@
 }
 
 .profileInfo {
-	background-color: white;
-	width: 230px;
-	border: 2px solid black;
-	border-radius: 10px;
-	margin: 0px auto 10px auto;
+	position: relative;
   padding: 10px;
+	text-align: left;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+.profileInfo h1 {
+	margin-top: 0px;
 }
 
 .profileImg {
 	border: 2px solid black;
 	width: 200px;
 	display: block;
-	margin: 10px auto;
+	margin: 20px auto;
 }
 
 .trigger {
@@ -28,26 +115,39 @@
 }
 
 .deviceProfile {
-	border: .5px;
-  border-radius: 10px;
+	border-top: 5px solid #81A623;
+	border-right: 5px solid #81A623;
+	border-bottom: 5px solid #81A623;
   background-color: white;
-  box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.4);
-	margin-top: 15px;
 	margin-bottom: 15px;
-	margin-left: auto;
-	margin-right: auto;
 	padding: 10px;
+	position:relative;
+}
+
+.deviceProfile h1{
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.deviceDataName {
+	font-weight: bold;
 }
 
 .deviceInfo {
-	overflow: hidden;
-	padding: 15px;
+  overflow: auto;
+	display: block;
+	height: 70%;
+	width: 90%;
+	padding:0 15px 15px 0;
 	font-size: 15px;
-	background-color: #EDEDED;
-	height: inherit;
+	position:absolute;
 }
 
-.chanceRain {
+.userProfile {
+	overflow: hidden;
+}
+
+/*.chanceRain {
 	border-radius: 10px;
 	text-align: center;
 	font-weight: bold;
@@ -55,29 +155,32 @@
 	background-color: #FF4040;
 	position: relative;
 	top: 0;
-}
+}*/
 
 @media (min-width: 300px) {
+}
+
+@media (min-width: 400px) {
 	.deviceInfo {
-		margin-left: auto;
-		margin-right: auto;
-		margin-top: 25px;
-		width: 230px;
+		height: 75%;
 	}
 }
 
-@media (min-width: 350px) {
-	.deviceInfo {
-		margin-left: auto;
-		margin-right: auto;
-		margin-top: 25px;
-		width: 330px;
+@media (min-width: 500px) {
+	#deviceCharts {
+		top: 40%;
 	}
 }
-
 @media (min-width: 600px) {
+	.deviceProfile h1{
+		margin-top: 0px;
+		font-size: 55px;
+	}
+
 	.deviceInfo {
-		width: 80%;
+		font-size: 20px;
+		padding-right: 25px;
+		height: 80%;
 	}
 }
 
@@ -85,38 +188,13 @@
 	.chanceRain {
 		font-size: 25px;
 	}
-	.profileInfo {
-		margin: 0px 10px 10px 20px;
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
-	.deviceProfile {
-		width: 100%;
-	}
-	.deviceInfo {
-		min-height: 95%;
-		margin-left: 270px;
-		padding-left: 25px;
-		padding-right: 25px;
-		font-size: 25px;
-		width: 60%;
-	}
 }
 
 @media (min-width: 800px) {
-	.deviceInfo {
-		min-height: 100%;
-		margin-left: 270px;
-		padding-left: 25px;
-		padding-right: 25px;
-		font-size: 25px;
-		width: 65%;
-	}
 }
 
 @media (min-width: 900px) {
-	.deviceInfo {
-		width: 70%;
-	}
+}
+
+@media (min-width: 1000px) {
 }

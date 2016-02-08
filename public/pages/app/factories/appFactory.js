@@ -30,10 +30,9 @@ angular.module('appFactory', [])
 					token: window.localStorage.token
 				}
 			}).then(function(success){
-				$state.get('app').authenticate = true;
 				$state.get('userprofile').authenticate = true;
 				window.localStorage.removeItem('token');
-				$location.path('/signin');
+				$state.go('home');
 			}, function(err){
 				console.log(err);
 			})

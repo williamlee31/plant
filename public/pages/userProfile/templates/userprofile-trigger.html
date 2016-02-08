@@ -1,5 +1,5 @@
 <div>
-  
+
   <script type="text/ng-template" id="myModalTriggerContent.html">
 
     <div class="modal-header">
@@ -13,7 +13,7 @@
               <label>
                 <input type="checkbox" name="streamTriggers" ng-model="triggers.drenchedTrigger" ng-click="updateDeviceTrigger('drenchedTrigger')">Rise above 700 (Drenched!)
               </label>
-            </div>   
+            </div>
             <div class="checkbox">
               <label>
                 <input type="checkbox" name="streamTriggers" ng-model="triggers.dryTrigger" ng-click="updateDeviceTrigger('dryTrigger')">Fall between 400-100 (Dry!)
@@ -35,13 +35,13 @@
   </script>
 
   <div class="btn-group">
-    <button type="button" class="btn glyphicon glyphicon-cog dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="deviceSettingButton"><img src="../img/icons/gears.png"/>
     </button>
-    <ul class="dropdown-menu">
-      <li><button class='btn btn-sm btn-primary' ng-click='prepareTriggers(device.apiKey, device.triggers);open()'>Set triggers</button></li>
+    <ul class="dropdown-menu up pull-right" role="menu" id="triggerSettings">
+      <li class='btn btn-sm' id="triggerSettings" ng-click='prepareTriggers(device.apiKey, device.triggers);open()'>Set triggers</li>
       <li role="separator" class="divider"></li>
-      <li><button class='btn btn-sm btn-danger' data-toggle="modal" data-target="#confirmDataDelete">Delete data (3 days)</button></li>
-      <li><button class='btn btn-sm btn-danger' data-toggle="modal" data-target="#confirmDeviceDelete">Delete device</button></li>
+      <li class='btn btn-sm' id="triggerSettings" data-toggle="modal" data-target="#confirmDataDelete">Delete data (3 days)</li>
+      <li class='btn btn-sm' id="triggerSettings" data-toggle="modal" data-target="#confirmDeviceDelete">Delete device</li>
     </ul>
   </div>
 
@@ -54,7 +54,7 @@
         <div class="modal-body">
           <h5>You are about to delete data older than 3 days for {{device.name}}.</h5>
           <h5>Do you want to proceed?</h5>
-        </div>     
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
           <button class="btn btn-danger btn-ok" data-dismiss="modal" ng-click='deleteDeviceData(device.apiKey)'>Delete</button>
@@ -72,7 +72,7 @@
         <div class="modal-body">
           <h5>You are about to delete {{device.name}} from your profile.</h5>
           <h5>Do you want to proceed?</h5>
-        </div>      
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
           <button class="btn btn-danger btn-ok" data-dismiss="modal" ng-click='deleteDevice(device.name)'>Delete</button>
