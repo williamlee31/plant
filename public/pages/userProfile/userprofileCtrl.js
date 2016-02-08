@@ -54,9 +54,15 @@ angular.module('App.userProfileCtrl',[
             $scope.displayForecast(device.zipCode).then(function(weather){
               userProfileFactory.getLocation(device.zipCode).then(function(location){
                 var image;
-                if(weather){
+                var chanceofRain = false;
+                for(var i = 0; i < weather.length; i++){
+                  if(weather[i].forecast === 'rain'){
+                    chanceofRain = true
+                  }
+                }
+                if(chanceofRain === true){
                   image = {src: '../img/icons/rain.png'};
-                }else{
+                } else if(chanceofRain === false){
                   image = {src: '../img/icons/light.png'};
                 }
 
@@ -69,12 +75,14 @@ angular.module('App.userProfileCtrl',[
                   weather: weather,
                   location: location,
                   image: image,
+                  chanceofRain, chanceofRain,
                   triggers: {
                     dangerTrigger: device.dangerTrigger,
                     dryTrigger: device.dryTrigger,
                     drenchedTrigger: device.drenchedTrigger
                   }
                 })
+                console.log($scope.deviceData);
                 $scope.pageLoad();
               })
             })
@@ -134,19 +142,32 @@ angular.module('App.userProfileCtrl',[
   $scope.displayForecast = function(zipCode){
     return userProfileFactory.weatherForecast(zipCode)
     .then(function(results){
-      var weather = "";
+      console.log('WEATHER API: ', results)
+      var weather = [];
       var response = results.data.forecast.simpleforecast.forecastday;
       console.log("+++++ line 9: ", response)
-      for(var i=0; i < 7; i++){
+      for(var i = 0; i < 7; i++){
         var conditions = response[i].conditions.split(' ');
-        for(var j=0; j < conditions.length; j++){
+        var isRaining = false;
+        for(var j = 0; j < conditions.length; j++){
           if(conditions[j] === "Rain"){
-            if(weather === ""){
-              weather += "Chance of rain on: " + response[i].date.weekday_short;
-            } else{
-              weather += " " + response[i].date.weekday_short;
-            }
+            isRaining = true;
           }
+        }
+        if(isRaining === true){
+          weather.push({
+            day: response[i].date.weekday_short,
+            date: response[i].date.monthname_short + ' ' + response[i].date.day,
+            forecast: 'rain',
+            src: '../img/icons/rain.png'
+          })
+        } else if(isRaining === false){
+          weather.push({
+            day: response[i].date.weekday_short,
+            date: response[i].date.monthname_short + ' ' + response[i].date.day,
+            forecast: 'no rain',
+            src: '../img/icons/light.png'
+          })
         }
       }
       return weather;
