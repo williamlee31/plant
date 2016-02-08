@@ -1,56 +1,57 @@
-<nav class="navbar navbar-fixed-top userNav" role = "navigation">
-  <div>
+<nav class="navbar navbar-inverse" id="userNav">
     <div class="navbar-header">
-      <div class="userBloom">Bloom</div>
+      <button type="button" class="navbar-toggle" id="userNavBurger" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" id="userBloom" ui-sref="home">Bloom</a>
     </div>
-    <div class="collapse navbar-collapse">
-      <ul class = "nav-justified">
-        <li role = "presentation">
-            <a ui-sref="home">HOME</a>
-        </li>
-        <li role = "presentation">
-            <a ng-click="signout()">SIGNOUT</a>
-        </li>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <a class="navbar-brand" ng-click="signout()" href="#">Signout</a>
       </ul>
     </div>
-  </div>
 </nav>
 
 <div class="userProfile">
-  <div class='profileInfo'>
-    <div ui-view="profileInfo"></div>
-    <div ui-view="register"></div>
-  </div>
 
+  <div>
 
-  <div class="deviceInfo">
+    <div class='profileInfo'>
+      <div ui-view="profileInfo"></div>
+      <div ui-view="register"></div>
+    </div>
 
-    <span ng-show="loading.hidden">
-      <img src='../../img/gifs/loading_spinner.gif' class="spinner">
-    </span>
+    <div class="deviceInfo">
 
-    <span ng-show="!loading.hidden">
-      <span ng-show="plants.hidden">
-      <div>
-        <h4>You have no devices bruh!</h4>
-      </div>
-    </span>
+      <span ng-show="loading.hidden">
+        <img src='../../img/gifs/loading_spinner.gif' class="spinner">
+      </span>
 
-    <span ng-show="!plants.hidden">
-
-      <div ng-repeat='device in deviceData | orderBy:"name"'>
-        <div class="deviceProfile">
-            <div class='chanceRain'>{{device.weather}}</div>
-            <div class='deviceName'><h1>{{device.name}}</h1></div>
-            <span>
-              <div class='deviceLight'><span class="deviceDataName">Light: </span>{{device.data.light}}</div>
-              <div class='deviceWater'><span class="deviceDataName">Moisture: </span>{{device.data.water}}</div>
-              <div class='deviceTemp'><span class="deviceDataName">Temperature: </span>{{device.data.temp}}</div>
-            </span>
-            <div ui-view='trigger' class="deviceSetting"></div>
-            <div ui-view='charts'></div>
+      <span ng-show="!loading.hidden">
+        <span ng-show="plants.hidden">
+        <div>
+          <h4>You have no devices bruh!</h4>
         </div>
-      </div>
-    </span>
+      </span>
+
+      <span ng-show="!plants.hidden">
+
+        <div ng-repeat='device in deviceData | orderBy:"name"'>
+          <div class="deviceProfile">
+              <div class='chanceRain'>{{device.weather}}</div>
+              <div class='deviceName'><h1>{{device.name}}</h1></div>
+              <span>
+                <div class='deviceLight'><span class="deviceDataName">Light: </span>{{device.data.light}}</div>
+                <div class='deviceWater'><span class="deviceDataName">Moisture: </span>{{device.data.water}}</div>
+                <div class='deviceTemp'><span class="deviceDataName">Temperature: </span>{{device.data.temp}}</div>
+              </span>
+              <div ui-view='trigger' class="deviceSetting"></div>
+              <div ui-view='charts'></div>
+          </div>
+        </div>
+      </span>
+    </div>
   </div>
 </div>

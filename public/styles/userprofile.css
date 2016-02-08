@@ -4,24 +4,25 @@
 	top:auto !important;
 }
 
-.userBloom {
+#userNav {
+	border-radius: 0;
+	margin-bottom: 0;
+}
+
+#userBloom {
 	font-size:48px;
 	color: #81A623;
 	font-family: 'Lobster', cursive;
-	padding-right: 100px;
-	padding-left:50px;
+	padding-left:15px;
 }
 
-.userNav {
-	background-color: white;
-	z-index:2;
-	box-shadow: -5px -12px 20px 15px #888888;
-	height: 60px !important;
+#userNavBurger {
+	margin-top: 11px;
+	border: 0;
 }
 
-.userNav a {
-	font-size:14px;
-	color: #81A623;
+#userNavBurger span {
+	background-color: #81A623;
 }
 
 #triggerSettings {
@@ -44,10 +45,7 @@
 }
 
 .profileInfo {
-	position: absolute;
-	top: 70px;
-	background-color: white;
-	width: 230px;
+	position: relative;
   padding: 10px;
 	text-align: left;
 	font-weight: bold;
@@ -70,14 +68,11 @@
 }
 
 .deviceProfile {
-	height: 150px;
 	border-top: 5px solid #81A623;
-	border-left: 5px solid #81A623;
+	border-right: 5px solid #81A623;
 	border-bottom: 5px solid #81A623;
   background-color: white;
 	margin-bottom: 15px;
-	margin-left: auto;
-	margin-right: auto;
 	padding: 10px;
 	position:relative;
 }
@@ -93,12 +88,11 @@
 .deviceInfo {
   overflow-y: scroll;
 	display: block;
-	height: 500px;
-	padding:0 0 15px 15px;
+	height: 70%;
+	width: 90%;
+	padding:0 15px 15px 0;
 	font-size: 15px;
-	position:absolute;
-	top: 200px;
-	right: 0;
+	position:absolute;;
 }
 
 .chanceRain {
@@ -112,18 +106,9 @@
 }
 
 @media (min-width: 300px) {
-	.deviceInfo {
-		width: 230px;
-	}
 }
 
-@media (min-width: 350px) {
-	.deviceInfo {
-		width: 330px;
-	}
-	.profileInfo {
-		width: 330px;
-	}
+@media (min-width: 400px) {
 }
 
 @media (min-width: 600px) {
@@ -132,35 +117,14 @@
 		font-size: 55px;
 	}
 
-	.deviceProfile {
-		height: 270px;
-	}
-
 	.deviceInfo {
 		font-size: 20px;
-		padding-left: 25px;
-		padding-right: 0;
-		margin-right: -10px;
-		width: 60%;
-		height: 85%;
-		top: 70px;
-	}
-
-	.profileInfo {
-		padding-top: 0;
-		margin-top: 0;
-		width: 230px;
-		position: absolute;
-		top: 70px;
-		left: 0;
+		padding-right: 25px;
+		height: 80%;
 	}
 }
 
 @media (min-width: 700px) {
-	.deviceInfo {
-		margin-top: 0;
-	}
-
 	.chanceRain {
 		font-size: 25px;
 	}
