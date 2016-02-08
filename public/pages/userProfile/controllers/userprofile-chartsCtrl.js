@@ -64,7 +64,7 @@ angular.module('App.userprofile-chartsCtrl').controller('ModalChartsCtrl', funct
             $(function() {
               $('#mainChart').highcharts({
                 chart: {
-                  type: 'spline'
+                  type: 'area'
                 },
                 title: {
                   text: 'Moisture levels for'
@@ -139,14 +139,14 @@ angular.module('App.userprofile-chartsCtrl').controller('ModalChartsCtrl', funct
                   pointFormat: '{point.x:%I:%M %p} <b><font color="#F5A9A9">{point.y}</font></b>'
                 },
                 plotOptions: {
-                  spline: {
+                  area: {
                     marker: {
                       enabled: false
                     }
                   }
                 },
                 series: [{
-                  color: '#0431B4',
+                  color: '#819FF7',
                   name: 'Moisture level',
                   data: waterData
                 }]
@@ -178,7 +178,7 @@ angular.module('App.userprofile-chartsCtrl').controller('ModalChartsCtrl', funct
             $(function() {
               $('#mainChart').highcharts({
                 chart: {
-                  type: 'spline'
+                  type: 'area'
                 },
                 title: {
                   text: 'Light levels for'
@@ -208,7 +208,7 @@ angular.module('App.userprofile-chartsCtrl').controller('ModalChartsCtrl', funct
                   plotBands: [{
                     from: 1,
                     to: 339,
-                    color: 'rgba(0,0,0,0)',
+                    color: 'rgba(128,128,128,0.3)',
                     label: {
                       text: 'Shady',
                       style: {
@@ -218,7 +218,7 @@ angular.module('App.userprofile-chartsCtrl').controller('ModalChartsCtrl', funct
                   }, {
                     from: 340,
                     to: 680,
-                    color: 'rgba(255,255,0,0.15)',
+                    color: 'rgba(128,128,128,0.2)',
                     label: {
                       text: 'Partially sunny',
                       style: {
@@ -228,7 +228,7 @@ angular.module('App.userprofile-chartsCtrl').controller('ModalChartsCtrl', funct
                   }, {
                     from: 681,
                     to: 1050,
-                    color: 'rgba(255,255,0,0.3)',
+                    color: 'rgba(128,128,128,0.1)',
                     label: {
                       text: 'Sunny',
                       style: {
@@ -243,14 +243,14 @@ angular.module('App.userprofile-chartsCtrl').controller('ModalChartsCtrl', funct
                   pointFormat: '{point.x:%I:%M %p} <b><font color="#F5A9A9">{point.y}</font></b>'
                 },
                 plotOptions: {
-                  spline: {
+                  area: {
                     marker: {
                       enabled: false
                     }
                   }
                 },
                 series: [{
-                  color: '#585858',
+                  color: '#F3F781',
                   name: 'Light level',
                   data: lightData
                 }]
@@ -282,7 +282,7 @@ angular.module('App.userprofile-chartsCtrl').controller('ModalChartsCtrl', funct
             $(function () {
               $('#mainChart').highcharts({
                 chart: {
-                  type: 'spline'
+                  type: 'area'
                 },
                 title: {
                   text: 'Temperature for'
@@ -312,7 +312,7 @@ angular.module('App.userprofile-chartsCtrl').controller('ModalChartsCtrl', funct
                   pointFormat: '{point.x:%I:%M %p} <b><font color="#F5A9A9">{point.y}°F</font></b>'
                 },
                 plotOptions: {
-                  spline: {
+                  area: {
                     marker: {
                       enabled: false
                     }
