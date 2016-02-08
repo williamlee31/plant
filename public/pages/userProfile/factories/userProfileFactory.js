@@ -44,7 +44,6 @@ angular.module('userProfileFactory', [])
       var assignCurrentDevice = function(deviceName, apiKey){
         currentDevice.deviceName = deviceName;
         currentDevice.apiKey = apiKey;
-        console.log(currentDevice)
       }
 
       var assignTriggerDevice = function(username, apiKey, triggers){
@@ -92,12 +91,7 @@ angular.module('userProfileFactory', [])
         var currentTime = new Date();
         currentTime.setDate(currentTime.getDate() - days);
 
-        var startTime = currentTime.getUTCFullYear()
-                      + '-' + ("0" + (currentTime.getUTCMonth()+1)).slice(-2)
-                      + '-' + ("0" + currentTime.getUTCDate()).slice(-2)
-                      + 'T' + ("0" + (currentTime.getUTCHours()+1)).slice(-2)
-                      + ':' + ("0" + (currentTime.getUTCMinutes()+1)).slice(-2)
-                      + ':' + (currentTime.getUTCSeconds()+1) + 'Z';
+        var ISOtime = currentTime.toISOString();
 
         angular.forEach(streams, function(stream){
           console.log(stream);
@@ -110,7 +104,7 @@ angular.module('userProfileFactory', [])
             contentType: 'application/json',
             params: {
               "from": "1980-01-01T01:00:00.000Z",
-              "end": startTime
+              "end": ISOtime
             }
           })
           .then(function(success){

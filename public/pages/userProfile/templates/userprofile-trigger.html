@@ -40,7 +40,7 @@
     <ul class="dropdown-menu up pull-right" role="menu" id="triggerSettings">
       <li class='btn btn-sm' id="triggerSettings" ng-click='prepareTriggers(device.apiKey, device.triggers);open()'>Set triggers</li>
       <li role="separator" class="divider"></li>
-      <li class='btn btn-sm' id="triggerSettings" data-toggle="modal" data-target="#confirmDataDelete">Delete data (3 days)</li>
+      <li class='btn btn-sm' id="triggerSettings" data-toggle="modal" data-target="#confirmDataDelete">Delete ALL data</li>
       <li class='btn btn-sm' id="triggerSettings" data-toggle="modal" data-target="#confirmDeviceDelete">Delete device</li>
     </ul>
   </div>
@@ -52,12 +52,12 @@
           <h4 class="modal-title" id="dataDeleteModal">Confirm Delete</h4>
         </div>
         <div class="modal-body">
-          <h5>You are about to delete data older than 3 days for {{device.name}}.</h5>
+          <h5>You are about to delete ALL data for {{device.name}}. This action cannot be reversed.</h5>
           <h5>Do you want to proceed?</h5>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button class="btn btn-danger btn-ok" data-dismiss="modal" ng-click='deleteDeviceData(device.apiKey)'>Delete</button>
+          <button class="btn btn-danger btn-ok" data-dismiss="modal" ng-click='deleteAllDeviceData(device.apiKey)'>Delete</button>
         </div>
       </div>
     </div>

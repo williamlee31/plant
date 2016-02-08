@@ -64,7 +64,7 @@ angular.module('App.userprofile-chartsCtrl').controller('ModalChartsCtrl', funct
             $(function() {
               $('#mainChart').highcharts({
                 chart: {
-                  type: 'spline'
+                  type: 'area'
                 },
                 title: {
                   text: 'Moisture levels for'
@@ -139,7 +139,7 @@ angular.module('App.userprofile-chartsCtrl').controller('ModalChartsCtrl', funct
                   pointFormat: '{point.x:%I:%M %p} <b><font color="#F5A9A9">{point.y}</font></b>'
                 },
                 plotOptions: {
-                  spline: {
+                  area: {
                     marker: {
                       enabled: false
                     }
@@ -178,7 +178,7 @@ angular.module('App.userprofile-chartsCtrl').controller('ModalChartsCtrl', funct
             $(function() {
               $('#mainChart').highcharts({
                 chart: {
-                  type: 'spline'
+                  type: 'area'
                 },
                 title: {
                   text: 'Light levels for'
@@ -243,7 +243,7 @@ angular.module('App.userprofile-chartsCtrl').controller('ModalChartsCtrl', funct
                   pointFormat: '{point.x:%I:%M %p} <b><font color="#F5A9A9">{point.y}</font></b>'
                 },
                 plotOptions: {
-                  spline: {
+                  area: {
                     marker: {
                       enabled: false
                     }
@@ -282,7 +282,7 @@ angular.module('App.userprofile-chartsCtrl').controller('ModalChartsCtrl', funct
             $(function () {
               $('#mainChart').highcharts({
                 chart: {
-                  type: 'spline'
+                  type: 'area'
                 },
                 title: {
                   text: 'Temperature for'
@@ -312,7 +312,7 @@ angular.module('App.userprofile-chartsCtrl').controller('ModalChartsCtrl', funct
                   pointFormat: '{point.x:%I:%M %p} <b><font color="#F5A9A9">{point.y}°F</font></b>'
                 },
                 plotOptions: {
-                  spline: {
+                  area: {
                     marker: {
                       enabled: false
                     }

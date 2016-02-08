@@ -42,7 +42,8 @@ angular.module('App.userProfileCtrl',[
             }
           })
           .then(function(success){
-            console.log('+++line42 Data from device: ', success.data);
+            userProfileFactory.deleteDeviceData(device.apiKey, 3);
+
             var deviceData = {};
             var streamName = checkDataStreamName(success.data);
 
@@ -118,8 +119,8 @@ angular.module('App.userProfileCtrl',[
     });
   }
 
-  $scope.deleteDeviceData = function(apiKey) {
-    userProfileFactory.deleteDeviceData(apiKey, 3);
+  $scope.deleteAllDeviceData = function(apiKey) {
+    userProfileFactory.deleteDeviceData(apiKey, 0);
   }
 
   $scope.pageLoad = function() {
