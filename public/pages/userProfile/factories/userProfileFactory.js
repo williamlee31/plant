@@ -162,7 +162,7 @@ angular.module('userProfileFactory', [])
       }
 
       var getLocation = function(zipcode){
-        var url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + zipcode + "&sensor=true";
+        var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zipcode + "&sensor=true";
         return $http({
             method: 'GET',
             url: url
