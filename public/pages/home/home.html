@@ -19,14 +19,14 @@
         <a class = "navBarText" href="#setup" du-smooth-scroll du-scrollspy><span class="glyphicon glyphicon-cog" style="font-size:20px;"></span></br>SETUP</a>
     </li>
     <li role = "presentation" class="text-center">
-        <a class = "navBarText" href="#team" du-smooth-scroll du-scrollspy><span class="glyphicon glyphicon-cloud inline-block" style="font-size:20px;"></span></br>TEAM</a>
+        <a class = "navBarText" href="#team" du-smooth-scroll du-scrollspy><span class="glyphicon glyphicon-cloud" style="font-size:20px;"></span></br>TEAM</a>
     </li>
     <li role = "presentation" class="text-center">
-        <a class = "navBarText" href="#contact" du-smooth-scroll du-scrollspy><span class="glyphicon glyphicon-envelope inline-block" style="font-size:20px;"></span></br>CONTACT</a>
+        <a class = "navBarText" href="#contact" du-smooth-scroll du-scrollspy><span class="glyphicon glyphicon-envelope" style="font-size:20px;"></span></br>CONTACT</a>
     </li>
-    <li role = "presentation">
-        <a class = "navBarText" ng-hide="isLoggedIn" type="button" ng-click="open()">LOGIN</a>
-        <a class = "navBarText" ng-show="isLoggedIn" ui-sref="userprofile">{{firstname + "\'S PROFILE" | uppercase}}</a>
+    <li role = "presentation" class="text-center">
+        <a class = "navBarText" ng-hide="isLoggedIn" type="button" ng-click="open()"><span class="glyphicon glyphicon-share-alt" style="font-size:20px;"></span></br>LOGIN</a>
+        <a class = "navBarText" ng-show="isLoggedIn" ui-sref="userprofile"><span class="glyphicon glyphicon-grain text-danger" style="font-size:20px;"></span></br><strong>{{firstname + "\'S PROFILE" | uppercase}}</strong></a>
     </li>
     <!-- <li role = "presentation" ng-show="isLoggedIn">
     </li> -->
