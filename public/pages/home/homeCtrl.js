@@ -12,19 +12,26 @@ angular.module('App.homeCtrl').controller('homeCtrl', function ($scope, $uibModa
     var b = 255 - $(document).scrollTop();
     var marg = 80 - $(document).scrollTop();
     var font = 160 - ($(document).scrollTop() * 1.619);
+    var margTop = -550 + ($(document).scrollTop() * 0.7);
+    var margTopCase = 590 + - ($(document).scrollTop());
 
 
     if($(document).scrollTop() > 126){ r = 129;}
     if($(document).scrollTop() > 89){ g = 166;}
     if($(document).scrollTop() > 220){b = 35;}
     if($(document).scrollTop() > 71){font = 45;}
-    if($(document).scrollTop() > 71){marg = 9;} 
+    if($(document).scrollTop() > 71){marg = 9;}
+    if($(document).scrollTop() > 962){margTop = 123.4; margTopCase = -372;}
+    // if($(document).scrollTop() > 875)
+    // if($(document).scrollTop() < 500){margTop = -300;}
 
     $('.navBarBackground').css('opacity', ($(document).scrollTop() / 300));
     $('.navbarLogo').css('color', "rgb(" + r + "," + g + "," + b +")");
     $('.navBarText').css('color', "rgb(" + r + "," + g + "," + b +")");
     $('.navbarLogo').css('margin-top', marg);
     $('.navbarLogo').css('font-size', font);
+    $('.microchip').css('margin-top', margTop);
+    $('.bloomCase').css('margin-top', margTopCase);
 
   });
 
