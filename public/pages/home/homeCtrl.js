@@ -79,19 +79,6 @@ angular.module('App.homeCtrl').controller('homeCtrl', function ($scope, $uibModa
   
   };
 
-    $scope.toTheTop = function() {
-      $document.scrollTopAnimated(0, 5000).then(function() {
-        console && console.log('You just scrolled to the top!');
-      });
-    };
-
-    var section3 = angular.element(document.getElementById('section-3'));
-    
-    $scope.toSection3 = function() {
-      $document.scrollToElementAnimated(section3);
-    };
-  
-
   $scope.init();
 
 });
@@ -143,8 +130,6 @@ angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope,
         }
       })
       .then(function(success){
-        console.log('Before signup!!')
-        appFactory.welcomeEmail($scope.firstname, $scope.email);
         $scope.cancel();
         $uibModalStack.dismissAll();
         console.log("Inside Success within Signup()");
