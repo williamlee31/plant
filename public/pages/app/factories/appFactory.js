@@ -55,10 +55,28 @@ angular.module('appFactory', [])
       })
     };
 
+    var welcomeEmail = function(firstname, email) {
+      console.log('Trying to send welcome msg for: ' + firstname + ' ' + email)
+      return $http({
+        method: 'POST',
+        url: 'notifications/welcome',
+        data: {
+          firstname: firstname,
+          email: email
+        }
+      }).then(function(success){
+        console.log('Welcome email sent to ' + email)
+        return success;
+      }, function(err){
+        console.log('Welcome email not sent!')
+      })
+    };
+
 		return {
 			isAuth: isAuth,
 			signout: signout,
 			getUser: getUser,
+      welcomeEmail: welcomeEmail,
 			firstname: firstName
 		}
 	})

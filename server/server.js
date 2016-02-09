@@ -1,17 +1,19 @@
 var http = require('http');
 var express = require('express');
 var parser = require('body-parser');
+var nodemailer = require('nodemailer');
 var routeAPI = require('./routesAPI.js')
 var routeSign = require('./routesSign.js');
+var routeNotify = require('./routesNotify.js');
 var db = require('./db/db.js');
 var app = express();
 
-module.exports.app = app;
+module.exports.app = app; 
 
 app.use(parser.json());
 app.use('/api', routeAPI);
 app.use('/api/users', routeSign);
-
+app.use('/notifications', routeNotify)
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
