@@ -87,7 +87,7 @@ angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope,
     
   $scope.signInTrue = true;
   $scope.signinAlert = false;
-  $scope.signupAllert = false;
+  $scope.signupAlert = false;
 
 
   $scope.login = function(){

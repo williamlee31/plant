@@ -477,8 +477,8 @@
                 </md-input-container>
                 </li>
 
-                <div class="" ng-show="signinAlert" style="margin:9px; color:red;">
-                    <strong>  Hi!</strong> The username and password do not match
+                <div class="" ng-show="signinAlert" style="margin:8px; color:red;">
+                    The username and password do not match
                 </div>
 
                 <p>No account? <a ng-click = "signInUpToggle()">Sign Up</a></p>
@@ -531,6 +531,9 @@
                 </md-input-container>
                 </li>
                 </ul>
+                <div class="" ng-show="signupAlert" style="margin:11px; color:red;">
+                    Username and/or email is already taken
+                </div>
                 <p>Have an account? <a ng-click = "signInUpToggle()">Sign In</a></p>
                 </div>
                 <ul class="noBullet" style="margin-top: 10px;">
