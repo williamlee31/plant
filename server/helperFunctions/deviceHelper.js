@@ -55,7 +55,7 @@ exports.getDevices = function(callback, params) {
   .then(function (data) {
     if(data){
       var userid = data.dataValues.id;
-      db.Device.findAll({where: {UserId: userid}, attributes: ['name', 'apiKey', 'zipCode', 'dryTrigger', 'dangerTrigger', 'drenchedTrigger']})
+      db.Device.findAll({where: {UserId: userid}, attributes: ['name', 'apiKey', 'zipCode', 'dryTrigger', 'dryTriggerid', 'dangerTrigger', 'dangerTriggerid', 'drenchedTrigger', 'drenchedTriggerid']})
       .then(function (data) {
         if(data){
           // var token = jwt.decode(data.dataValues.apiKey, 'secret');
@@ -76,6 +76,32 @@ exports.getDevices = function(callback, params) {
   })
 }
 
+exports.getDeviceTriggers = function(callback, params) {
+  console.log('DEVICE TRIGGER UPDATED INFORMATiON ', params.apiKey, params.username);
+  var username = params.username;
+  var token = jwt.encode(params.apiKey, 'secret');
+  db.User.find({where: {username: username}})
+  .then(function (data) {
+    if(data){
+      var userid = data.dataValues.id;
+      db.Device.find({where: {apiKey: token, UserId: userid}, attributes: ['dryTrigger', 'dryTriggerid', 'dangerTrigger', 'dangerTriggerid', 'drenchedTrigger', 'drenchedTriggerid']})
+      .then(function (device) {
+        if(device){
+          callback(device.dataValues);
+        } else {
+          callback(device, 'Invalid device')
+        }
+      }, function(err){
+        console.log(err);
+      })
+    } else {
+      callback(data, 'Invalid user');
+    }
+  }, function(err){
+    console.log(err)
+  })
+}
+
 exports.updateDeviceTrigger = function(callback, params) {
   var username = params.username;
   var token = jwt.encode(params.apiKey, 'secret');
@@ -85,9 +111,11 @@ exports.updateDeviceTrigger = function(callback, params) {
 
   if(triggerName === 'dryTrigger'){
     trig = 'dry alert';
-  } else if (triggerName === 'drenchedTrigger'){
+  } 
+  if(triggerName === 'drenchedTrigger'){
     trig = 'drenched alert';
-  } else if (triggerName === 'dangerTrigger'){
+  }
+  if(triggerName === 'dangerTrigger'){
     trig = 'danger alert';
   }
 
@@ -109,6 +137,34 @@ exports.updateDeviceTrigger = function(callback, params) {
             device.update(triggerObject);
             callback(true, device.dataValues.name + "'s " + trig + " switched to on!");
           }
+        } else {
+          callback(false, 'No device to update')
+        }
+      })
+    } else {
+      callback(false, 'Invalid username')
+    }
+  })
+}
+
+exports.updateTriggerID = function(callback, params) {
+  var username = params.username;
+  var token = jwt.encode(params.apiKey, 'secret');
+  var triggerName = params.triggername + 'id';
+  var triggerID = params.triggerid;
+  var triggerObject = {};
+
+  db.User.find({where: {username: username}})
+  .then(function (data) {
+    if(data){
+      var userid = data.dataValues.id;
+      db.Device.find({where: {apiKey: token, UserId: userid}})
+      .then(function (device) {
+        if(device){
+          console.log('+++line98: trigger is currently true, proceeding to change to false');
+          triggerObject[triggerName] = triggerID;
+          device.update(triggerObject);
+          callback(true, device.dataValues.name + "'s " + triggerName + " set to " + triggerID);
         } else {
           callback(false, 'No device to update')
         }

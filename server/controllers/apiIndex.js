@@ -79,5 +79,33 @@ module.exports = {
         }
       }, req.body)
     }
+  },
+  triggers: {
+    get: function (req, res) {
+      console.log('+++line85: inside controllers get triggers apiIndex.js');
+    },
+    post: function (req, res) {
+      console.log('+++line88: inside controllers post triggers apiIndex.js');
+      models.triggers.post(function(data, msg){
+        if(data){
+          res.send(data);
+        } else {
+          res.status(404).send(msg);
+        }
+      }, req.body)
+    },
+    put: function (req, res) {
+      console.log('+++line91: inside controllers put ustriggersers apiIndex.js');
+      models.triggers.put(function (valid, msg){
+        if(valid){
+          res.send(msg);
+        } else {
+          res.status(404).send(msg);
+        }
+      }, req.body)
+    },
+    delete: function (req, res) {
+      console.log('+++line97: inside controllers delete triggers apiIndex.js');
+    }
   }
 }

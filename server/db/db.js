@@ -25,8 +25,11 @@ var Device = sequelize.define("Device", {
   name: Sequelize.STRING,
   apiKey: Sequelize.STRING,
   zipCode: Sequelize.STRING,
+  dangerTriggerid: {type: Sequelize.STRING, defaultValue: 0},
   dangerTrigger: {type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false},
+  dryTriggerid: {type: Sequelize.STRING, defaultValue: 0},
   dryTrigger: {type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false},
+  drenchedTriggerid: {type: Sequelize.STRING, defaultValue: 0},
   drenchedTrigger: {type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false}
 });
 
