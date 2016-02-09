@@ -27,6 +27,9 @@ angular.module('App.signupCtrl',[
 				appFactory.firstName = success.data.firstname;
 				appFactory.lastName = success.data.lastname;
 				appFactory.email = success.data.email;
+        appFactory.welcomeEmail(success.data.firstname, success.data.email).then(function(success){
+          console.log('Welcome email sent to ' + success.data.firstname)
+        });
 				window.localStorage.setItem('token', success.data.token);
 				console.log("******SIGNUP before LOCATION PATH CHANGE*******");
 				console.log("appFactory.user:",appFactory.user,"appFactory.lastName", appFactory.lastName, "appFactory.firstName", appFactory.firstName, "appFactory.email", appFactory.email);

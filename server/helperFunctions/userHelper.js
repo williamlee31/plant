@@ -8,8 +8,19 @@ exports.getUser = function (callback, params) {
   .then(function (data) {
     if(data){
       callback(data);
-    }else{
+    } else {
       callback(false, 'Invalid token');
+    }
+  })
+}
+
+exports.changeProfileImage = function (callback, params) {
+  db.User.find({where: {username: params.username}})
+  .then(function (data) {
+    if(data){
+      callback()
+    } else {
+      callback(false, 'Image failed to upload')
     }
   })
 }

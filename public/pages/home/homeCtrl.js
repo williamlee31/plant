@@ -143,6 +143,8 @@ angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope,
         }
       })
       .then(function(success){
+        console.log('Before signup!!')
+        appFactory.welcomeEmail($scope.firstname, $scope.email);
         $scope.cancel();
         $uibModalStack.dismissAll();
         console.log("Inside Success within Signup()");
