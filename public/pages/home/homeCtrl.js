@@ -87,6 +87,7 @@ angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope,
     
   $scope.signInTrue = true;
   $scope.signinAlert = false;
+  $scope.signupAllert = false;
 
 
   $scope.login = function(){
@@ -140,6 +141,7 @@ angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope,
         $location.path('/userprofile');
       }, function(err){
         console.log("INCORRECT SIGNUP");
+        $scope.signupAlert = true;
       })
   }
 
