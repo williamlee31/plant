@@ -33,12 +33,11 @@ exports.welcomeMessage = function (callback, params) {
 exports.triggerCallback = function (callback, params) {
   var token = jwt.encode(params.device.id, 'secret');
   var trigger = params.trigger;
-  var devicename = params.device.name
   db.Device.find({where: {apiKey: token}})
   .then(function (device) {
     if(device){
-      var userid = device.dataValues.id;
-      var name = device.dataValues.name;
+      var userid = device.dataValues.UserId;
+      var devicename = device.dataValues.name;
       db.User.find({where: {id: userid}, attributes: ['firstname', 'email']})
       .then(function (user) {
         if(user){

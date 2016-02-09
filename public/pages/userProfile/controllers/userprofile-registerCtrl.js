@@ -174,7 +174,7 @@ angular.module('App.userprofile-registerCtrl').controller('ModalInstanceRegCtrl'
         alert.triggername = 'drenchedTrigger';
         alert.conditions = {
           "water": {
-            "gt": 500
+            "gt": 700
           }  
         }  
       }

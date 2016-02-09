@@ -50,6 +50,8 @@ angular.module('userProfileFactory', [])
         currentTriggerDevice.apiKey = apiKey;
         currentTriggerDevice.username = username;
         currentTriggerDevice.triggers = triggers;
+        console.log('Here is the data you need: ', currentTriggerDevice)
+
       }
 
       var newestTriggerInfo = function(username, apiKey){
@@ -76,6 +78,8 @@ angular.module('userProfileFactory', [])
         console.log('currentTriggerDevice.apiKey: ', currentTriggerDevice.apiKey);
         console.log('deviceTrigger:', deviceTrigger);
         var triggerid = deviceTrigger + 'id';
+
+        console.log(currentTriggerDevice.triggers[deviceTrigger]);
 
         if(currentTriggerDevice.triggers[deviceTrigger]){
           console.log('Trigger is currently off, switching to on');
