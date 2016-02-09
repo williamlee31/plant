@@ -1,3 +1,38 @@
+#navBar1 {
+	opacity: 0;
+	height: 52px;
+	border-width: 1px;
+	border-radius: 0;
+	background-color: white;
+	box-shadow: rgb(136, 136, 136) -5px -12px 20px 15px;
+	margin-bottom: 0;
+	z-index: 1;
+}
+
+#navBar2 {
+	border-width: 1px;
+	border-radius: 0;
+	margin-bottom: 0;
+	z-index: 2;
+}
+
+#homeNavBurger span{
+	background-color: #81A623;
+}
+
+#homeNavBar {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+#homeBloom {
+	margin-top: 0 !important;
+	font-size: 48px;
+	color: #81A623;
+	font-family: 'Lobster', cursive;
+	padding-left:15px;
+}
+
 .backgroundImagePanel{
 	margin-top: 0px;
 	margin-right: 0px;
@@ -19,29 +54,17 @@
 	padding-top:45%;
 	padding-bottom:40%;
 	text-align: center;
-	/*overflow: hidden;*/
-	/*padding-bottom: 25%;
-	text-align: center;
-	margin-bottom: 0px;*/
-}
-
-.nav>li>a {
-    padding: 15px 15px;
 }
 
 .navBarText {
 	color: white;
 	font-family: 'Arial', sans-serif;
-	/*font-family: 'Bree Serif', serif;
-	font-size: 20px;*/
 }
 
-.navBarText:hover {
+/*.navBarText:hover {
 	color:#497631 !important;
-	font-weight: bold;
 	text-decoration: none;
-    text-shadow: 0px 2px 10px #81A623;
-}
+}*/
 
 .navbarLogo {
     float: left;
@@ -60,31 +83,10 @@
 }
 
 #product {
-	/*background-color: #244029;*/
-	/*background-color: #0d241c;*/
 	background-color: white;
 	z-index: -90;
 }
 
-/*.productBar1{
-	background-color: #497631;
-	box-shadow: 0px 4px 4px -2px #888888;
-	position: relative;
-	z-index: -1;
-}
-
-.productBar2{
-	background-color: #AFBC88;
-	box-shadow: 0px 4px 4px -2px #888888;
-	position: relative;
-	z-index: -1;
-}*/
-
-/*.productBar3{
-	background-color: #C4E56F;
-	position: fixed;
-	margin-bottom: 0px;
-}*/
 
 #features {
 	margin-top: 0px;
@@ -94,8 +96,6 @@
 	padding-right: 50px;
 	padding-left: 50px;
 }
-
-
 
 .productPhoto {
 	margin: auto;
@@ -161,15 +161,15 @@ md-input-container {
 
 
 .labelSignin {
-	color: #81A623 !important; 
+	color: #81A623 !important;
 }
 
 .labelSignup {
-	color: #3F5111 !important; 
+	color: #3F5111 !important;
 }
 
 md-input-container .md-input-focused {
-	border-color: #81A623 !important; 
+	border-color: #81A623 !important;
 }
 
 .modal-header {
@@ -220,7 +220,7 @@ a.active {
   text-shadow: 0px 2px 10px #81A623;
   }
 
-input.transparent-input { 
+input.transparent-input {
     border:none !important
 }
 
@@ -237,7 +237,7 @@ color: white !important;
     position: relative;
     top: -368px;
     width: 72%;
-    margin: 30px;                
+    margin: 30px;
 }
 
 .second {
@@ -247,7 +247,7 @@ color: white !important;
 
 .secondCol {
     top: -430px;
-}  
+}
 
 .headerTitle {
 	color: #81A623;
@@ -267,4 +267,29 @@ color: white !important;
 
 .seeThroughInput {
 	background-color: rgba(255, 255, 255, 0.5);
+}
+
+@media (min-width: 300px) {
+
+}
+
+@media (min-width: 400px) {
+
+}
+
+@media (min-width: 500px) {
+
+}
+@media (min-width: 600px) {
+
+}
+
+@media (min-width: 768px) {
+
+	#homeBloom {
+		position: absolute;
+		top: 80px;
+		font-size: 160px;
+		color: white;
+	}
 }
