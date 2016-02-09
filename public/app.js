@@ -15,7 +15,8 @@ angular.module('App',[
 	'userProfileFactory',
 	'ui.bootstrap',
 	'ngAnimate',
-	'ngMaterial'
+	'ngMaterial',
+	'duScroll'
 	])
 	.config(function($stateProvider, $urlRouterProvider,  $httpProvider){
 		//  how to do controller/view (DON'T forget to add controller to angular.model & index.html)

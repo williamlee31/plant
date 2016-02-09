@@ -9,20 +9,20 @@
     </div>
     <div class="collapse navbar-collapse">
     <ul class = "nav-justified">
-    <li role = "presentation">
-        <a class = "navBarText page-scroll" ng-click="scrollTo('product')">PRODUCT</a>
+    <li role = "presentation" class="text-center">
+        <a class = "navBarText page-scroll" href="#product" du-smooth-scroll du-scrollspy ><span class="glyphicon glyphicon-leaf inline-block" style="font-size:20px;"></span></br>PRODUCT</a>
+    </li>
+    <li role = "presentation" class="text-center">
+        <a class = "navBarText" href="#features" du-smooth-scroll du-scrollspy><span class="glyphicon glyphicon-th-list inline-block" style="font-size:20px;"></span></br>FEATURES</a>
     </li>
     <li role = "presentation">
-        <a class = "navBarText" ng-click="scrollTo('features')">FEATURES</a>
+        <a class = "navBarText" href="#setup" du-smooth-scroll du-scrollspy><span class="glyphicon glyphicon-cog" style="font-size:20px;"></span> SETUP</a>
     </li>
     <li role = "presentation">
-        <a class = "navBarText" ng-click="scrollTo('setup')">SETUP</a>
+        <a class = "navBarText" href="#team" du-smooth-scroll du-scrollspy><span class="glyphicon glyphicon-cloud" style="font-size:20px;"></span> TEAM</a>
     </li>
     <li role = "presentation">
-        <a class = "navBarText" ng-click="scrollTo('team')">TEAM</a>
-    </li>
-    <li role = "presentation">
-        <a class = "navBarText" ng-click="scrollTo('contact')">CONTACT</a>
+        <a class = "navBarText" href="#contact" du-smooth-scroll du-scrollspy><span class="glyphicon glyphicon-envelope" style="font-size:20px;"></span> CONTACT</a>
     </li>
     <li role = "presentation">
         <a class = "navBarText" ng-hide="isLoggedIn" type="button" ng-click="open()">LOGIN</a>
@@ -35,7 +35,9 @@
     </div>
     </nav>
 
+
     <div class="backgroundImagePanel">
+
         <!-- <section id="intro" class="intro-section">
         <div class="container">
         <div class = "row">
@@ -45,7 +47,45 @@
         </div>
         </div>
         </section> -->
+        <section id="intro" class="intro-section">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-items pull-left text-left" style="">
+
+                             <h2 style="color:white;"> What/s Good</h2>
+                             <h3 style="color:white;">Purify your greens. Help them help YOU with your favorite past time.</h3>
+
+                             <form>
+                                <div class="field-item left active-error">
+                                  <label for="email" class="show-hide-label"></label>
+                                  <input class="form-control transparent-input input-lg" type='email' name='name' placeholder="Email" style="border:none !important;box-shadow:none !important;"  required>
+                              </div>
+
+                              <div class="field-item right active-error">
+                                  <label for="password-login" class="show-hide-label"></label>
+                                  <input class="form-control transparent-input input-lg" type='password' name='name' placeholder="Password" style="border:none !important;box-shadow:none !important;"  required>
+                              </div>
+                              <br>
+                              <button class="btn btn-lg btn-success text-center btn-block" style="">REGISTER FOOL</button>
+                             </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6 secondCol">
+                        <div class="second text-right">
+                            <h1 style="color:white;">Blah Blah Blah</h1>
+                            <h3> Maybe write some content here..and/or have a button or something to scroll to product page </h3>
+                            <button href="#product" class="btn btn-lg btn-info text-center" style="" du-smooth-scroll du-scrollspy duration="1000">How it works</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
+
+
+
     <section id="product">
         
         <!-- <div class="productBar1">
