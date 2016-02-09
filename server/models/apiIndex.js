@@ -35,5 +35,20 @@ module.exports = {
       console.log('Params passed into device delete: ', params.devicename)
       deviceHelper.deleteDevice(callback, params);
     }
+  },
+  triggers: {
+    get: function (callback, params) {
+      console.log('+++line41: inside models get triggers apiIndex.js');    },
+    post: function (callback, params) {
+      console.log('+++line44: inside models post triggers apiIndex.js');
+      deviceHelper.getDeviceTriggers(callback, params);
+    },
+    put: function (callback, params) {
+      console.log('+++line47: inside models put triggers apiIndex.js');
+      deviceHelper.updateTriggerID(callback, params);
+    },
+    delete: function (callback, params) {
+      console.log('+++line51: insde models post triggers apiIndex.js');
+    }
   }
 }

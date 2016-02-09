@@ -52,6 +52,21 @@ angular.module('userProfileFactory', [])
         currentTriggerDevice.triggers = triggers;
       }
 
+      var newestTriggerInfo = function(username, apiKey){
+        return $http({
+          method: 'POST',
+           url: '/api/triggers',
+           data: {
+             username: username,
+             apiKey: apiKey
+           }
+        }).then(function(success){
+          return success.data;
+        }, function(err){
+          console.log(err)
+        })
+      }
+
       var getTriggers = function() {
         return currentTriggerDevice;
       }
@@ -60,22 +75,75 @@ angular.module('userProfileFactory', [])
         console.log('currentTriggerDevice.username: ', currentTriggerDevice.username);
         console.log('currentTriggerDevice.apiKey: ', currentTriggerDevice.apiKey);
         console.log('deviceTrigger:', deviceTrigger);
-        return $http({
-          method: 'PUT',
-          url: '/api/devices',
-          data: {
-            username: currentTriggerDevice.username,
-            apiKey: currentTriggerDevice.apiKey,
-            triggerName: deviceTrigger
-          }
-        })
-        .then(function(dbResponse){
-          console.log(dbResponse)
-            return dbResponse.data;
-        }, function(err){
-          console.log(dbResponse)
-          return dbResponse.data;
-        })
+        var triggerid = deviceTrigger + 'id';
+
+        if(currentTriggerDevice.triggers[deviceTrigger]){
+          console.log('Trigger is currently off, switching to on');
+          return $http({
+            method: "PUT",
+            url: 'https://api-m2x.att.com/v2/devices/'+currentTriggerDevice.apiKey+'/triggers/'+currentTriggerDevice.triggers[triggerid],
+            headers: {
+              "X-M2X-KEY": deviceMasterKey
+            },
+            data: {
+              "status": "enabled"
+            }
+          }).then(function(success){
+            console.log('Trigger updated on M2X, proceeding to change in database.');
+            return $http({
+              method: 'PUT',
+              url: '/api/devices',
+              data: {
+                username: currentTriggerDevice.username,
+                apiKey: currentTriggerDevice.apiKey,
+                triggerName: deviceTrigger
+              }
+            })
+            .then(function(dbResponse){
+              console.log(dbResponse)
+                return dbResponse.data;
+            }, function(err){
+              console.log(dbResponse)
+              return dbResponse.data;
+            })
+          }, function(err){
+            console.log(err)
+          })
+        }
+        if(!currentTriggerDevice.triggers[deviceTrigger]){
+          console.log('Trigger is currently on, switching to off');
+          return $http({
+            method: "PUT",
+            url: 'https://api-m2x.att.com/v2/devices/'+currentTriggerDevice.apiKey+'/triggers/'+currentTriggerDevice.triggers[triggerid],
+            headers: {
+              "X-M2X-KEY": deviceMasterKey
+            },
+            data: {
+              "status": "disabled"
+            }
+          }).then(function(success){
+            console.log('Trigger updated on M2X, proceeding to change in database.');
+              return $http({
+              method: 'PUT',
+              url: '/api/devices',
+              data: {
+                username: currentTriggerDevice.username,
+                apiKey: currentTriggerDevice.apiKey,
+                triggerName: deviceTrigger
+              }
+            })
+            .then(function(dbResponse){
+              console.log(dbResponse)
+                return dbResponse.data;
+            }, function(err){
+              console.log(dbResponse)
+              return dbResponse.data;
+            })
+          }, function(err){
+            console.log(err)
+          })
+        }
+
       }
 
       var deleteDeviceData = function(apiKey, days){
@@ -177,6 +245,7 @@ angular.module('userProfileFactory', [])
         deleteDeviceData: deleteDeviceData,
         getChartData: getChartData,
         assignTriggerDevice: assignTriggerDevice,
+        newestTriggerInfo: newestTriggerInfo,
         weatherForecast: weatherForecast,
         getLocation: getLocation
       }

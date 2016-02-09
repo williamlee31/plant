@@ -82,7 +82,7 @@ angular.module('App.userProfileCtrl',[
                     drenchedTrigger: device.drenchedTrigger
                   }
                 })
-                console.log($scope.deviceData);
+                console.log('Device data before pageLoad: ', $scope.deviceData);
                 $scope.pageLoad();
               })
             })
@@ -110,7 +110,9 @@ angular.module('App.userProfileCtrl',[
   }
 
   $scope.prepareTriggers = function(apiKey, triggers){
-    userProfileFactory.assignTriggerDevice($scope.userInfo.username, apiKey, triggers);
+    userProfileFactory.newestTriggerInfo($scope.userInfo.username, apiKey).then(function(triggerData){
+      userProfileFactory.assignTriggerDevice($scope.userInfo.username, apiKey, triggerData);
+    })
   }
 
   $scope.updateDeviceTrigger = function(apiKey, triggerName) {
@@ -120,6 +122,7 @@ angular.module('App.userProfileCtrl',[
   }
 
   $scope.deleteDevice = function(deviceName) {
+    console.log('Attempting to delete device: ' + deviceName)
     userProfileFactory.deleteDevice(deviceName, $scope.userInfo.username).then(function(result){
       if(result){
         $scope.init();

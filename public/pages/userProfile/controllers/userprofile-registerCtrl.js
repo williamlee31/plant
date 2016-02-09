@@ -98,6 +98,8 @@ angular.module('App.userprofile-registerCtrl').controller('ModalInstanceRegCtrl'
         }
     })
     .then(function(success){
+      console.log('01010101010101001 ' + m2xKeys.device);
+      registerAllM2X(m2xKeys.device);
       return $http({
         method: 'POST',
         url: '/api/devices', // api post devicekey route to database
@@ -141,4 +143,77 @@ angular.module('App.userprofile-registerCtrl').controller('ModalInstanceRegCtrl'
   }
 
   $scope.init();
+
+
+  function registerAllM2X (apiKey) {
+    var triggers = ['dry alert', 'danger alert', 'drenched alert'];
+
+    angular.forEach(triggers, function (trigger) {
+      var alert = {};
+      if(trigger === 'dry alert'){
+        alert.name = "Low moisture levels (dry)";
+        alert.triggername = 'dryTrigger';
+        alert.conditions = {
+          "water": {
+            "lte": 400,
+            "gt": 100
+          }
+        }
+      }
+      if(trigger === 'danger alert'){
+        alert.name = "Extremely low moisture levels (danger)";
+        alert.triggername = 'dangerTrigger';
+        alert.conditions = {
+          "water": {
+            "lte": 100
+          }  
+        }
+      }
+      if(trigger === 'drenched alert'){
+        alert.name = "Extremely high moisture levels (drenched)";
+        alert.triggername = 'drenchedTrigger';
+        alert.conditions = {
+          "water": {
+            "gt": 500
+          }  
+        }  
+      }
+      console.log('Adding trigger ' + alert.name + ' to m2x, under the apikey ' + apiKey)
+
+      return $http({
+        method: "POST",
+        url: 'https://api-m2x.att.com/v2/devices/'+apiKey+'/triggers',
+        headers: {
+          "X-M2X-KEY": "7f4b3ddf06944e06a87d0cc8aef754ad"
+        },
+        data: {
+          "name": alert.name,
+          "conditions": alert.conditions,
+          "frequency": "periodic",
+          "interval": 43200,
+          "callback_url": "http://requestb.in/px9yvmpx",
+          "status": "disabled"
+        }
+      }).
+      then(function(success) {
+        return $http({
+          method: 'PUT',
+          url: '/api/triggers',
+          data:{
+            username: $scope.username,
+            apiKey: apiKey,
+            triggername: alert.triggername,
+            triggerid: success.data.id
+          }
+        }).then(function(success){
+          console.log('Successfully registered ' + alert.name + ' trigger for ' + $scope.device.name);
+        }), function(err) {
+          console.log('err: ', err);
+        }
+      }), function(err) {
+        console.log('err: ', err);
+      }
+    })
+  }
+
 })
