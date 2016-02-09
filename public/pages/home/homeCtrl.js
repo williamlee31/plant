@@ -86,6 +86,7 @@ angular.module('App.homeCtrl').controller('homeCtrl', function ($scope, $uibModa
 angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, $uibModalStack, $http, appFactory, $location) {
     
   $scope.signInTrue = true;
+  $scope.signinAlert = false;
 
 
   $scope.login = function(){
@@ -107,6 +108,7 @@ angular.module('App.homeCtrl').controller('ModalInstanceCtrl', function ($scope,
         $location.path('/userprofile');
       }, function(err){
         console.log("INCORRECT LOGIN");
+        $scope.signinAlert = true;
       })
 
   }
