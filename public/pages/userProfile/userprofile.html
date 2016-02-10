@@ -1,4 +1,4 @@
-<nav class="navbar " id="userNav">
+<nav class="navbar navbar-inverse" id="userNav">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" id="userNavBurger" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
@@ -55,13 +55,13 @@
                 <div class="btn-group">
                   <button class="btn-sm btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="deviceWeatherButton"><img src="{{device.image.src}}"/>
                   </button>
-                  <ul ng-if="device.chanceofRain" class="dropdown-menu down pull-right" role="menu" id="">
+                  <ul ng-if="device.chanceofRain" class="dropdown-menu down pull-right" role="menu" id="chanceofRain">
                     <li><b>Chance of rain on: </b></li>
                     <li ng-repeat="weather in device.weather">
                       <h5 ng-if="weather.forecast === 'rain'">{{weather.day}}, {{weather.date}}</h5>
                     </li>
                   </ul>
-                  <ul ng-if="!device.chanceofRain" class="dropdown-menu down pull-right" role="menu" id="">
+                  <ul ng-if="!device.chanceofRain" class="dropdown-menu down pull-right" role="menu" id="noRain">
                     <li><b>No rain for the next 7 days!</b></li>
                   </ul>
                 </div>
