@@ -74,8 +74,6 @@ angular.module('userProfileFactory', [])
       }
 
       var updateDeviceTrigger = function(deviceTrigger){
-        console.log('currentTriggerDevice.username: ', currentTriggerDevice.username);
-        console.log('currentTriggerDevice.apiKey: ', currentTriggerDevice.apiKey);
         console.log('deviceTrigger:', deviceTrigger);
         var triggerid = deviceTrigger + 'id';
 

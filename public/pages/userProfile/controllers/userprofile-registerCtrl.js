@@ -98,7 +98,6 @@ angular.module('App.userprofile-registerCtrl').controller('ModalInstanceRegCtrl'
         }
     })
     .then(function(success){
-      console.log('01010101010101001 ' + m2xKeys.device);
       registerAllM2X(m2xKeys.device);
       return $http({
         method: 'POST',
