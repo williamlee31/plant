@@ -122,9 +122,9 @@ angular.module('App.userProfileCtrl',[
     })
   }
 
-  $scope.deleteDevice = function(deviceName) {
+  $scope.deleteDevice = function(deviceName, apiKey) {
     console.log('Attempting to delete device: ' + deviceName)
-    userProfileFactory.deleteDevice(deviceName, $scope.userInfo.username).then(function(result){
+    userProfileFactory.deleteDevice(deviceName, $scope.userInfo.username, apiKey).then(function(result){
       if(result){
         $scope.init();
       }

@@ -20,25 +20,55 @@ angular.module('userProfileFactory', [])
         })
       }
 
-      var deleteDevice = function(deviceName, username) {
+      var deleteDevice = function(deviceName, username, apiKey) {
         return $http({
-          method: 'DELETE',
-          url: '/api/devices',
-          headers: {"Content-Type": "application/json;charset=utf-8"},
-          data: {
-            username: username,
-            devicename: deviceName,
-          }
-        })
-        .then(function(dbResponse){
-          if(dbResponse.status === 200){
+          method: 'POST',
+           url: '/api/triggers',
+           data: {
+             username: username,
+             apiKey: apiKey
+           }
+        }).then(function(success){
+          console.log('Successfully grabbed trigger data: ', success.data);
+          var triggers = [
+            success.data.dryTriggerid,
+            success.data.drenchedTriggerid,
+            success.data.dangerTriggerid
+          ];
+          angular.forEach(triggers, function(trigger){
+            console.log('Deleting trigger on M2X for ', trigger);
+            return $http({
+              method: 'DELETE',
+              url: 'https://api-m2x.att.com/v2/devices/'+apiKey+'/triggers/'+trigger,
+              headers: {
+                "X-M2X-KEY": deviceMasterKey
+              }
+            }).then(function(success){
+                console.log(success);
+              }, function(err){
+                console.log(err);
+              })
+          })
+          return $http({
+            method: 'DELETE',
+            url: '/api/devices',
+            headers: {"Content-Type": "application/json;charset=utf-8"},
+            data: {
+              username: username,
+              devicename: deviceName,
+            }
+          })
+          .then(function(dbResponse){
             console.log('Device deleted');
             return true;
-          }
+          }, function(err){
+            console.log('Device not deleted');
+            return false;
+          })
         }, function(err){
-          console.log('Device not deleted');
-          return false;
+          console.log(err)
         })
+
       }
 
       var assignCurrentDevice = function(deviceName, apiKey){
