@@ -16,7 +16,7 @@ angular.module('userProfileFactory', [])
         .then(function(success){
           return success;
         }, function(err){
-          console.log("Device not retrieved");
+          return false;
         })
       }
 

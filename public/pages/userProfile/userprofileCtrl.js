@@ -1,25 +1,21 @@
 angular.module('App.userProfileCtrl',[
   ])
-.service('showAlertSrvc', ['$timeout', function($timeout) {
-  return function(delay) {
-    var result = {hidden:true};
-    $timeout(function() {
-      result.hidden=false;
-    }, delay);
-    return result;
-  };
-}])
-.controller('userProfileCtrl', function ($scope, $http, showAlertSrvc, appFactory, userProfileFactory, $uibModal, $log){
-
+// .service('showAlertSrvc', ['$timeout', function($timeout) {
+//   return function(delay) {
+//     var result = {hidden:true};
+//     $timeout(function() {
+//       result.hidden=false;
+//     }, delay);
+//     return result;
+//   };
+// }])
+.controller('userProfileCtrl', function ($scope, $http, appFactory, userProfileFactory, $uibModal, $log){
+  $scope.loading = {hidden:true};
   $scope.signout = appFactory.signout;
-
-  $scope.loading = showAlertSrvc(1000);
   $scope.deviceData = [];
   $scope.userDevices = {};
   $scope.userInfo = {};
-  $scope.plants = {
-    hidden: true
-  };
+  $scope.plants = {hidden: true};
   $scope.currentGraphData = {};
   $scope.currentDevice = {};
 
@@ -28,72 +24,77 @@ angular.module('App.userProfileCtrl',[
     userProfileFactory.checkDevices($scope.userInfo.username)
     .then(
       function(result){
-        $scope.userDevices = result.data
-        angular.forEach($scope.userDevices , function(device){
-          var m2xKeys = {
-            master: deviceMasterKey,
-            device: device.apiKey
-          }
-          return $http({
-            method: 'GET',
-            url: 'https://api-m2x.att.com/v2/devices/'+m2xKeys.device+'/streams?pretty',
-            headers: {
-              "X-M2X-KEY": m2xKeys.master
+        if(result.data.length){
+          $scope.userDevices = result.data
+          angular.forEach($scope.userDevices , function(device){
+            var m2xKeys = {
+              master: deviceMasterKey,
+              device: device.apiKey
             }
-          })
-          .then(function(success){
-            userProfileFactory.deleteDeviceData(device.apiKey, 3);
-
-            var deviceData = {};
-            var streamName = checkDataStreamName(success.data);
-
-            checkWaterVal(streamName.waterVal, deviceData);
-            checkLightVal(streamName.lightVal, deviceData);
-            checkTempVal(streamName.tempVal, deviceData);
-
-            $scope.displayForecast(device.zipCode).then(function(weather){
-              userProfileFactory.getLocation(device.zipCode).then(function(location){
-                var image;
-                var chanceofRain = false;
-                for(var i = 0; i < weather.length; i++){
-                  if(weather[i].forecast === 'rain'){
-                    chanceofRain = true
-                  }
-                }
-                if(chanceofRain === true){
-                  image = {src: '../img/icons/rain.png'};
-                } else if(chanceofRain === false){
-                  image = {src: '../img/icons/light.png'};
-                }
-
-                var location = location.results[0].address_components[1].long_name + ", " + location.results[0].address_components[3].short_name;
-                $scope.deviceData.push({
-                  user: $scope.userInfo.username,
-                  name: device.name,
-                  data: deviceData,
-                  apiKey: device.apiKey,
-                  weather: weather,
-                  location: location,
-                  image: image,
-                  chanceofRain: chanceofRain,
-                  triggers: {
-                    dangerTrigger: device.dangerTrigger,
-                    dryTrigger: device.dryTrigger,
-                    drenchedTrigger: device.drenchedTrigger
-                  }
-                })
-                console.log('Device data before pageLoad: ', $scope.deviceData);
-                $scope.pageLoad();
-              })
+            return $http({
+              method: 'GET',
+              url: 'https://api-m2x.att.com/v2/devices/'+m2xKeys.device+'/streams?pretty',
+              headers: {
+                "X-M2X-KEY": m2xKeys.master
+              }
             })
+            .then(function(success){
+              userProfileFactory.deleteDeviceData(device.apiKey, 3);
+
+              var deviceData = {};
+              var streamName = checkDataStreamName(success.data);
+
+              checkWaterVal(streamName.waterVal, deviceData);
+              checkLightVal(streamName.lightVal, deviceData);
+              checkTempVal(streamName.tempVal, deviceData);
+
+              $scope.displayForecast(device.zipCode).then(function(weather){
+                userProfileFactory.getLocation(device.zipCode).then(function(location){
+                  var image;
+                  var chanceofRain = false;
+                  for(var i = 0; i < weather.length; i++){
+                    if(weather[i].forecast === 'rain'){
+                      chanceofRain = true
+                    }
+                  }
+                  if(chanceofRain === true){
+                    image = {src: '../img/icons/rain.png'};
+                  } else if(chanceofRain === false){
+                    image = {src: '../img/icons/light.png'};
+                  }
+
+                  var location = location.results[0].address_components[1].long_name + ", " + location.results[0].address_components[3].short_name;
+                  $scope.deviceData.push({
+                    user: $scope.userInfo.username,
+                    name: device.name,
+                    data: deviceData,
+                    apiKey: device.apiKey,
+                    weather: weather,
+                    location: location,
+                    image: image,
+                    chanceofRain: chanceofRain,
+                    triggers: {
+                      dangerTrigger: device.dangerTrigger,
+                      dryTrigger: device.dryTrigger,
+                      drenchedTrigger: device.drenchedTrigger
+                    }
+                  })
+                  console.log('Device data before pageLoad: ', $scope.deviceData);
+                  $scope.loading.hidden = false;
+                  $scope.plants.hidden = false;
+                })
+              })
 
 
-          }, function(err){
-            console.log("Data not retrieved");
+            }, function(err){
+              console.log("Data not retrieved");
+            })
           })
-        })
-      }
-    )
+        }else{
+          $scope.loading.hidden = false;
+          $scope.plants.hidden = true;
+        }
+      })
   }
 
   $scope.prepareCharts = function(deviceName) {
@@ -132,14 +133,6 @@ angular.module('App.userProfileCtrl',[
 
   $scope.deleteAllDeviceData = function(apiKey) {
     userProfileFactory.deleteDeviceData(apiKey, 0);
-  }
-
-  $scope.pageLoad = function() {
-    if($scope.deviceData.length < 1){
-      $scope.plants.hidden = true;
-    } else {
-      $scope.plants.hidden = false;
-    }
   }
 
   $scope.displayForecast = function(zipCode){
@@ -181,7 +174,6 @@ angular.module('App.userProfileCtrl',[
     appFactory.getUser().then(function(result){
       $scope.userInfo = result.data;
       $scope.getData();
-      $scope.pageLoad();
     })
   }
 
