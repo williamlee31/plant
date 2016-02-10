@@ -84,6 +84,20 @@
 	width: 45px;
 }
 
+#chanceofRain {
+	overflow-y: auto;
+	text-align: center;
+	padding: 5px;
+	width: 195px;
+	height: 100px;
+}
+
+#noRain {
+	text-align: center;
+	padding: 5px;
+	width: 195px;
+}
+
 .spinner {
 	display: block;
 	width:100px;
