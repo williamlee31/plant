@@ -142,6 +142,7 @@
 	width: 100%;
 	background-attachment: fixed;
 	position: relative;
+	background-repeat: no-repeat;
 }
 
 .feedback {
