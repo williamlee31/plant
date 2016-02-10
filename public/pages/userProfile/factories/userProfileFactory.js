@@ -218,7 +218,7 @@ angular.module('userProfileFactory', [])
       var weatherForecast = function(zipcode){
         return $http({
             method: 'GET',
-            url: "https://api.wunderground.com/api/e472269ffde1bf7f/forecast10day/q/"+zipcode+".json"
+            url: "https://api.wunderground.com/api/"+wundergroundKey+"/forecast10day/q/"+zipcode+".json"
           })
           .then(function(success){
             return success;
