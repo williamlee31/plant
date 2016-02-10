@@ -166,7 +166,6 @@ angular.module('userProfileFactory', [])
         var ISOtime = currentTime.toISOString();
 
         angular.forEach(streams, function(stream){
-          console.log(stream);
           return $http({
             method: 'DELETE',
             url: 'https://api-m2x.att.com/v2/devices/'+m2xKeys.device+'/streams/'+stream+'/values',

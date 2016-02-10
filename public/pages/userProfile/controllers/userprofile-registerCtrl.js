@@ -148,72 +148,87 @@ angular.module('App.userprofile-registerCtrl').controller('ModalInstanceRegCtrl'
   function registerAllM2X (apiKey) {
     var triggers = ['dry alert', 'danger alert', 'drenched alert'];
 
-    angular.forEach(triggers, function (trigger) {
-      var alert = {};
-      if(trigger === 'dry alert'){
-        alert.name = "Low moisture levels (dry)";
-        alert.triggername = 'dryTrigger';
-        alert.conditions = {
-          "water": {
-            "lte": 400,
-            "gt": 100
-          }
-        }
-      }
-      if(trigger === 'danger alert'){
-        alert.name = "Extremely low moisture levels (danger)";
-        alert.triggername = 'dangerTrigger';
-        alert.conditions = {
-          "water": {
-            "lte": 100
-          }  
-        }
-      }
-      if(trigger === 'drenched alert'){
-        alert.name = "Extremely high moisture levels (drenched)";
-        alert.triggername = 'drenchedTrigger';
-        alert.conditions = {
-          "water": {
-            "gt": 700
-          }  
-        }  
-      }
-      console.log('Adding trigger ' + alert.name + ' to m2x, under the apikey ' + apiKey)
-
-      return $http({
-        method: "POST",
-        url: 'https://api-m2x.att.com/v2/devices/'+apiKey+'/triggers',
+    return $http({
+      method: 'GET',
+      url: 'https://api-m2x.att.com/v2/devices/'+apiKey+'/triggers',
         headers: {
-          "X-M2X-KEY": "7f4b3ddf06944e06a87d0cc8aef754ad"
-        },
-        data: {
-          "name": alert.name,
-          "conditions": alert.conditions,
-          "frequency": "periodic",
-          "interval": 43200,
-          "callback_url": "http://bloomapp.herokuapp.com/api/triggers",
-          "status": "disabled"
+          "X-M2X-KEY": deviceMasterKey
         }
-      }).
-      then(function(success) {
-        return $http({
-          method: 'PUT',
-          url: '/api/triggers',
-          data:{
-            username: $scope.username,
-            apiKey: apiKey,
-            triggername: alert.triggername,
-            triggerid: success.data.id
+    }).then(function(success){
+      console.log(success);
+      console.log('Device has ' + success.data.triggers.length + ' trigger(s).');
+      if(success.data.triggers.length === 0){
+        console.log('Setting up default triggers to new device.');
+        angular.forEach(triggers, function (trigger) {
+          var alert = {};
+          if(trigger === 'dry alert'){
+            alert.name = "Low moisture levels (dry)";
+            alert.triggername = 'dryTrigger';
+            alert.conditions = {
+              "water": {
+                "lte": 400,
+                "gt": 100
+              }
+            }
           }
-        }).then(function(success){
-          console.log('Successfully registered ' + alert.name + ' trigger for ' + $scope.device.name);
-        }), function(err) {
-          console.log('err: ', err);
-        }
-      }), function(err) {
-        console.log('err: ', err);
+          if(trigger === 'danger alert'){
+            alert.name = "Extremely low moisture levels (danger)";
+            alert.triggername = 'dangerTrigger';
+            alert.conditions = {
+              "water": {
+                "lte": 100
+              }  
+            }
+          }
+          if(trigger === 'drenched alert'){
+            alert.name = "Extremely high moisture levels (drenched)";
+            alert.triggername = 'drenchedTrigger';
+            alert.conditions = {
+              "water": {
+                "gt": 700
+              }  
+            }  
+          }
+          console.log('Adding trigger ' + alert.name + ' to m2x, under the apikey ' + apiKey)
+
+          return $http({
+            method: 'POST',
+            url: 'https://api-m2x.att.com/v2/devices/'+apiKey+'/triggers',
+            headers: {
+              "X-M2X-KEY": deviceMasterKey
+            },
+            data: {
+              "name": alert.name,
+              "conditions": alert.conditions,
+              "frequency": "periodic",
+              "interval": 43200,
+              "callback_url": "http://bloomapp.herokuapp.com/api/triggers",
+              "status": "disabled"
+            }
+          }).then(function(success) {
+            return $http({
+              method: 'PUT',
+              url: '/api/triggers',
+              data:{
+                username: $scope.username,
+                apiKey: apiKey,
+                triggername: alert.triggername,
+                triggerid: success.data.id
+              }
+            }).then(function(success){
+              console.log('Successfully registered ' + alert.name + ' trigger for ' + $scope.device.name);
+            }), function(err) {
+              console.log('err: ', err);
+            }
+          }), function(err) {
+            console.log('err: ', err);
+          }
+        })
+      } else {
+        console.log('Device already has triggers set up!');
       }
     })
+
   }
 
 })
