@@ -201,7 +201,7 @@ angular.module('App.userprofile-registerCtrl').controller('ModalInstanceRegCtrl'
               "conditions": alert.conditions,
               "frequency": "periodic",
               "interval": 43200,
-              "callback_url": "http://bloomapp.herokuapp.com/api/triggers",
+              "callback_url": "http://bloomapp.herokuapp.com/notifications/alert",
               "status": "disabled"
             }
           }).then(function(success) {
