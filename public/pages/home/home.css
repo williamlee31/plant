@@ -322,7 +322,7 @@ color: white !important;
 }
 
 span .contactGlyph {
-	display: inline-block;
+	display: inline-block; 
 }
 
 @media (min-width: 300px) {
