@@ -75,7 +75,7 @@ angular.module('App.userProfileCtrl',[
                   weather: weather,
                   location: location,
                   image: image,
-                  chanceofRain, chanceofRain,
+                  chanceofRain: chanceofRain,
                   triggers: {
                     dangerTrigger: device.dangerTrigger,
                     dryTrigger: device.dryTrigger,

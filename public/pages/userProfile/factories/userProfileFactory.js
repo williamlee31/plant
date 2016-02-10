@@ -74,8 +74,6 @@ angular.module('userProfileFactory', [])
       }
 
       var updateDeviceTrigger = function(deviceTrigger){
-        console.log('currentTriggerDevice.username: ', currentTriggerDevice.username);
-        console.log('currentTriggerDevice.apiKey: ', currentTriggerDevice.apiKey);
         console.log('deviceTrigger:', deviceTrigger);
         var triggerid = deviceTrigger + 'id';
 
@@ -166,7 +164,6 @@ angular.module('userProfileFactory', [])
         var ISOtime = currentTime.toISOString();
 
         angular.forEach(streams, function(stream){
-          console.log(stream);
           return $http({
             method: 'DELETE',
             url: 'https://api-m2x.att.com/v2/devices/'+m2xKeys.device+'/streams/'+stream+'/values',
