@@ -268,3 +268,27 @@ color: white !important;
 .seeThroughInput {
 	background-color: rgba(255, 255, 255, 0.5);
 }
+
+.form-top-right {
+    float: right;
+    /* width: -10%; */
+    padding-top: 0%px;
+    font-size: 187px;
+    color: #72A995;
+    line-height: 51%;
+    text-align: right;
+}
+
+.form-top-left {
+    float: left;
+    /* width: 66%; */
+    padding-top: 2%;
+    font-size: 155%;
+    top: 2%;
+    color: rgb(250,250,250);
+    padding-bottom: 2%;
+}
+
+span .contactGlyph {
+	display: inline-block;
+}
