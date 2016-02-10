@@ -57,13 +57,32 @@
 	margin-right: 0px;
 	margin-left: 0px;
 	background-size: cover !important;
+	/*background-size: 100% 100%;*/
 	width: 100%;
-	background-image: url("../../img/backdrops/plant.jpg");
-	height: 1000px;
+	/*background-image: url("../../img/backdrops/plant.jpg");*/
+	/*height: 1000px;*/
+	height: 775px;
 	display: block;
 	position: relative;
 	z-index: 1;
+	background-position: center;
 }
+
+.backgroundImagePanel {
+    background-repeat: no-repeat;
+    background-image: url("../../img/backdrops/plantResize.jpg"); 
+}
+
+/* For width 400px and larger: */
+@media only screen and (min-width: 400px) {
+    .backgroundImagePanel { 
+       background-image: url("../../img/backdrops/plant.jpg"); 
+    }
+}
+
+
+
+
 
 /*background-color:#272722*/
 
@@ -299,7 +318,7 @@ color: white !important;
 
 
 .seeThroughInput {
-	background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 0.6);
 }
 
 .form-top-right {
