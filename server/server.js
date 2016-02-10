@@ -8,7 +8,7 @@ var routeNotify = require('./routesNotify.js');
 var db = require('./db/db.js');
 var app = express();
 
-module.exports.app = app; 
+module.exports.app = app;
 
 app.use(parser.json());
 app.use('/api', routeAPI);
@@ -22,9 +22,13 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.set('port', process.env.PORT || 1337);
 app.use(express.static('./public'));
-app.set('port', process.env.PORT || 1337); // for deployment
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
+if (module.parent) {
+  module.exports = app;
+} else {
+  app.listen(app.get('port'), function(){
+    console.log('Express server listening on port ' + app.get('port'));
+  });
+}
