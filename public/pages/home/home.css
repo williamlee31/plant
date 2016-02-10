@@ -89,9 +89,10 @@
 .intro-section{
 	position: absolute;
 	height: 15%;
-	padding-top:45%;
+	padding-top:12%;
 	padding-bottom:40%;
 	text-align: center;
+	width: 95%;
 }
 
 #navBarText {
@@ -378,3 +379,12 @@ span .contactGlyph {
 		color: white;
 	}
 }
+
+@media (max-width: 768px)  {
+	.intro-section {
+		padding-top: 20%;
+
+	}
+}
+
+
