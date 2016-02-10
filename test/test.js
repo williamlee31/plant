@@ -35,9 +35,17 @@ describe("sign up and sign in", function() {
           'password': 'password',
           'username': 'bjoe'
         })
-        .expect(200, function(err) {
-          done(err);
-        });
+        .expect('Content-Type', /json/)
+        .expect(hasInfo)
+        .end(done);
+
+        function hasInfo(response) {
+          if(response.body.firstname === "Bob" && response.body.lastname === "Joe" && response.body.username === "bjoe"){
+            return true;
+          } else {
+            throw new Error("wrong info");
+          }
+        }
     });
 
     it("should log in an existing user", function(done) {
@@ -47,11 +55,18 @@ describe("sign up and sign in", function() {
           'username': 'bjoe',
           'password': 'password'
         })
-        .expect(200, function(err, res){
-          token = res.body.token;
-          username = res.body.username;
-          done(err);
-        });
+        .expect('Content-Type', /json/)
+        .expect(userInfo)
+        .end(done);
+
+        function userInfo(response) {
+          token = response.body.token;
+          if(response.body.firstname === "Bob" && response.body.lastname === "Joe" && response.body.username === "bjoe"){
+            return true;
+          } else {
+            throw new Error("wrong info");
+          }
+        }
     });
   });
 });
@@ -61,9 +76,45 @@ describe("should give info on an existing user", function(done) {
     it("should return data on user", function(done) {
       request
         .get('/api/users?token='+token)
-        .expect(200, function(err, res){
-          done(err);
+        .expect('Content-Type', /json/)
+        .expect(exisitingUser)
+        .end(done);
+
+        function exisitingUser(response) {
+          token = response.body.token;
+          username = response.body.username;
+          if(response.body.firstname === "Bob" && response.body.lastname === "Joe" && response.body.username === "bjoe"){
+            return true;
+          } else {
+            throw new Error("wrong info");
+          }
+        }
+    })
+  })
+})
+
+describe("should register a new device", function(done) {
+  describe('GET', function() {
+    it("should return true when new device added", function(done) {
+      request
+        .post('/api/devices')
+        .send({
+          name: "test",
+          username: username,
+          zipCode: "91326",
+          apiKey: "123"
         })
+        .expect(exisitingUser)
+        .end(done);
+
+        function exisitingUser(response) {
+          token = response.body.token;
+          if(response.text === 'Saved device in database'){
+            return true;
+          } else {
+            throw new Error("wrong info");
+          }
+        }
     })
   })
 })
