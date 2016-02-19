@@ -3,7 +3,6 @@
 https://bloomapp.herokuapp.com/
 
 <h1> How to start the Database </h1>
----
 
 <h5>Enter this into terminal:</h5>
 **`mysql.server start`<br>
@@ -12,7 +11,6 @@ https://bloomapp.herokuapp.com/
 
 ---
 <h1> API ACCOUNTS </h1>
----
 <h5>M2X</h5>
 Create an account at https://m2x.att.com/. <br>
 Here you will need to use two keys. Navigate to account settings to find the Master Key. Next create a device and save the device id. You can reference the M2X api cheatsheet at https://m2x.att.com/developer/documentation/v2/cheatsheet.
@@ -24,7 +22,6 @@ Navigate to **plant/server/keyindex.js** in this file add your two keys in these
 
 ---
 <h1> Hardware </h1>
----
 
 The Dev board used was the CC3200 LAUNCHXL this can be bought at http://www.amazon.com/gp/product/B00R3R1A8E?keywords=cc3200&qid=1455857255&ref_=sr_1_4&sr=8-4<br>
 
