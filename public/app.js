@@ -18,24 +18,6 @@ angular.module('App',[
 	'duScroll'
 	])
 	.config(function($stateProvider, $urlRouterProvider,  $httpProvider){
-		//  how to do controller/view (DON'T forget to add controller to angular.model & index.html)
-		// .state('app',{
-		// 	url: '/app',
-		// 	authenticate: true,
-		// 	views: {
-		// 		'': {
-		// 			templateUrl: 'pages/app/app.html',
-		// 			controller: 'appCtSrl'
-		// 		},
-		// 		example for nest view/ controller
-		// 		'<YOUR VIEW NAME>@app': {
-		// 			template: 'pages/app/templates/<YOUR VIEW NAME>.html',
-		// 			controller: '<YOUR CONTROLLER NAME>'
-		// 		}
-		// 	}
-		// })
-		// ---Add this to the parent view template---
-		// <div ui-view="<YOUR VIEW NAME>"></div>
 		$stateProvider
 			.state('home',{
 				url: '/',
