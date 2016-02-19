@@ -1,3 +1,7 @@
-var deviceMasterKey = "7f4b3ddf06944e06a87d0cc8aef754ad";
-var deviceKey = 'f990e644186d0c7ecde4eb454934ae2f';
-var wundergroundKey = '7af2edfc0e02fc06';
+if(process.env.deviceMasterKey && process.env.wundergroundKey){
+  var deviceMasterKey = process.env.deviceMasterKey;
+  var wundergroundKey = process.env.wundergroundKey;
+} else {
+  var deviceMasterKey = "<YOUR KEY HERE>";
+  var wundergroundKey = "<YOUR KEY HERE>";
+}

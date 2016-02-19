@@ -17,7 +17,7 @@ angular.module('App.userprofile-triggerCtrl',['ui.bootstrap','ngAnimate'])
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
-  }; 
+  };
 
   $scope.userInfo = {};
 
@@ -31,7 +31,6 @@ angular.module('App.userprofile-triggerCtrl').controller('ModalInstanceTriggerCt
 
   $scope.updateDeviceTrigger = function(triggerName) {
     userProfileFactory.updateDeviceTrigger(triggerName).then(function(result){
-      alert(result);
     })
   }
 

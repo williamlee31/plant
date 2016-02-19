@@ -19,50 +19,6 @@ angular.module('App.userprofile-registerCtrl',['ngAnimate', 'ui.bootstrap'
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
-
-  $scope.triggerm2xGET = function() {
-    var m2xKeys = {
-      master: deviceMasterKey, // hide inside not pushed file
-      device: deviceKey
-    }
-    return $http({
-      method: 'GET',
-      url: 'https://api-m2x.att.com/v2/devices/'+deviceKey+'/triggers',
-      headers: {
-        "X-M2X-KEY": m2xKeys.master
-      }
-    }).
-    then(function(success) {
-    }), function(err) {
-    }
-  }
-
-  $scope.triggerm2xPOST = function() {
-    var m2xKeys = {
-      master: deviceMasterKey, // hide inside not pushed file
-      device: deviceKey
-    }
-
-    return $http({
-      method: "POST",
-      url: 'https://api-m2x.att.com/v2/devices/'+deviceKey+'/triggers',
-      headers: {
-        "X-M2X-KEY": "7f4b3ddf06944e06a87d0cc8aef754ad"
-      },
-      data: { "name": "Low-Water",
-              "conditions": {
-                "water": { "changed": true }
-              },
-              "frequency": "continuous",
-              "callback_url": "http://requestb.in/oftl8uof",
-              "status": "enabled"
-              // "send_location": false
-            }
-    }).
-    then(function(success) {
-    }), function(err) {
-    }
-  }
 });
 
 
