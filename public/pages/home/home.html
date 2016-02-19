@@ -1,0 +1,481 @@
+<div>
+    <nav class="navbar navbar-fixed-top hidden-sm hidden-xs" id="navBar1"></nav>
+    <nav class="navbar navbar-fixed-top hidden-sm hidden-xs" id="navBar2">
+      <div clas="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand test" id="homeBloom" ui-sref="home">Bloom</a>
+        </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="text-center">
+              <a class = "navBarText" ng-hide="isLoggedIn" type="button" ng-click="open()"><span class="glyphicon glyphicon-log-in" style="font-size:20px;"></span></br>LOGIN</a>
+              <a class = "navBarText" ng-show="isLoggedIn" ui-sref="userprofile"><span class="glyphicon glyphicon-grain text-danger" style="font-size:20px;"></span></br><strong>{{firstname + "\'S PROFILE" | uppercase}}</strong></a>
+            </li>
+            <li class="text-center">
+                <a class = "navBarText page-scroll" href="#product" du-smooth-scroll du-scrollspy ><span class="glyphicon glyphicon-leaf" style="font-size:20px;"></span></br>PRODUCT</a>
+            </li>
+            <li class="text-center">
+                <a class = "navBarText" href="#features" du-smooth-scroll du-scrollspy><span class="glyphicon glyphicon-th-list" style="font-size:20px;"></span></br>FEATURES</a>
+            </li>
+            <li class="text-center">
+                <a class = "navBarText" href="#setup" du-smooth-scroll du-scrollspy><span class="glyphicon glyphicon-cog" style="font-size:20px;"></span></br>SETUP</a>
+            </li>
+            <li class="text-center">
+                <a class = "navBarText" href="#team" du-smooth-scroll du-scrollspy><span class="glyphicon glyphicon-cloud" style="font-size:20px;"></span></br>TEAM</a>
+            </li>
+            <li class="text-center">
+                <a class = "navBarText" href="#contact" du-smooth-scroll du-scrollspy><span class="glyphicon glyphicon-envelope" style="font-size:20px;"></span></br>CONTACT</a>
+            </li>
+          </ul>
+      </div>
+    </nav>
+
+    <nav class="navbar navbar-fixed-top visiable-sm visiable-xs hidden-md hidden-lg" id="navBar3">
+      <div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" id="homeNavBurger" data-toggle="collapse" data-target="#homeNavBar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" id="homeBloomSm" ui-sref="home">Bloom</a>
+        </div>
+        <div class="collapse navbar-collapse" id="homeNavBar">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a id="navBarText2" ng-hide="isLoggedIn" type="button" ng-click="open()"><div class="glyphicon glyphicon-log-in" style="font-size:20px;"></div></br>LOGIN</a>
+              <a id="navBarText2" ng-show="isLoggedIn" ui-sref="userprofile"><div class="glyphicon glyphicon-grain text-danger" style="font-size:20px;"></div></br><strong>{{firstname + "\'S PROFILE" | uppercase}}</strong></a>
+            </li>
+            <li>
+                <a id="navBarText2" class="page-scroll" href="#product" du-smooth-scroll du-scrollspy ><div class="glyphicon glyphicon-leaf" style="font-size:20px;"></div></br>PRODUCT</a>
+            </li>
+            <li>
+                <a id="navBarText2" href="#features" du-smooth-scroll du-scrollspy><div class="glyphicon glyphicon-th-list" style="font-size:20px;"></div></br>FEATURES</a>
+            </li>
+            <li>
+                <a id="navBarText2" href="#setup" du-smooth-scroll du-scrollspy><div class="glyphicon glyphicon-cog" style="font-size:20px;"></div></br>SETUP</a>
+            </li>
+            <li>
+                <a id="navBarText2" href="#team" du-smooth-scroll du-scrollspy><div class="glyphicon glyphicon-cloud" style="font-size:20px;"></div></br>TEAM</a>
+            </li>
+            <li>
+                <a id="navBarText2" href="#contact" du-smooth-scroll du-scrollspy><div class="glyphicon glyphicon-envelope" style="font-size:20px;"></div></br>CONTACT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+ <!-- style="height: 100%; top: -421px; r;right: -788px;width: 58%;" -->
+
+
+    <div class="backgroundImagePanel">
+        <section class="intro-section">
+            <div class="row">
+                <!-- <div class="col-md-6"></div> -->
+                <div class="col-md-8" style=""> </div>
+                <div class="col-md-4" style="">
+                    <!-- <div class="col-md-6"> -->
+                        <div class="text-right pull-right control-group">
+                            <h2 style="color:white; font-weight:bold;">Everything you need to <span style="color: #97ef52;">monitor</span> your plant's health</h2>
+                            <h4 style="color:silver; font-style:italic;"> Stream updates. Notifications. Chart Data</h4>
+                            <br>
+                            <button href="#product" class="btn btn-lg btn-info text-center" style="" du-smooth-scroll du-scrollspy duration="1000">How it works</button>
+                        </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section id="product">
+
+        <div class="row" style="text-align:center; margin-top 30px; z-index:-3;">
+            <div class="col-md-6" style="height: 100%;">
+                <!-- <img src="../../img/product/product.png" class="microchip" style="width:50%; height:50%"> -->
+                <img src="../../img/product/bloomModelV2.png" style="width: 70%; height: 70%; padding-bottom: 5%; padding-top: 25%;">
+            </div>
+            <div class="col-md-6" style=" padding-top: 50px; padding-bottom: 5%;">
+                <h3 class="headerTitle">PRODUCT</h3>
+                <p style="margin-top: 40px; padding-right: 40px; padding-left: 40px;"> Bloom uses the CC3200 Micro-controller made by Texas Instruments with sensors to accurately monitor light, moisture, and temperature.  Bloom never sleeps and watches over your plant's health 24 hours a day.</p>
+                <!-- <button ui-sref="productpage">Learn More</button> -->
+                <div style = "padding-right: 40px; padding-left:40px;">
+                    <div class="row" style="text-align:center; margin-top: 30px;">
+                    <div class="col-md-4">
+                            <img src="../../img/icons/lightColor.png" style="height: 80px; width:80px;">
+                            <p>LIGHT</p>
+                            <p>The quality, intensity, and duration of light directly impacts a plant's growth. Bloom helps your plant get the optimum light level with accurate information on the amount of light your plant receives with charts.</p>
+                    </div>
+                    <div class="col-md-4">
+                            <img src="../../img/icons/moistureColor.png" style="height: 80px; width:80px;">
+                            <p>MOISTURE</p>
+                            <p>A plant cannot grow if it doesn’t have healthy roots, so the proper balance of water is key when growing plants. Bloom continuously monitors the moisture in your plant's soil with state of the art sensors, making sure your plant's roots have the perfect amount of water to grow.</p>
+                    </div>
+                    <div class="col-md-4">
+                            <img src="../../img/icons/tempColor.png" style="height: 80px; width:80px;">
+                            <p>TEMPERATURE</p>
+                            <p>Excessively low or high temperatures may cause: plant stress, inhibit growth, or promote a spindly appearance and foliage damage or drop.  Bloom keeps watch of your plant's temperature constantly, informing you of temperature changes that may effect your plant.</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- <div class="productPhoto"><div> -->
+    </section>
+    <div class="inBetweenPhoto">
+        <div style="height:400px"></div>
+    </div>
+    <section id="features" style="background-color:white">
+        <div class="container">
+            <h1 style="text-align: center;" class="headerTitle">FEATURES</h1>
+            <div class="row" style="text-align:center; margin-top: 30px;">
+                <div class="col-md-5">
+                        <img src="../../img/product/iphoneMacbook1.png" style="height: 30%; width:100%;">
+                        <p>USERPROFILE</p>
+                        <p>
+                        Get your personal dashboard where you can add multiple Bloom devices, get weather alerts and monitor data regarding your plant's health.
+                        </p>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-5">
+                        <img src="../../img/product/iphoneMacbook2.png" style="height: 30%; width:100%;">
+                        <p>DATA CHARTS</p>
+                        <p>
+                        Simple, intuitive charts for your personal computer and mobile device. Get data on the moisture levels, tempetaure and amount of sunlight on your plants.
+                        </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="inBetweenPhoto2">
+        <div style="height:400px"></div>
+    </div>
+    <section id="setup" style="background-color:white; padding-top:50px; padding-bottom:50px;">
+        <div class="container">
+        <h1 style="text-align:center; padding-bottom:50px;" class="headerTitle">SETUP</h1>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="timeline">
+                        <li>
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="../../img/icons/USB.png" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>POWER DEVICE</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">After receiving your device, simply plug your device with the included USB power cable.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="../../img/icons/setUp.png" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>SETUP SENSORS</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Insert Bloom into the soil near your plant. Make sure that the light sensor at the top of your device is not obstructed to ensure accurate light readings.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="../../img/icons/register.png" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>REGISTER</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Registering your device is simple. Just sign up and register your device. Your device ID is packaged with your Bloom device.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="../../img/icons/wifiNew.png" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>CONNECT</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Connect your device to Wi-Fi by entering your Wi-Fi network's information on the keypad on the side of your Bloom device.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="../../img/icons/monitor.png" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>MONITOR</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Watch the changes in values for moisture, light and temperature in your charts which can be found in your User Profile. Get updates for weather events and get custom text alerts.</p>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+    <div class="inBetweenPhoto3" id="team">
+        <div style="height:400px"></div>
+    </div>
+    <section id="contact" style="background-color:white; padding-top: 50px; padding-bottom: 50px;">
+        <h1 style="text-align:center; padding-bottom:50px;" class="headerTitle">TEAM</h1>
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="team-member" style="text-align:center;">
+                        <img src="../../img/product/Sean.jpg" class="img-circle" style="height: 60%; width:60%;" alt="">
+                        <h4>Sean Chamanara</h4>
+                        <p class="text-muted">Product Owner</p>
+                        <ul class="noBullet social-buttons">
+                            <li class="inline"><a href="https://www.linkedin.com/in/sean-chamanara-2a26593"><img src="../../img/icons/linkedin.png" style="height: 25%; width: 25%;"></img></i></a>
+                            </li>
+                            <li class="inline"><a href="https://github.com/seanchamanara"><img src="../../img/icons/github2.png" style="height: 25%; width: 25%;"></img></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="team-member" style="text-align:center;">
+                        <img src="../../img/product/Will.jpg" class="img-circle" style="height: 60%; width:60%;" alt="">
+                        <h4>William Lee</h4>
+                        <p class="text-muted">Back-end Engineer</p>
+                        <ul class="noBullet social-buttons">
+                            <li class="inline">
+                                <a href="https://www.linkedin.com/in/williamlee31"><img src="../../img/icons/linkedin.png" style="height: 25%; width: 25%;"></img></a>
+                            </li>
+                            <li class="inline">
+                                <a href="https://github.com/williamlee31"><img src="../../img/icons/github2.png" style="height: 25%; width: 25%;"></img></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="team-member" style="text-align:center;">
+                        <img src="../../img/product/jeff.jpg" style="height: 60%; width:60%;" class="img-circle" alt="">
+                        <h4>Jefferson Lim</h4>
+                        <p class="text-muted">Scrummaster</p>
+                        <ul class="noBullet social-buttons">
+                            <li class="inline">
+                                <a href="https://www.linkedin.com/in/jeffersonlim"><img src="../../img/icons/linkedin.png" style="height: 25%; width: 25%;"></img></a>
+                            </li>
+                            <li class="inline">
+                                <a href="https://github.com/jlimgh"><img src="../../img/icons/github2.png" style="height: 25%; width: 25%;"></img></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+             <div class="col-sm-2">
+                    <div class="team-member" style="text-align:center;">
+                        <img src="../../img/product/chris.jpg" style="height: 60%; width:60%;" class="img-circle" alt="">
+                        <h4>Chris Kuh</h4>
+                        <p class="text-muted">Back-end Engineer</p>
+                        <ul class="noBullet social-buttons">
+                            <li class="inline">
+                                <a href="#"><img src="../../img/icons/linkedin.png" style="height: 25%; width: 25%;"></img></a>
+                            </li>
+                            <li class="inline">
+                                <a href="https://github.com/ckuh"><img src="../../img/icons/github2.png" style="height: 25%; width: 25%;"></img></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="team-member" style="text-align:center;">
+                        <img src="../../img/product/david.jpg" style="height: 60%; width:60%;" class="img-circle" alt="">
+                        <h4>David Dame-Boyle</h4>
+                        <p class="text-muted">Front-end Engineer</p>
+                        <ul class="noBullet social-buttons">
+                            <li class="inline">
+                                <a href="#"><img src="../../img/icons/linkedin.png" style="height: 25%; width: 25%;"></img></a>
+                            </li>
+                            <li class="inline">
+                                <a href="https://github.com/ddameboyle"><img src="../../img/icons/github2.png" style="height: 25%; width: 25%;"></img></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+                </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <p class="large text-muted">Our team consists of five highly-trained full-stack software engineers. All are graduates of MakerSquare LA.</p>
+                </div>
+            </div>
+    </section>
+
+
+    <section id="contact" style="background-image: url(../../img/backdrops/hepatica-427877_1920.jpg); background-attachment: fixed; padding-top:30px; padding-bottom:50px; background-size: cover">
+<!--         <h2 style="text-align:center;">Contact Us</h2>
+        <h5 style="text-align:center;">Give us your feedback!</h5> -->
+        <div class="container feedback" style="width: 65%;">
+            <div class="row">
+                <div class="form-top">
+                    <div class="col-md-6">
+                        <div class="form-top-left">
+                            <h1 class="headerTitle" style="color: #67851C">CONTACT US</h1>
+                            <p>Please fill the form below to contact us! </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-top-right">
+                            <span class="glyphicon glyphicon-envelope contactGlyph" style="font-size:90px; color: #67851C;"></span>
+                            <span class="glyphicon glyphicon-globe contactGlyph" style="font-size:90px; color: #ffffff;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control seeThroughInput" placeholder="Your Name *" id="name" style="border:none !important;box-shadow:none !important;" required data-validation-required-message="Please enter your name.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control seeThroughInput" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" class="form-control seeThroughInput" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <textarea class="form-control seeThroughInput" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button type="submit" class="btn btn-xl btn-info">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script type="text/ng-template" id="myModalContent.html">
+
+        <div class="modal-header signInGreen" ng-show="signInTrue">
+            <h3 class="greenModal"> Sign In </h3>
+        </div>
+        <div class="modal-header signUpGreen" ng-show="!signInTrue">
+            <h3 class="greenModal"> Sign Up </h3>
+        </div>
+        <div class="modal-body">
+
+        <div ng-show = "signInTrue">
+            <form style="text-align: center;" ng-submit = "login()" name = "loginForm">
+                <div style="border-bottom:solid 1px; border-bottom-color: #e5e5e5;">
+                <br>
+                <ul class="noBullet">
+                <li>
+                <md-input-container>
+                    <label for="usernameInput" class="labelSignin">USERNAME</label>
+                    <input type="text" id="usernameInput" ng-model="userLogin" md-autofocus="" required>
+                </md-input-container>
+                </li>
+                <li>
+                <md-input-container>
+                    <label for="passwordInput" class="labelSignin">PASSWORD</label>
+                    <input type="password" id="passwordInput" ng-model="passLogin" md-autofocus="" required>
+                </md-input-container>
+                </li>
+
+                <div class="" ng-show="signinAlert" style="margin:8px; color:red;">
+                    The username and password do not match
+                </div>
+
+                <p>No account? <a ng-click = "signInUpToggle()">Sign Up</a></p>
+                </div>
+                <ul class="noBullet" style="margin-top: 10px;">
+                <liclass="inline">
+                <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                </li>
+                <li class="inline">
+                <button class="btn btn-primary signInGreen" type="submit" ng-disabled = "loginForm.$invalid">Sign In</button>
+                </li>
+                </ul>
+            </form>
+    	</div>
+
+    	<div ng-show = "!signInTrue">
+            <br>
+            <form ng-submit = "signup()" name = "signupForm" style="text-align: center;">
+                <div style="border-bottom:solid 1px; border-bottom-color: #e5e5e5;">
+                <br>
+                <ul class="noBullet">
+                <li>
+                <md-input-container>
+                    <label for="usernameInput" class="labelSignup">USERNAME</label>
+                    <input type="text" id="usernameInput" ng-model="user" md-autofocus="" required>
+                </md-input-container>
+                </li>
+                <li>
+                <md-input-container>
+                    <label for="firstnameInput" class="labelSignup">FIRST NAME</label>
+                    <input type="text" id="firstnameInput" ng-model="firstname" md-autofocus="" required>
+                </md-input-container>
+                </li>
+                <li>
+                <md-input-container>
+                    <label for="lastnameInput" class="labelSignup">LAST NAME</label>
+                    <input type="text" id="lastnameInput" ng-model="lastname" md-autofocus="" required>
+                </md-input-container>
+                </li>
+                <li>
+                <md-input-container>
+                    <label for="passInput" class="labelSignup">PASSWORD</label>
+                    <input type="password" id="passInput" ng-model="pass" md-autofocus="" required>
+                </md-input-container>
+                </li>
+                <li>
+                <md-input-container>
+                    <label for="emailInput" class="labelSignup">EMAIL</label>
+                    <input type="email" id="emailInput" ng-model="email" md-autofocus="" required>
+                </md-input-container>
+                </li>
+                </ul>
+                <div class="" ng-show="signupAlert" style="margin:11px; color:red;">
+                    Username and/or email is already taken
+                </div>
+                <p>Have an account? <a ng-click = "signInUpToggle()">Sign In</a></p>
+                </div>
+                <ul class="noBullet" style="margin-top: 10px;">
+                <liclass="inline">
+                <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                </li>
+                <li class="inline">
+                <button class="btn btn-primary signUpGreen" type="submit" ng-disabled = "signupForm.$invalid">Sign Up</button>
+                </li>
+                </ul>
+            </form>
+        </div>
+    </script>
+
+</div>

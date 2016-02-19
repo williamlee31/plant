@@ -1,0 +1,27 @@
+{
+  "name": "plant",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha test",
+    "postinstall": "bower cache clean && bower install"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "body-parser": "^1.14.2",
+    "bower": "^1.7.2",
+    "chai": "^3.5.0",
+    "express": "^4.13.3",
+    "jwt-simple": "^0.4.1",
+    "mocha": "^2.4.5",
+    "mysql": "^2.10.2",
+    "nodemailer": "^2.1.0",
+    "pg": "^4.4.4",
+    "request": "^2.69.0",
+    "sequelize": "^3.18.0",
+    "supertest": "^1.1.0"
+  }
+}

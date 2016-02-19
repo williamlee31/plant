@@ -1,0 +1,235 @@
+/*#81A623*/
+.up {
+	bottom:100% !important;
+	top:auto !important;
+}
+
+#userNav {
+	border-radius: 0;
+	margin-bottom: 0;
+}
+
+#userBloom {
+	font-size:48px;
+	color: #81A623;
+	font-family: 'Lobster', cursive;
+	padding-left:15px;
+}
+
+#userNavBurger {
+	margin-top: 11px;
+	border: 0;
+}
+
+#userNavBurger span {
+	background-color: #81A623;
+}
+
+#triggerSettings {
+	min-width: 230px;
+	font-size: 25px;
+	text-align: left;
+}
+
+#deviceRain {
+	position: absolute;
+	top: 5%;
+	right: 10px;
+}
+
+#deviceWeatherButton {
+	background-color: transparent;
+	box-shadow: 0 0 0;
+	padding: 0;
+}
+
+#deviceWeatherButton img{
+	height: 45px;
+	width: 45px;
+}
+
+#deviceSetting {
+	position: absolute;
+	bottom: 5%;
+	right: 10px;
+}
+
+#deviceSettingButton {
+	background-color: transparent;
+	box-shadow: 0 0 0;
+	padding: 0;
+}
+
+#deviceSettingButton img {
+	height: 45px;
+	width: 45px;
+}
+
+#deviceCharts {
+	position: absolute;
+	top: 35%;
+	right: 10px;
+}
+
+#deviceChartsButton {
+	background-color: transparent;
+	border-radius: 0;
+	border-color: transparent;
+	box-shadow: 0 0 0;
+	padding: 0;
+}
+
+#deviceChartsButton img {
+	height: 45px;
+	width: 45px;
+}
+
+#chanceofRain {
+	overflow-y: auto;
+	text-align: center;
+	padding: 5px;
+	width: 195px;
+	height: 100px;
+}
+
+#noRain {
+	text-align: center;
+	padding: 5px;
+	width: 195px;
+}
+
+.spinner {
+	display: block;
+	width:100px;
+	height:100px;
+	margin: 0px auto;
+}
+
+.profileInfo {
+	position: relative;
+  	padding: 10px;
+	text-align: left;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+.profileInfo h1 {
+	margin-top: 0px;
+}
+
+.profileImg {
+	border: 2px solid black;
+	width: 200px;
+	display: block;
+	margin: 20px auto;
+}
+
+.trigger {
+	width: 180px;
+}
+
+.deviceProfile {
+	border-top: 5px solid #81A623;
+	border-right: 5px solid #81A623;
+	border-bottom: 5px solid #81A623;
+  	background-color: white;
+	margin-bottom: 15px;
+	padding: 10px;
+	position:relative;
+}
+
+.deviceProfile h1{
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.registerModalHeader {
+	color: white;
+	font-family: 'Lobster', cursive;
+	font-size: 24px;
+	margin-bottom: 5px !important;
+	background-color: #286090 !important;
+	/* IF WE WANT GREEN: background-color: #81A623 !important; */
+}
+
+.registerModalText {
+	color: #286090;
+}
+
+.deviceDataName {
+	font-weight: bold;
+}
+
+.deviceInfo {
+  overflow: auto;
+	display: block;
+	height: 70%;
+	width: 90%;
+	padding:0 15px 15px 0;
+	font-size: 15px;
+	position:absolute;
+}
+
+.userProfile {
+	overflow: hidden;
+}
+
+.statsModal {
+	color: #81A623;
+	font-family: 'Lobster', cursive;
+	background-color: #222;
+	padding: 0px !important;
+}
+
+
+/*.chanceRain {
+	border-radius: 10px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 15px;
+	background-color: #FF4040;
+	position: relative;
+	top: 0;
+}*/
+
+@media (min-width: 300px) {
+}
+
+@media (min-width: 400px) {
+	.deviceInfo {
+		height: 75%;
+	}
+}
+
+@media (min-width: 500px) {
+	#deviceCharts {
+		top: 40%;
+	}
+}
+@media (min-width: 600px) {
+	.deviceProfile h1{
+		margin-top: 0px;
+		font-size: 55px;
+	}
+
+	.deviceInfo {
+		font-size: 20px;
+		padding-right: 25px;
+		height: 80%;
+	}
+}
+
+@media (min-width: 700px) {
+	.chanceRain {
+		font-size: 25px;
+	}
+}
+
+@media (min-width: 800px) {
+}
+
+@media (min-width: 900px) {
+}
+
+@media (min-width: 1000px) {
+}

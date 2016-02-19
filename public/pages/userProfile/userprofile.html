@@ -1,0 +1,78 @@
+<nav class="navbar navbar-inverse" id="userNav">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" id="userNavBurger" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" id="userBloom" ui-sref="home">Bloom</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <a class="navbar-brand" ng-click="signout()" href="#"><span class="glyphicon glyphicon-log-out"></span>Signout</a>
+      </ul>
+    </div>
+</nav>
+
+<div>
+
+  <div class="userProfile">
+
+    <div class='profileInfo'>
+      <div ui-view="profileInfo"></div>
+      <div ui-view="register"></div>
+    </div>
+
+    <div class="deviceInfo" ng-style="deviceInfo">
+
+      <span ng-show="loading.hidden">
+        <img src='../../img/gifs/loading_spinner.gif' class="spinner">
+      </span>
+
+      <span ng-show="!loading.hidden">
+        <span ng-show="plants.hidden">
+        <div class="container-fluid">
+          <h4>You have no devices!</h4>
+        </div>
+      </span>
+
+      <span ng-show="!plants.hidden">
+
+        <div ng-repeat='device in deviceData | orderBy:"name"'>
+          <div class="deviceProfile">
+              <div class='chanceRain'></div>
+              <div class='deviceName'><h1>{{device.name}}</h1></div>
+              <div><span>{{device.location}}</span></div>
+              <br>
+              <span>
+                <div class='deviceLight'><span class="deviceDataName">Light: </span>{{device.data.light}}</div>
+                <div class='deviceWater'><span class="deviceDataName">Moisture: </span>{{device.data.water}}</div>
+                <div class='deviceTemp'><span class="deviceDataName">Temperature: </span>{{device.data.temp}}</div>
+              </span>
+              <div ui-view='trigger' id="deviceSetting"></div>
+              <div ui-view='charts' id="deviceCharts"></div>
+              <div id="deviceRain">
+                <div class="btn-group">
+                  <button class="btn-sm btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="deviceWeatherButton"><img src="{{device.image.src}}"/>
+                  </button>
+                  <ul ng-if="device.chanceofRain" class="dropdown-menu down pull-right" role="menu" id="chanceofRain">
+                    <li><b>Chance of rain on: </b></li>
+                    <li ng-repeat="weather in device.weather">
+                      <h5 ng-if="weather.forecast === 'rain'">{{weather.day}}, {{weather.date}}</h5>
+                    </li>
+                  </ul>
+                  <ul ng-if="!device.chanceofRain" class="dropdown-menu down pull-right" role="menu" id="noRain">
+                    <li><b>No rain for the next 7 days!</b></li>
+                  </ul>
+                </div>
+              </div>
+
+
+
+
+          </div>
+        </div>
+      </span>
+    </div>
+  </div>
+</div>
