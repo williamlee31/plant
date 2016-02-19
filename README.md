@@ -1,4 +1,4 @@
-<h1> Plant </h1>
+<h1> Bloom </h1>
 
 ---
 How to start the Database
@@ -8,3 +8,9 @@ How to start the Database
 **`mysql.server start`<br>
 `mysql -u root`** *Logs you into mysql with username "root" and no password* <br>
 **`create database plant`** *Must close all sql commands with semicolon!*
+
+---
+<h1> API ACCOUNTS </h1>
+<h5>M2X</h5>
+Create an account at https://m2x.att.com/. <br>
+Here you will need to use two keys. Navigate to account settings to find the Master Key. Next create a device and save the device id.
