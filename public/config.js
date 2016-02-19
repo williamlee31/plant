@@ -6,7 +6,6 @@ $.ajax({
   contentType: "application/json",
   async: false,
   success: function (data) {
-    debugger;
     deviceMasterKey = data.deviceMasterKey;
     wundergroundKey = data.wundergroundKey;
   },
