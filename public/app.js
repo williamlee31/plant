@@ -1,3 +1,4 @@
+debugger;
 angular.module('App',[
 	'ui.router',
 	'ngMessages',

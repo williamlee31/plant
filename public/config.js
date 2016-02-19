@@ -1,7 +1,16 @@
-if(process.env.deviceMasterKey && process.env.wundergroundKey){
-  var deviceMasterKey = process.env.deviceMasterKey;
-  var wundergroundKey = process.env.wundergroundKey;
-} else {
-  var deviceMasterKey = "<YOUR KEY HERE>";
-  var wundergroundKey = "<YOUR KEY HERE>";
-}
+var deviceMasterKey, wundergroundKey;
+
+$.ajax({
+  url: "/apiKey",
+  type: "GET",
+  contentType: "application/json",
+  async: false,
+  success: function (data) {
+    debugger;
+    deviceMasterKey = data.deviceMasterKey;
+    wundergroundKey = data.wundergroundKey;
+  },
+  error: function (data) {
+    console.error('Failed to get key');
+  }
+});
