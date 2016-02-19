@@ -70,13 +70,13 @@
 
 .backgroundImagePanel {
     background-repeat: no-repeat;
-    background-image: url("../../img/backdrops/plantResize.jpg"); 
+    background-image: url("../../img/backdrops/plantResize.jpg");
 }
 
 /* For width 400px and larger: */
 @media only screen and (min-width: 400px) {
-    .backgroundImagePanel { 
-       background-image: url("../../img/backdrops/plant.jpg"); 
+    .backgroundImagePanel {
+       background-image: url("../../img/backdrops/plant.jpg");
     }
 }
 
@@ -314,7 +314,7 @@ color: white !important;
 	width:90%;
 	padding-top: 5%;
 	padding-left: 5%;
-	margin-right: 0px !important;
+	margin: 2px auto 2px auto;
 }
 
 
@@ -343,7 +343,7 @@ color: white !important;
 }
 
 span .contactGlyph {
-	display: inline-block; 
+	display: inline-block;
 }
 
 @media (min-width: 300px) {
@@ -386,5 +386,3 @@ span .contactGlyph {
 
 	}
 }
-
-

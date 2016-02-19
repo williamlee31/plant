@@ -19,56 +19,6 @@ angular.module('App.userprofile-registerCtrl',['ngAnimate', 'ui.bootstrap'
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
-
-  $scope.triggerm2xGET = function() {
-    console.log('checking trigger...');
-    var m2xKeys = {
-      master: deviceMasterKey, // hide inside not pushed file
-      device: deviceKey
-    }
-    return $http({
-      method: 'GET',
-      url: 'https://api-m2x.att.com/v2/devices/'+deviceKey+'/triggers',
-      headers: {
-        "X-M2X-KEY": m2xKeys.master
-      }
-    }).
-    then(function(success) {
-      console.log('success ', success);
-    }), function(err) {
-      console.log('err: ', err);
-    }
-  }
-
-  $scope.triggerm2xPOST = function() {
-    console.log('checking POST trigger...');
-    var m2xKeys = {
-      master: deviceMasterKey, // hide inside not pushed file
-      device: deviceKey
-    }
-
-    return $http({
-      method: "POST",
-      url: 'https://api-m2x.att.com/v2/devices/'+deviceKey+'/triggers',
-      headers: {
-        "X-M2X-KEY": "7f4b3ddf06944e06a87d0cc8aef754ad"
-      },
-      data: { "name": "Low-Water",
-              "conditions": {
-                "water": { "changed": true }
-              },
-              "frequency": "continuous",
-              "callback_url": "http://requestb.in/oftl8uof",
-              "status": "enabled"
-              // "send_location": false
-            }
-    }).
-    then(function(success) {
-      console.log('success: ', success);
-    }), function(err) {
-      console.log('err: ', err);
-    }
-  }
 });
 
 
@@ -85,7 +35,6 @@ angular.module('App.userprofile-registerCtrl').controller('ModalInstanceRegCtrl'
   $scope.addDeviceAlert = false;
 
   $scope.registerDevice = function() {
-    console.log('Registering device');
     var m2xKeys = {
       master: deviceMasterKey, // hide inside not pushed file
       device: $scope.device.key
@@ -110,17 +59,14 @@ angular.module('App.userprofile-registerCtrl').controller('ModalInstanceRegCtrl'
         }
       })
       .then(function(dbResponse){
-        console.log('dbResponse: ', dbResponse);
         if(dbResponse.status === 200){
           $scope.state.go($state.current, {}, {reload: true});
           $uibModalInstance.close()
         }
       }, function(err){
-        console.log('err: ', err);
         $scope.registeredAlert = true;
       })
     }, function(err){
-      console.log('err: ', err);
         $scope.invalidDeviceAlert = true;
     })
   }
@@ -154,10 +100,7 @@ angular.module('App.userprofile-registerCtrl').controller('ModalInstanceRegCtrl'
           "X-M2X-KEY": deviceMasterKey
         }
     }).then(function(success){
-      console.log(success);
-      console.log('Device has ' + success.data.triggers.length + ' trigger(s).');
       if(success.data.triggers.length === 0){
-        console.log('Setting up default triggers to new device.');
         angular.forEach(triggers, function (trigger) {
           var alert = {};
           if(trigger === 'dry alert'){
@@ -176,7 +119,7 @@ angular.module('App.userprofile-registerCtrl').controller('ModalInstanceRegCtrl'
             alert.conditions = {
               "water": {
                 "lte": 100
-              }  
+              }
             }
           }
           if(trigger === 'drenched alert'){
@@ -185,10 +128,9 @@ angular.module('App.userprofile-registerCtrl').controller('ModalInstanceRegCtrl'
             alert.conditions = {
               "water": {
                 "gt": 700
-              }  
-            }  
+              }
+            }
           }
-          console.log('Adding trigger ' + alert.name + ' to m2x, under the apikey ' + apiKey)
 
           return $http({
             method: 'POST',
@@ -215,16 +157,12 @@ angular.module('App.userprofile-registerCtrl').controller('ModalInstanceRegCtrl'
                 triggerid: success.data.id
               }
             }).then(function(success){
-              console.log('Successfully registered ' + alert.name + ' trigger for ' + $scope.device.name);
             }), function(err) {
-              console.log('err: ', err);
             }
           }), function(err) {
-            console.log('err: ', err);
           }
         })
       } else {
-        console.log('Device already has triggers set up!');
       }
     })
 

@@ -5,15 +5,16 @@ var nodemailer = require('nodemailer');
 var routeAPI = require('./routesAPI.js')
 var routeSign = require('./routesSign.js');
 var routeNotify = require('./routesNotify.js');
+var routeKey = require('./routeKey.js');
 var db = require('./db/db.js');
 var app = express();
 
 module.exports.app = app;
-
 app.use(parser.json());
 app.use('/api', routeAPI);
 app.use('/api/users', routeSign);
-app.use('/notifications', routeNotify)
+app.use('/notifications', routeNotify);
+app.use('/apiKey', routeKey);
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');

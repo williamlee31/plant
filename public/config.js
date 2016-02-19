@@ -1,3 +1,15 @@
-var deviceMasterKey = "7f4b3ddf06944e06a87d0cc8aef754ad";
-var deviceKey = 'f990e644186d0c7ecde4eb454934ae2f';
-var wundergroundKey = '7af2edfc0e02fc06';
+var deviceMasterKey, wundergroundKey;
+
+$.ajax({
+  url: "/apiKey",
+  type: "GET",
+  contentType: "application/json",
+  async: false,
+  success: function (data) {
+    deviceMasterKey = data.deviceMasterKey;
+    wundergroundKey = data.wundergroundKey;
+  },
+  error: function (data) {
+    console.error('Failed to get key');
+  }
+});

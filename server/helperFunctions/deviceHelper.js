@@ -4,7 +4,6 @@ var jwt  = require('jwt-simple');
 
 var compareKey = function (userKey, dataKey, callback) {
   bcrypt.compare(userKey, dataKey, function (err, matchKey) {
-		if(err) console.log(err);
     callback(matchKey);
 	})
 }
@@ -22,12 +21,8 @@ exports.regDevice = function (callback, params) {
   db.Device.find({where: {apiKey: token}})
   .then(function (data) {
     if(!data){
-      console.log('Device key is not in database, proceeding.');
-      console.log('Params: ', params);
-      console.log('Trying to check username: ' + params.username + ' (inside db)');
       db.User.find({where: {username: params.username}})
       .then(function (data) {
-        console.log('Found username in database');
         if(data){
           db.Device.bulkCreate([{
             name: params.name,
@@ -50,7 +45,6 @@ exports.regDevice = function (callback, params) {
 
 exports.getDevices = function(callback, params) {
   var username = params.username;
-  console.log(username);
   db.User.find({where: {username: username}})
   .then(function (data) {
     if(data){
@@ -77,7 +71,6 @@ exports.getDevices = function(callback, params) {
 }
 
 exports.getDeviceTriggers = function(callback, params) {
-  console.log('DEVICE TRIGGER UPDATED INFORMATiON ', params.apiKey, params.username);
   var username = params.username;
   var token = jwt.encode(params.apiKey, 'secret');
   db.User.find({where: {username: username}})
@@ -92,13 +85,11 @@ exports.getDeviceTriggers = function(callback, params) {
           callback(device, 'Invalid device')
         }
       }, function(err){
-        console.log(err);
       })
     } else {
       callback(data, 'Invalid user');
     }
   }, function(err){
-    console.log(err)
   })
 }
 
@@ -111,7 +102,7 @@ exports.updateDeviceTrigger = function(callback, params) {
 
   if(triggerName === 'dryTrigger'){
     trig = 'dry alert';
-  } 
+  }
   if(triggerName === 'drenchedTrigger'){
     trig = 'drenched alert';
   }
@@ -127,12 +118,10 @@ exports.updateDeviceTrigger = function(callback, params) {
       .then(function (device) {
         if(device){
           if(device.dataValues[triggerName]){
-            console.log('+++line98: trigger is currently true, proceeding to change to false');
             triggerObject[triggerName] = false;
             device.update(triggerObject);
             callback(true, device.dataValues.name + "'s " + trig + " switched to off!");
           } else if (!device.dataValues[triggerName]){
-            console.log('+++line103: trigger is currently false, proceeding to change to true');
             triggerObject[triggerName] = true;
             device.update(triggerObject);
             callback(true, device.dataValues.name + "'s " + trig + " switched to on!");
@@ -161,7 +150,6 @@ exports.updateTriggerID = function(callback, params) {
       db.Device.find({where: {apiKey: token, UserId: userid}})
       .then(function (device) {
         if(device){
-          console.log('+++line98: trigger is currently true, proceeding to change to false');
           triggerObject[triggerName] = triggerID;
           device.update(triggerObject);
           callback(true, device.dataValues.name + "'s " + triggerName + " set to " + triggerID);
@@ -184,7 +172,6 @@ exports.deleteDevice = function(callback, params) {
       var userid = data.dataValues.id;
       db.Device.find({where: {name: devicename, UserId: userid}})
       .then(function (data) {
-        console.log('Data from device find: ', data);
         if(data){
           data.destroy();
           callback(true, 'Device deleted');
