@@ -5,7 +5,6 @@ angular.module('userProfileFactory', [])
     var currentTriggerDevice = {};
 
       var checkDevices = function(username) {
-        console.log('Checking for devices');
         return $http({
           method: 'GET',
           url: '/api/devices',
@@ -29,14 +28,12 @@ angular.module('userProfileFactory', [])
              apiKey: apiKey
            }
         }).then(function(success){
-          console.log('Successfully grabbed trigger data: ', success.data);
           var triggers = [
             success.data.dryTriggerid,
             success.data.drenchedTriggerid,
             success.data.dangerTriggerid
           ];
           angular.forEach(triggers, function(trigger){
-            console.log('Deleting trigger on M2X for ', trigger);
             return $http({
               method: 'DELETE',
               url: 'https://api-m2x.att.com/v2/devices/'+apiKey+'/triggers/'+trigger,
@@ -44,9 +41,7 @@ angular.module('userProfileFactory', [])
                 "X-M2X-KEY": deviceMasterKey
               }
             }).then(function(success){
-                console.log(success);
               }, function(err){
-                console.log(err);
               })
           })
           return $http({
@@ -59,14 +54,11 @@ angular.module('userProfileFactory', [])
             }
           })
           .then(function(dbResponse){
-            console.log('Device deleted');
             return true;
           }, function(err){
-            console.log('Device not deleted');
             return false;
           })
         }, function(err){
-          console.log(err)
         })
 
       }
@@ -80,8 +72,6 @@ angular.module('userProfileFactory', [])
         currentTriggerDevice.apiKey = apiKey;
         currentTriggerDevice.username = username;
         currentTriggerDevice.triggers = triggers;
-        console.log('Here is the data you need: ', currentTriggerDevice)
-
       }
 
       var newestTriggerInfo = function(username, apiKey){
@@ -95,7 +85,6 @@ angular.module('userProfileFactory', [])
         }).then(function(success){
           return success.data;
         }, function(err){
-          console.log(err)
         })
       }
 
@@ -104,13 +93,9 @@ angular.module('userProfileFactory', [])
       }
 
       var updateDeviceTrigger = function(deviceTrigger){
-        console.log('deviceTrigger:', deviceTrigger);
         var triggerid = deviceTrigger + 'id';
 
-        console.log(currentTriggerDevice.triggers[deviceTrigger]);
-
         if(currentTriggerDevice.triggers[deviceTrigger]){
-          console.log('Trigger is currently off, switching to on');
           return $http({
             method: "PUT",
             url: 'https://api-m2x.att.com/v2/devices/'+currentTriggerDevice.apiKey+'/triggers/'+currentTriggerDevice.triggers[triggerid],
@@ -121,7 +106,6 @@ angular.module('userProfileFactory', [])
               "status": "enabled"
             }
           }).then(function(success){
-            console.log('Trigger updated on M2X, proceeding to change in database.');
             return $http({
               method: 'PUT',
               url: '/api/devices',
@@ -132,18 +116,14 @@ angular.module('userProfileFactory', [])
               }
             })
             .then(function(dbResponse){
-              console.log(dbResponse)
                 return dbResponse.data;
             }, function(err){
-              console.log(dbResponse)
               return dbResponse.data;
             })
           }, function(err){
-            console.log(err)
           })
         }
         if(!currentTriggerDevice.triggers[deviceTrigger]){
-          console.log('Trigger is currently on, switching to off');
           return $http({
             method: "PUT",
             url: 'https://api-m2x.att.com/v2/devices/'+currentTriggerDevice.apiKey+'/triggers/'+currentTriggerDevice.triggers[triggerid],
@@ -154,7 +134,6 @@ angular.module('userProfileFactory', [])
               "status": "disabled"
             }
           }).then(function(success){
-            console.log('Trigger updated on M2X, proceeding to change in database.');
               return $http({
               method: 'PUT',
               url: '/api/devices',
@@ -165,14 +144,11 @@ angular.module('userProfileFactory', [])
               }
             })
             .then(function(dbResponse){
-              console.log(dbResponse)
                 return dbResponse.data;
             }, function(err){
-              console.log(dbResponse)
               return dbResponse.data;
             })
           }, function(err){
-            console.log(err)
           })
         }
 
@@ -207,9 +183,7 @@ angular.module('userProfileFactory', [])
             }
           })
           .then(function(success){
-            console.log('Delete data successful: ', success);
           }, function(err){
-            console.log('Delete data unsuccessful: ', err);
           })
         })
       }
@@ -237,7 +211,6 @@ angular.module('userProfileFactory', [])
               deviceName: currentDevice.deviceName
             };
           }, function(err){
-            console.log("Data not retrieved");
           })
         }
       }
@@ -250,7 +223,6 @@ angular.module('userProfileFactory', [])
           .then(function(success){
             return success;
           }, function(err){
-            console.log("Data not retrieved");
         })
       }
 
@@ -263,7 +235,6 @@ angular.module('userProfileFactory', [])
           .then(function(success){
             return success.data;
           }, function(err){
-            console.log("Data not retrieved");
         })
       }
 

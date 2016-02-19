@@ -6,7 +6,6 @@ angular.module('appFactory', [])
 		var email = '';
 
 		var isAuth = function(){
-			console.log('+++line10: inside isAuth');
 			return $http({
 				method: 'GET',
 				url: '/api/users/auth',
@@ -14,10 +13,8 @@ angular.module('appFactory', [])
 					token: window.localStorage.token
 				}
 			}).then(function(success){
-				console.log('+++line19: inside appFactory success: ', success);
 				return true; //true or false
 			}, function(err){
-				console.log('+++line21: inside appFactory err: ', err);
 				return false;
 			})
 		};
@@ -34,7 +31,6 @@ angular.module('appFactory', [])
 				window.localStorage.removeItem('token');
 				$state.go('home');
 			}, function(err){
-				console.log(err);
 			})
 		};
 
@@ -46,17 +42,14 @@ angular.module('appFactory', [])
           token: window.localStorage.token
         }
       }).then(function(success){
-        console.log('+++line50: ', success);
         firstName = success.firstname;
         return success;
       }, function(err){
-        console.log('User not loaded');
         return false;
       })
     };
 
     var welcomeEmail = function(firstname, email) {
-      console.log('Trying to send welcome msg for: ' + firstname + ' ' + email)
       return $http({
         method: 'POST',
         url: 'notifications/welcome',
@@ -65,10 +58,8 @@ angular.module('appFactory', [])
           email: email
         }
       }).then(function(success){
-        console.log('Welcome email sent to ' + email)
         return success;
       }, function(err){
-        console.log('Welcome email not sent!')
       })
     };
 

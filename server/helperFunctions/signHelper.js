@@ -4,7 +4,6 @@ var jwt  = require('jwt-simple');
 
 var comparePass = function (userPass, dataPass, callback) {
   bcrypt.compare(userPass, dataPass, function (err, loggedin) {
-		if(err) console.log(err);
     callback(loggedin);
 	})
 }
@@ -87,7 +86,6 @@ exports.signUp = function (callback, params) {
 }
 
 exports.logout = function (callback, params) {
-  console.log('+++line91 token: ', params.token);
   db.User.find({where: {token: params.token}, attributes: ['id', 'token']})
   .then(function (data) {
     if(data){

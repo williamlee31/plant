@@ -79,7 +79,6 @@ angular.module('App.userProfileCtrl',[
                       drenchedTrigger: device.drenchedTrigger
                     }
                   })
-                  console.log('Device data before pageLoad: ', $scope.deviceData);
                   $scope.loading.hidden = false;
                   $scope.plants.hidden = false;
                 })
@@ -87,7 +86,6 @@ angular.module('App.userProfileCtrl',[
 
 
             }, function(err){
-              console.log("Data not retrieved");
             })
           })
         }else{
@@ -123,7 +121,6 @@ angular.module('App.userProfileCtrl',[
   }
 
   $scope.deleteDevice = function(deviceName, apiKey) {
-    console.log('Attempting to delete device: ' + deviceName)
     userProfileFactory.deleteDevice(deviceName, $scope.userInfo.username, apiKey).then(function(result){
       if(result){
         $scope.init();
@@ -138,10 +135,8 @@ angular.module('App.userProfileCtrl',[
   $scope.displayForecast = function(zipCode){
     return userProfileFactory.weatherForecast(zipCode)
     .then(function(results){
-      console.log('WEATHER API: ', results)
       var weather = [];
       var response = results.data.forecast.simpleforecast.forecastday;
-      console.log("+++++ line 9: ", response)
       for(var i = 0; i < 7; i++){
         var conditions = response[i].conditions.split(' ');
         var isRaining = false;

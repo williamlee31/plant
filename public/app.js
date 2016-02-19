@@ -9,7 +9,6 @@ angular.module('App',[
 	'App.userprofile-registerCtrl',
 	'App.userprofile-profileInfoCtrl',
 	'App.userprofile-chartsCtrl',
-	'App.productpageCtrl',
 	'App.userprofile-triggerCtrl',
 	'appFactory',
 	'userProfileFactory',
@@ -68,16 +67,6 @@ angular.module('App',[
 					}
 				}
 			})
-			.state('app',{
-				url: '/app',
-				authenticate: true,
-				views: {
-					'': {
-						templateUrl: 'pages/app/app.html',
-						controller: 'appCtrl'
-					}
-				}
-			})
 			.state('userprofile',{
 				url: '/userprofile',
 				authenticate: true,
@@ -101,16 +90,6 @@ angular.module('App',[
 					'trigger@userprofile': {
 						templateUrl: 'pages/userProfile/templates/userprofile-trigger.html',
 						controller: 'userprofile-triggerCtrl'
-					}							
-				}
-			})
-			.state('productpage', {
-				url: '/productpage',
-				authenticate: false,
-				views: {
-					'': {
-						templateUrl: 'pages/productPage/productpage.html',
-						controller: 'productpageCtrl'
 					}
 				}
 			})
@@ -120,13 +99,11 @@ angular.module('App',[
 	})
 	.run(function($rootScope, $state, appFactory, $location) {
 	  $rootScope.$on('$stateChangeStart', function(e, to) {
-			console.log('+++line116: ', to.authenticate);
 	    if (!to.authenticate) {
 				return;
 			};
 			e.preventDefault();
 			appFactory.isAuth($state).then(function(result){
-				console.log('+++line78: result', result);
 				if(result){
 					to.authenticate = false;
 					$state.go(to.name);
